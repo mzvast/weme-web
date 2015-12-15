@@ -31,8 +31,13 @@ var fortuneCookies = [
 ];
 
 app.get('/', function(req, res) {
+	res.render('landing');
+});
+app.get('/home', function(req, res) {
 	res.render('home');
 });
+
+
 app.get('/about', function(req, res) {
 	var randomFortune =
 		fortuneCookies[Math.floor(Math.random() * fortuneCookies.length)];

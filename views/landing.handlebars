@@ -1,0 +1,82 @@
+{{# section 'head'}}
+<title>WeIn|南京高校轻社交平台</title>
+<!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="/vendor/swiper/css/swiper.min.css">
+
+<!-- Demo styles -->
+    <style>
+    html, body {
+        position: relative;
+        height: 100%;
+    }
+    body {
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color:#000;
+        margin: 0;
+        padding: 0;
+    }
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        background-color:#001319;/*slide边框颜色这里改*/
+    }
+    .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #001319;/*slide背景颜色这里改*/
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+    }
+    .swiper-pagination-bullet {
+    width: 15px;/*球宽*/
+    height: 15px;/*球高*/
+    background: #FDF8F5;/*未选中的球颜色*/
+    margin:25px;
+    }
+    .swiper-pagination-bullet-active {
+        opacity: 1;
+        background: #d2d3d1;/*选中的球颜色*/
+    }
+    .swiper-container-vertical>.swiper-pagination .swiper-pagination-bullet {
+    margin: 25px 0;/*球间距*/
+    }
+    
+    </style>
+{{/ section}}
+
+{{>swiper}}
+
+
+{{#section 'jquery'}}
+    <!-- Swiper JS -->
+    <script src="/vendor/swiper/js/swiper.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+    var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        direction: 'vertical',
+        slidesPerView: 1,
+        paginationClickable: true,
+        spaceBetween: 30,
+        mousewheelControl: true
+    });
+    </script>
+{{/section}}
+
