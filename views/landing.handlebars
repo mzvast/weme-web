@@ -2,6 +2,8 @@
     <title>WeIn|南京高校轻社交平台</title>
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="/vendor/swiper/css/swiper.min.css">
+    <!-- Link Pure CSS stars -->
+    <link rel="stylesheet" href="/css/stars_bg.css">
 
     <!-- Demo styles -->
     <style>
@@ -32,7 +34,7 @@
         .swiper-slide {
             text-align: center;
             font-size: 18px;
-            background: #001319;
+            /*background: #001319;*/
             /*slide背景颜色这里改*/
             /* Center slide text vertically */
             display: -webkit-box;
@@ -114,6 +116,7 @@
             line-height: 37px;
             font-size: 18px;
             cursor: pointer;
+            opacity:0.9;
         }
         
         .head_list li:hover {
@@ -146,8 +149,8 @@
         <img src="img/logo.png" style="height:45px;" alt=""><span>喂米</span>
     </div>
     <ul class="head_list">
-        <li id="cubtn" href="#">关于</li>
-        <li id="jubtn" href='/#download'>下载</li>
+        <li id="about" href="#about" onClick='swiper.slideTo(1, 700, false)'>关于</li>
+        <li id="download" href='/#download' onClick='swiper.slideTo(3, 700, false)'>下载</li>
     </ul>
 </div>
 
@@ -166,7 +169,15 @@
             slidesPerView: 1,
             paginationClickable: true,
             spaceBetween: 30,
-            mousewheelControl: true
+            mousewheelControl: true,
         });
     </script>
+    
+    {{!--跳转到指定slide,太罗嗦了，可直接嵌入文中onClick--}}
+    // <script>
+    //     $('#download').click(function(event) {
+    //         event.preventDefault();
+    //         swiper.slideTo(4, 700, false);
+    //     });
+    // </script>
 {{/section}}
