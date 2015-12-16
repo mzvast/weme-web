@@ -2,17 +2,21 @@
 <html lang="zh-CN">
 
 <head>
-  {{>head}}
-  {{>css_bt}}
+  {{>head}} 
   
+  {{!--{{>css}}--}}
+  
+{{>jquery}}
   {{{_sections.head}}}
+  
 </head>
+
 <body>
   {{!--{{>fixed_navbar}} --}}
+
   {{{body}}}
 
-{{>jquery}} 
-{{>js_bt}} 
+
 
 {{{_sections.jquery}}}
 </body>

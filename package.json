@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "bootstrap": "^3.3.6",
-    "swiper": "^3.2.7"
+    "swiper": "^3.2.7",
+    "vex-js": "^2.3.3"
   }
 }
