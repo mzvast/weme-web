@@ -31,7 +31,7 @@ var fortuneCookies = [
 ];
 
 app.get('/', function(req, res) {
-	res.render('landing');
+	res.render('landing',{layout:'main_no_css'});
 });
 app.get('/home', function(req, res) {
 	res.render('home');
