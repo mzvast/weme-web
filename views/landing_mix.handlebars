@@ -1,16 +1,14 @@
 {{# section 'head'}}
     <title>WeMe|南京高校轻社交平台</title>
     <!-- Link Swiper's CSS -->
-    <link rel="stylesheet" href="/vendor/swiper/css/swiper.min.css">
-    
-    {{!--<!-- Link Pure CSS stars -->--}}
+    <link rel="stylesheet" href="/vendor/swiper/css/swiper.min.css">{{!--<!-- Link Pure CSS stars -->--}}
     {{!--<link rel="stylesheet" href="/css/stars_bg.css">--}}
-    
+
     {{!--Link VEX-JS--}}
     <script src="/vendor/vex-js/js/vex.combined.min.js"></script>
     <link rel="stylesheet" href="/vendor/vex-js/css/vex.css" />
     <link rel="stylesheet" href="/vendor/vex-js/css/vex-theme-flat-attack.css" />
-    
+
     <!-- Demo styles -->
     <style>
         html,
@@ -18,7 +16,7 @@
             position: relative;
             height: 100%;
             /*隐藏掉滚动条*/
-            overflow:hidden;
+            overflow: hidden;
         }
         
         body {
@@ -37,7 +35,6 @@
             /*margin-right: auto;*/
             /*background-color: #001319;*/
             /*slide边框颜色这里改*/
-            
             background: #000;
         }
         
@@ -60,6 +57,7 @@
             -webkit-align-items: center;
             align-items: center;
         }
+        
         .parallax-bg {
             position: absolute;
             left: 0;
@@ -69,20 +67,23 @@
             -webkit-background-size: cover;
             background-size: cover;
             background-position: center;
-        } 
-            .swiper-slide .title {
-                font-size: 41px;
-                font-weight: 300;
-            }
-            .swiper-slide .subtitle {
-                font-size: 21px;
-            }
-            .swiper-slide .text {
-                font-size: 14px;
-                max-width: 400px;
-                line-height: 1.3;
-            }
-            
+        }
+        
+        .swiper-slide .title {
+            font-size: 41px;
+            font-weight: 300;
+        }
+        
+        .swiper-slide .subtitle {
+            font-size: 21px;
+        }
+        
+        .swiper-slide .text {
+            font-size: 14px;
+            max-width: 400px;
+            line-height: 1.3;
+        }
+        
         .swiper-pagination-bullet {
             width: 15px;
             /*球宽*/
@@ -148,7 +149,7 @@
             line-height: 37px;
             font-size: 18px;
             cursor: pointer;
-            opacity:0.9;
+            opacity: 0.9;
         }
         
         .head_list li:hover {
@@ -158,16 +159,79 @@
         ul {
             list-style: none;
         }
-        /*VEX-JS DIALOG CSS here*/
-        .vex.vex-theme-wireframe .vex-overlay {
-            background: rgba(0, 0, 0, 0);
+        a{
+            text-decoration: none;
         }
-        .vex.vex-theme-wireframe .vex-content {
-            background-image:url('/img/about.png');
-            background-position:center;
-        }
+        /*第4页下载链接样式*/
+        /*.download {*/
+        /*    position: absolute;*/
+        /*    bottom: 66px;*/
+        /*    right: 222px;*/
+        /*    opacity: 0;*/
+        /*}*/
         
+        /*.download a {*/
+        /*    display: block;*/
+        /*    width: 200px;*/
+        /*    height: 56px;*/
+        /*    border-radius: 15px;*/
+        /*    background: #3560B3;*/
+        /*    font-size: 24px;*/
+        /*    line-height: 56px;*/
+        /*    text-align: left;*/
+        /*    color: #fff;*/
+        /*}*/
+        
+        /*.download a img {*/
+        /*    vertical-align: top;*/
+        /*    margin-left: 25px;*/
+        /*    margin-right: 25px;*/
+        /*    margin-top: 6px;*/
+        /*}*/
+        /*.qrcode {*/
+        /*    position: absolute;*/
+        /*    bottom: 66px;*/
+        /*    left: 222px;*/
+        /*    opacity: 1;*/
+        /*}*/
+        
+        /*.qrcode a {*/
+        /*    display: block;*/
+        /*    width: 200px;*/
+        /*    height: 56px;*/
+        /*    border-radius: 15px;*/
+        /*    background: #3560B3;*/
+        /*    font-size: 24px;*/
+        /*    line-height: 56px;*/
+        /*    text-align: left;*/
+        /*    color: #fff;*/
+        /*}*/
+        
+        /*.qrcode a img {*/
+        /*    vertical-align: middle;*/
+        /*    margin-left: 25px;*/
+        /*    margin-right: 25px;*/
+        /*    margin-top: 25px;*/
+        /*}*/
+        
+        /*VEX-JS DIALOG CSS here*/
+        /*.vex.vex-theme-wireframe .vex-overlay {*/
+        /*    background: rgba(0, 0, 0, 0);*/
+        /*}*/
+        /*.vex.vex-theme-wireframe .vex-content {*/
+        /*    background-image:url('/img/about.png');*/
+        /*    background-position:center;*/
+        /*}*/
+        /*.vex-overlay {*/
+        /*    display: block;*/
+        /*background: #34b989;*/
+        /*background-image:url('/img/about.png');*/
+        /*    max-width: 600px;*/
+        /*    margin: 0 auto; */
+        /*    border-width: 10px;*/
+        /*}*/
         /*适配移动设备*/
+        
         @media screen and (max-width:640px) {
             .logo {
                 left: 9px;
@@ -183,9 +247,9 @@
                 line-height: 25px;
             }
         }
-           
     </style>
 {{/ section}}
+
 <div class="head">
     <div class="logo">
         <a href="/#">
@@ -218,44 +282,35 @@
             parallax: true,
             speed: 600,
         });
-        
     </script>
-    
+
     {{!--跳转到指定slide,太罗嗦了，可直接嵌入文中onClick--}}
     // <script>
-    //     $('#download').click(function(event) {
-    //         event.preventDefault();
-    //         swiper.slideTo(4, 700, false);
-    //     });
-    // </script>
+        // $('#download').click(function(event) { // event.preventDefault(); // swiper.slideTo(4, 700, false); // }); // </script>
 
-       
-      <script> 
-      var vex_msg = '<h2>联系我们</h2> \
+
+        <script>
+            var vex_msg = '<h2>联系我们</h2> \
                 	<p><b>客服邮箱：</b><br><a href="mailto:service@weme.com"><u>service@weme.com</u></a></p>\
                 	<p><b>账号申诉：</b><br><a href="mailto:shensu@weme.com?subject=账号申诉&body=1、喂米号<br>2、昵称<br>3、绑定手机号<br>4、账号补充描述：（包括描述头像图片、填写年龄、星座、常驻地选择）<br>5、申诉理由（陈述并尽量举证自己并无违规行为，以方便工作人员核实）"><u>shensu@weme.com</u></a>,提交信息包括喂米号、昵称、绑定手机号以及申诉理由。</p>\
-                	<p><b>官方微博：</b><br>@喂米APP</p>'; 
-      vex.defaultOptions.className = 'vex-theme-flat-attack';
-      var vex_confirm = function(msg){
-          vex.open({
-              content:msg,
-              overlayCSS: {
-                 
-              },
-            //   afterClose: function() {
-            //               return vex.dialog.alert('Thany You');
-            //             }
-            //   input:'<h1>Fuck you</h1>',
-            //   callback:function(value){
-            //       var re = (value == true) ? 'Thank you' : 'Try make a better one';
-            //         return alert(re);
-            //   }
-      }
-              );
-      };
-      
-      $('#about').click(function(){vex_confirm(vex_msg);});
-      
+                	<p><b>官方微博：</b><br>@喂米APP</p>';
+            vex.defaultOptions.className = 'vex-theme-flat-attack';
+            var vex_confirm = function(msg) {
+                vex.open({
+                    content: msg,
+                    //   afterClose: function() {
+                    //               return vex.dialog.alert('Thany You');
+                    //             }
+                    //   input:'<h1>Fuck you</h1>',
+                    //   callback:function(value){
+                    //       var re = (value == true) ? 'Thank you' : 'Try make a better one';
+                    //         return alert(re);
+                    //   }
+                });
+            };
 
-    </script>
+            $('#about').click(function() {
+                vex_confirm(vex_msg);
+            });
+        </script>
 {{/section}}

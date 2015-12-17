@@ -30,10 +30,10 @@ var fortuneCookies = [
 	"Whenever possible, keep it simple.",
 ];
 
-app.get('/', function(req, res) {
-	res.render('landing_mix',{layout:'main_no_bt'});
-});
 app.get('/1', function(req, res) {
+	res.render('landing_mix',{layout:'main_bt'});
+});
+app.get('/', function(req, res) {
 	res.render('landing',{layout:'main_no_bt'});
 });
 

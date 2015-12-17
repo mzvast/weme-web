@@ -6,13 +6,43 @@
     {{!--<div id='stars3'></div>--}}
     <div class="parallax-bg" style="background-image:url(http://dmhdwallpapers.com/wp-content/uploads/2015/03/Wallpaper-Manga-Night-City.jpg)" data-swiper-parallax="-23%"></div>
     <div class="swiper-wrapper">
-        <div class="swiper-slide" ><img style='width:90vmin;height:90vmin;max-width: 90%;' src='/img/1.png'></div>
-        <div class="swiper-slide" ><img style='width:90vmin;height:90vmin;max-width: 90%;' src='/img/2.png'></div>
-        <div class="swiper-slide" ><img style='width:90vmin;height:90vmin;max-width: 90%;' src='/img/3.png'></div>
-        <div class="swiper-slide" ><img style='width:90vmin;height:90vmin;max-width: 90%;' src='/img/4.png'></div>
-        
-{{!--TODO--}}
-{{!--根据屏幕选择图片大小--}}
+        <div class="swiper-slide"><img style='width:90vmin;height:90vmin;max-width: 90%;' src='/img/1.png'></div>
+        <div class="swiper-slide"><img style='width:90vmin;height:90vmin;max-width: 90%;' src='/img/2.png'></div>
+        <div class="swiper-slide"><img style='width:90vmin;height:90vmin;max-width: 90%;' src='/img/3.png'></div>
+        <div class="swiper-slide">
+            {{!--<div class='download' style="display: block;bottom: 66px;right: -92px;">--}}
+            {{!--   <a href='#ios'>--}}
+            {{!--        <img id='ios' src='/img/4/i.png'>--}}
+            {{!--   </a>--}}
+            {{!--    <a href='#android' style="margin-top:20px">--}}
+            {{!--        <img id='android' src='/img/4/a.png'>--}}
+            {{!--    </a>--}}
+            {{!--</div>--}}
+            <div class="container">
+                <div class="row">
+                    <div class='col-md-2'></div>
+                    <div class='col-md-4'>
+                        <div class="row">
+                            <a href="#"><img src="img/4/icon_apple.png" alt="">iPhone</a>
+                        </div>
+                        <div class="row">
+                            <a href="#" style="margin-top:20px"><img src="img/4/icon_android.png" alt="">Android</a>
+                        </div>
+                    </div>
+                    <div class='col-md-4'>
+                        <img id='qr' src='/img/4/qr.png' style='max-height:250px;' class='img-responsive center-block'>
+                    </div>
+                    <div class='col-md-2'></div>
+                </div>
+                <div class="row">
+                        <img id='txt' src='/img/4/text.png'  class='img-responsive center-block'>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        {{!--TODO--}}
+        {{!--根据屏幕选择图片大小--}}
     </div>
     <!-- Add Pagination -->
     <div class="swiper-pagination"></div>
