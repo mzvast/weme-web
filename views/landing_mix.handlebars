@@ -3,8 +3,8 @@
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="/vendor/swiper/css/swiper.min.css">
     
-    <!-- Link Pure CSS stars -->
-    <link rel="stylesheet" href="/css/stars_bg.css">
+    {{!--<!-- Link Pure CSS stars -->--}}
+    {{!--<link rel="stylesheet" href="/css/stars_bg.css">--}}
     
     {{!--Link VEX-JS--}}
     <script src="/vendor/vex-js/js/vex.combined.min.js"></script>
@@ -34,10 +34,12 @@
         .swiper-container {
             width: 100%;
             height: 100%;
-            margin-left: auto;
-            margin-right: auto;
-            background-color: #001319;
+            /*margin-left: auto;*/
+            /*margin-right: auto;*/
+            /*background-color: #001319;*/
             /*slide边框颜色这里改*/
+            
+            background: #000;
         }
         
         .swiper-slide {
@@ -59,7 +61,29 @@
             -webkit-align-items: center;
             align-items: center;
         }
-        
+        .parallax-bg {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 120%;
+            height: 180%;
+            -webkit-background-size: cover;
+            background-size: cover;
+            background-position: center;
+        } 
+            .swiper-slide .title {
+                font-size: 41px;
+                font-weight: 300;
+            }
+            .swiper-slide .subtitle {
+                font-size: 21px;
+            }
+            .swiper-slide .text {
+                font-size: 14px;
+                max-width: 400px;
+                line-height: 1.3;
+            }
+            
         .swiper-pagination-bullet {
             width: 15px;
             /*球宽*/
@@ -164,7 +188,7 @@
     </ul>
 </div>
 
-{{>swiper}}
+{{>swiper_mix}}
 
 
 {{#section 'jquery'}}
@@ -180,6 +204,8 @@
             paginationClickable: true,
             spaceBetween: 30,
             mousewheelControl: true,
+            parallax: true,
+            speed: 600,
         });
         
     </script>

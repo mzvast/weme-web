@@ -31,8 +31,16 @@ var fortuneCookies = [
 ];
 
 app.get('/', function(req, res) {
+	res.render('landing_mix',{layout:'main_no_bt'});
+});
+app.get('/1', function(req, res) {
 	res.render('landing',{layout:'main_no_bt'});
 });
+
+ /*parallax demo*/
+// app.get('/2', function(req, res) {
+// 	res.render('landing_parallax',{layout:'main_no_bt'});
+// });
 app.get('/home', function(req, res) {
 	res.render('home');
 });
