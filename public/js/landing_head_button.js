@@ -25,3 +25,7 @@
               event.preventDefault(); 
               swiper.slideTo(3, 700, false); 
               }); 
+            $('#goTop').click(function(event) { 
+              event.preventDefault(); 
+              swiper.slideTo(0, 700, false); 
+              }); 
