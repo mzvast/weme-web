@@ -1,0 +1,714 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"handl",
+				"handleSubmit"
+			],
+			[
+				"hand",
+				"handleTextChange"
+			],
+			[
+				"handle",
+				"handleAuthorChange"
+			],
+			[
+				"va",
+				"value"
+			],
+			[
+				"Co",
+				"Comment"
+			],
+			[
+				"pro",
+				"props	React: this.props"
+			],
+			[
+				"C",
+				"Comment"
+			],
+			[
+				"Com",
+				"Comment〔class〕"
+			],
+			[
+				"b",
+				"build"
+			],
+			[
+				"sr",
+				"src=〔attribute〕"
+			],
+			[
+				"tog",
+				"toggle"
+			],
+			[
+				"for",
+				"foreach:currentCat"
+			],
+			[
+				"cat",
+				"catList"
+			],
+			[
+				"ko",
+				"ko.[]	knockoutjs observable array"
+			],
+			[
+				"nick",
+				"nicknames"
+			],
+			[
+				"img",
+				"imgAttribution"
+			],
+			[
+				"f",
+				"f	Anonymous Function"
+			],
+			[
+				"fun",
+				"fun	Function"
+			],
+			[
+				"click",
+				"clickCount"
+			],
+			[
+				"if",
+				"ife	if … else"
+			],
+			[
+				"dat",
+				"dateSubmitted"
+			],
+			[
+				"to",
+				"toString〔function〕"
+			],
+			[
+				"fn",
+				"fn_upVote"
+			],
+			[
+				"thi",
+				"this	(Cat.js)"
+			],
+			[
+				"updat",
+				"updateVoteHTML〔function〕"
+			],
+			[
+				"class",
+				"class=\"btn"
+			],
+			[
+				"get",
+				"getCount"
+			],
+			[
+				"imp",
+				"importCats〔function〕"
+			],
+			[
+				"cou",
+				"count	(Cat.js)"
+			],
+			[
+				"getN",
+				"getNumber	(CatBook.js)"
+			],
+			[
+				"ini",
+				"init	(Cat.js)"
+			],
+			[
+				"set",
+				"setName	(Cat.js)"
+			],
+			[
+				"bs3",
+				"bs3-col	bs3-col"
+			],
+			[
+				"boo",
+				"bootstrap.min.js"
+			],
+			[
+				"myCounter",
+				"myCounterBook"
+			],
+			[
+				"my",
+				"myCounter	(CounterBookSpec.js)"
+			],
+			[
+				"Cou",
+				"CounterBook〔function〕"
+			],
+			[
+				"unde",
+				"undefined"
+			],
+			[
+				"Coun",
+				"Counter	(index.html)"
+			],
+			[
+				"Counter",
+				"CounterBook"
+			],
+			[
+				"m",
+				"my_jq.js"
+			],
+			[
+				"tb",
+				"tb	toBe"
+			],
+			[
+				"thsi",
+				"thisCounter"
+			],
+			[
+				"this",
+				"thisCounter"
+			],
+			[
+				"v",
+				"vote	(index.html)"
+			],
+			[
+				"ind",
+				"index"
+			],
+			[
+				"Cat",
+				"CatBook	(CatBookSpec.js)"
+			],
+			[
+				"CatB",
+				"CatBookSpec.js"
+			],
+			[
+				"src",
+				"script	Tag"
+			],
+			[
+				"e",
+				"exp	expect"
+			],
+			[
+				"sel",
+				"self"
+			],
+			[
+				"in",
+				"index"
+			],
+			[
+				"add",
+				"addressBook"
+			],
+			[
+				"contact",
+				"contact"
+			],
+			[
+				"Ad",
+				"AddressBook"
+			],
+			[
+				"Add",
+				"AddressBook	(AddressBookSpec.js)"
+			],
+			[
+				"con",
+				"contact"
+			],
+			[
+				"sp",
+				"spec/"
+			],
+			[
+				"k",
+				"key"
+			],
+			[
+				"child",
+				"children"
+			],
+			[
+				"chil",
+				"children"
+			],
+			[
+				"fu",
+				"fun	Function"
+			],
+			[
+				"do",
+				"doSomething"
+			],
+			[
+				"chi",
+				"children"
+			],
+			[
+				"name",
+				"name〔variable〕"
+			],
+			[
+				"coten",
+				"content"
+			],
+			[
+				"Bu",
+				"BuckysComponent"
+			],
+			[
+				"com",
+				"comment	(example.js)"
+			],
+			[
+				"Re",
+				"React"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 334.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"git co",
+				"Git: Commit"
+			],
+			[
+				"git add",
+				"Git: Add All"
+			],
+			[
+				"git stat",
+				"Git: Status"
+			],
+			[
+				"git diff",
+				"Git: Diff All Files"
+			],
+			[
+				"git log",
+				"Git: Log All"
+			],
+			[
+				"git com",
+				"Git: Commit"
+			],
+			[
+				"linter",
+				"SublimeLinter: Show All Errors"
+			],
+			[
+				"lint",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"pclp",
+				"Package Control: List Packages"
+			],
+			[
+				"pcip",
+				"Package Control: Install Package"
+			],
+			[
+				"git di",
+				"Git: Diff All Files"
+			],
+			[
+				"pcrp",
+				"Package Control: Remove Package"
+			],
+			[
+				"react",
+				"HTML: Wrap Selection With Tag"
+			],
+			[
+				"react wa",
+				"Snippet: React: wrap in a component"
+			],
+			[
+				"git ",
+				"Git: Push"
+			],
+			[
+				"git c",
+				"Git: Commit"
+			],
+			[
+				"git a",
+				"Git: Add All"
+			],
+			[
+				"git log ",
+				"Git: Log All"
+			],
+			[
+				"git s",
+				"Git: Status"
+			],
+			[
+				"pilp",
+				"Package Control: List Packages"
+			],
+			[
+				"git rese",
+				"Git: Reset (hard) HEAD"
+			],
+			[
+				"git",
+				"Git: Push"
+			],
+			[
+				"git sta",
+				"Git: Status"
+			],
+			[
+				"git res",
+				"GitGutter: Compare Against Origin"
+			],
+			[
+				"\\",
+				"Emmet: Split\\Join Tag"
+			]
+		],
+		"width": 528.0
+	},
+	"console":
+	{
+		"height": 209.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/WorkSpaces/weme",
+		"/D/WorkSpaces/weme/public",
+		"/D/WorkSpaces/weme/public/js",
+		"/D/WorkSpaces/weme/views"
+	],
+	"file_history":
+	[
+		"/D/WorkSpaces/react-tutorial/public/js/commment.jsx",
+		"/D/WorkSpaces/react-tutorial/.gitignore",
+		"/D/WorkSpaces/weme/views/landing_mix.handlebars",
+		"/D/WorkSpaces/react-tutorial/server.js",
+		"/D/WorkSpaces/react-tutorial/comments.json",
+		"/D/WorkSpaces/react-tutorial/public/index.html",
+		"/D/WorkSpaces/react-tutorial/public/scripts/example.js",
+		"/C/Users/mzvast/AppData/Roaming/Sublime Text 3/Packages/SublimeLinter/Default (Windows).sublime-keymap",
+		"/C/Users/mzvast/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/mzvast/AppData/Roaming/Sublime Text 3/Packages/User/Babel.sublime-settings",
+		"/C/Users/mzvast/AppData/Roaming/Sublime Text 3/Packages/Babel/Babel.sublime-settings",
+		"/D/WorkSpaces/react-tutorial/server.py",
+		"/D/WorkSpaces/react-0.14.3/src/helloworld.js",
+		"/D/WorkSpaces/react-0.14.3/helloworld.html",
+		"/D/WorkSpaces/react-0.14.3/How2Run.md",
+		"/D/WorkSpaces/react-0.14.3/package.json",
+		"/D/WorkSpaces/react-0.14.3/build/helloworld.js",
+		"/D/WorkSpaces/react-0.14.3/.gitignore",
+		"/D/WorkSpaces/react-0.14.3/src/helloworld.html",
+		"/D/WorkSpaces/react-0.14.3/.git/COMMIT_EDITMSG",
+		"/D/WorkSpaces/ReactJS/react-0.14.3/helloworld.html",
+		"/D/WorkSpaces/ReactJS/my_reactjs_repo/webpack.config.js",
+		"/D/WorkSpaces/ReactJS/my_reactjs_repo/src/client/index.html",
+		"/D/WorkSpaces/ReactJS/my_reactjs_repo/package.json",
+		"/D/WorkSpaces/ReactJS/my_reactjs_repo/src/client/app/index.jsx",
+		"/D/WorkSpaces/ReactJS/react-0.14.3/examples/basic/index.html",
+		"/D/WorkSpaces/MyApp/build/content/index.jade",
+		"/D/WorkSpaces/MyApp/package.json",
+		"/D/WorkSpaces/MyApp/tools/start.js",
+		"/D/WorkSpaces/todomvc/examples/angular2/services/store.js",
+		"/D/WorkSpaces/todomvc/examples/backbone/index.html",
+		"/D/WorkSpaces/todomvc/examples/knockoutjs/js/app.js",
+		"/D/WorkSpaces/todomvc/examples/knockoutjs/index.html",
+		"/D/WorkSpaces/todomvc/examples/react/js/app.jsx",
+		"/D/WorkSpaces/todomvc/examples/react/index.html",
+		"/D/WorkSpaces/todomvc/examples/react/js/todoModel.js",
+		"/D/WorkSpaces/todomvc/examples/react/js/todoItem.jsx",
+		"/D/WorkSpaces/todomvc/examples/react/js/utils.js",
+		"/D/WorkSpaces/todomvc/examples/react/node_modules/director/build/director.js",
+		"/D/WorkSpaces/todomvc/examples/react/node_modules/classnames/index.js",
+		"/D/WorkSpaces/todomvc/examples/react/js/footer.jsx",
+		"/D/WorkSpaces/ud989-todo-app/js/views/todo-view.js",
+		"/D/WorkSpaces/ud989-todo-app/index.html",
+		"/D/WorkSpaces/ud989-todo-app/js/models/todo.js",
+		"/D/WorkSpaces/ud989-todo-app/js/collections/todos.js",
+		"/D/WorkSpaces/ud989-todo-app/js/app.js",
+		"/D/WorkSpaces/ud989-todo-app/js/routers/router.js",
+		"/D/WorkSpaces/ud989-todo-app/js/views/app-view.js",
+		"/D/WorkSpaces/ud989-todo-app/bower.json",
+		"/D/WorkSpaces/ud989-cat-clicker-ko-starter/js/app.js",
+		"/D/WorkSpaces/ud989-cat-clicker-ko-starter/index.html",
+		"/D/WorkSpaces/ud989-cat-clicker-ko-starter/.git/COMMIT_EDITMSG.COMMIT_EDITMSG",
+		"/C/Users/mzvast/AppData/Roaming/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/D/WorkSpaces/frontend-nanodegree-resume/index.html",
+		"/D/WorkSpaces/frontend-nanodegree-resume/js/resumeBuilder.js",
+		"/D/WorkSpaces/frontend-nanodegree-resume/js/helper.js",
+		"/D/WorkSpaces/ud989-school-attendance/index.html",
+		"/D/WorkSpaces/ud989-school-attendance/js/app.js",
+		"/D/WorkSpaces/ud989-cat-clicker-premium-vanilla/index.html",
+		"/D/WorkSpaces/ud989-cat-clicker-premium-vanilla/js/app.js",
+		"/D/WorkSpaces/ud989-retain/js/retain.js",
+		"/D/WorkSpaces/ud989-retain/css/retain.css",
+		"/D/WorkSpaces/ud989-retain/COMMIT_EDITMSG.COMMIT_EDITMSG",
+		"/D/WorkSpaces/ud989-pizzamvo/index.html",
+		"/D/WorkSpaces/ud989-retain/index.html",
+		"/D/WorkSpaces/ud989-pizzamvo/js/app.js",
+		"/D/WorkSpaces/ud989/src/orz.js",
+		"/D/WorkSpaces/ud989/src/Cat.js",
+		"/D/WorkSpaces/ud989/src/CatBook.js",
+		"/D/WorkSpaces/ud989/spec/CatSpec.js",
+		"/D/WorkSpaces/ud989/spec/CatBookSpec.js",
+		"/D/WorkSpaces/ud989/spec/CounterSpec.js",
+		"/D/WorkSpaces/ud989/src/Counter.js",
+		"/D/WorkSpaces/ud989/src/my_jq.js",
+		"/D/WorkSpaces/ud989/src/CounterBook.js",
+		"/D/WorkSpaces/ud989/spec/CounterBookSpec.js",
+		"/D/WorkSpaces/ud989/index2.html",
+		"/D/WorkSpaces/ud989/node_modules/bootstrap/dist/js/bootstrap.min.js",
+		"/D/WorkSpaces/ud989/package.json",
+		"/D/WorkSpaces/ud989/SpecRunner.html",
+		"/D/WorkSpaces/ud989/src/AddressBook.js",
+		"/D/WorkSpaces/ud989/spec/AddressBookSpec.js",
+		"/D/WorkSpaces/ud989/src/myJS.js",
+		"/D/WorkSpaces/ud989/spec/SpecHelper.js",
+		"/D/WorkSpaces/ud892/Lesson 4 - Part 2 - Lesson 5/gulpfile.js",
+		"/D/WorkSpaces/ud989/src/Contact.js",
+		"/D/WorkSpaces/ud989/index.html",
+		"/D/WorkSpaces/ud549/MIT.LICENSE",
+		"/D/WorkSpaces/ud892/Lesson 4 - Part 2 - Lesson 5/index.html",
+		"/D/WorkSpaces/ud549/SpecRunner.html",
+		"/D/WorkSpaces/ud892/Lesson 4 - Part 2 - Lesson 5/js/main.js",
+		"/D/WorkSpaces/ud892/Lesson 4 - Part 2 - Lesson 5/js/extra.js",
+		"/D/WorkSpaces/ud989/index.js",
+		"/D/WorkSpaces/ud989/npm-debug.log",
+		"/D/WorkSpaces/ud549/src/Contact.js",
+		"/D/WorkSpaces/ud549/src/AddressBook.js",
+		"/D/WorkSpaces/ud549/spec/AddressBookSpec.js",
+		"/D/WorkSpaces/ud549/spec/ContactSpec.js",
+		"/D/WorkSpaces/ud549/spec/PlayerSpec.js",
+		"/D/WorkSpaces/ud549/src/Player.js",
+		"/D/WorkSpaces/mytodo/module.txt",
+		"/D/WorkSpaces/ud892/Lesson 4/gulpfile.js",
+		"/D/WorkSpaces/ud892/Lesson 3/gulpfile.js",
+		"/D/WorkSpaces/ud892/Lesson 4/js/main.js",
+		"/D/WorkSpaces/ud892/Lesson 4/.eslintrc.yml",
+		"/C/Users/mzvast/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/D/WorkSpaces/ud892/Lesson 4/.eslintrc",
+		"/D/WorkSpaces/ud892/Lesson 4/.eslintrc.js",
+		"/C/Users/mzvast/.v8flags.4.5.103.35.mzvast.json",
+		"/D/WorkSpaces/ud892/Lesson 2/gulpfile.js",
+		"/D/WorkSpaces/ud892/Lesson 4/browserSync.js",
+		"/D/WorkSpaces/ud892/Lesson 4/index.html",
+		"/D/WorkSpaces/ud892/LICENSE",
+		"/D/WorkSpaces/ud892/Lesson 2/css/main.css",
+		"/D/WorkSpaces/ud892/Lesson 2/sass/main.scss",
+		"/D/WorkSpaces/ud892/Lesson 2/css/extra.css",
+		"/D/WorkSpaces/ud892/Lesson 2/sass/extra.scss",
+		"/D/WorkSpaces/ReactJS/react-tutorial/public/css/base.css",
+		"/C/Users/mzvast/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
+		"/D/WorkSpaces/ReactJS/react-tutorial/public/index.html",
+		"/D/WorkSpaces/ReactJS/react-tutorial/public/scripts/example.js",
+		"/C/Users/mzvast/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/D/WorkSpaces/ReactJS/react-0.14.3/src/helloworld.js",
+		"/D/WorkSpaces/ReactJS/react-0.14.3/examples/jquery-bootstrap/index.html",
+		"/D/WorkSpaces/ReactJS/react-tutorial/server.js",
+		"/C/Users/mzvast/AppData/Roaming/Sublime Text 3/Packages/Emmet/Default (Windows).sublime-keymap",
+		"/D/WorkSpaces/ReactJS/react-0.14.3/build/helloworld.js",
+		"/D/WorkSpaces/ReactJS/react-0.13.0/helloworld.html"
+	],
+	"find":
+	{
+		"height": 40.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"Fuckyou",
+			"git",
+			":",
+			"this",
+			"currentCat()",
+			"self",
+			"{name:",
+			"this",
+			"div",
+			");\n",
+			"script",
+			"thisCounter",
+			"Cat",
+			"cat",
+			"id",
+			"jasmine",
+			"phantom",
+			"concat",
+			"gulp-concat",
+			"px",
+			"color",
+			"font-size",
+			"van",
+			"this",
+			"Bob' >\n			This guy is awesome\n		</MzvastComponent>",
+			"data =",
+			"ctrl+k",
+			"ctrl+shift",
+			"=\"\">",
+			"col"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 32.0
+	},
+	"input":
+	{
+		"height": 39.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 154.0
+	},
+	"pinned_build_system": "",
+	"project": "weme.sublime-project",
+	"replace":
+	{
+		"height": 60.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				".js",
+				"public\\scripts\\example.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 219.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
