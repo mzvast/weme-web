@@ -30,9 +30,14 @@ var BROWSER_SYNC_RELOAD_DELAY = 500;
 			'copy-ico-to-dist',
 			'img-min-lossless-jpg',
 			'img-min-loss-png',
-			'copy-img'
+			'copy-img-dist'
 			);
 	});
+
+	gulp.task('dist',['img-min-dist',
+		'copy-vendor-dist',
+		'copy-js-dist']
+	);
 	
 
 	gulp.task('default',['styles'], function() {
@@ -45,7 +50,7 @@ var BROWSER_SYNC_RELOAD_DELAY = 500;
 
 
 // ================== copy ===========================
-	gulp.task('copy-vendor',function() {
+	gulp.task('copy-vendor-dist',function() {
 		gulp.src('node_modules/bootstrap/dist/**/*.*')
 		.pipe(gulp.dest('public/dist/vendor/bootstrap'));
 
@@ -61,12 +66,12 @@ var BROWSER_SYNC_RELOAD_DELAY = 500;
 		.pipe(gulp.dest('public/dist/vendor/vex-js'));
 	});
 
-	gulp.task('copy-js', function() {
+	gulp.task('copy-js-dist', function() {
 		return gulp.src('public/js/**/*.js')
 			.pipe(gulp.dest('public/dist/js'));
 	});
 
-	gulp.task('copy-img',function() {
+	gulp.task('copy-img-dist',function() {
 		return gulp.src('public/img_min/build/**/*.*',
 				{base: 'public/img_min/build'})
 			.pipe(gulp.dest('public/dist/img'))
