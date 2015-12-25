@@ -18,10 +18,20 @@
   "homepage": "https://github.com/mzvast/wein#readme",
   "dependencies": {
     "express": "^4.13.3",
-    "express-handlebars": "^2.0.1"
+    "express-handlebars": "^2.0.1",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3"
   },
   "devDependencies": {
+    "babel-cli": "^6.3.17",
+    "babel-preset-react": "^6.3.13",
     "bootstrap": "^3.3.6",
+    "browser-sync": "^2.10.1",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-install": "^0.6.0",
+    "gulp-nodemon": "^2.0.4",
+    "gulp-sass": "^2.1.1",
     "swiper": "^3.2.7",
     "vex-js": "^2.3.3"
   }
