@@ -17,7 +17,7 @@ app.set('view engine', 'handlebars');
 var React = require('react');
 var ReactDOM = require('react-dom');
 /*set up PORT*/
-app.set('port', process.env.PORT || 8080);
+app.set('port', process.env.PORT || 3000);
 /*set up STATIC file folder*/
 app.use(express.static(__dirname + '/public'));
 

@@ -29,9 +29,14 @@
     "browser-sync": "^2.10.1",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
+    "gulp-gm": "0.0.8",
+    "gulp-imagemin": "^2.4.0",
     "gulp-install": "^0.6.0",
     "gulp-nodemon": "^2.0.4",
     "gulp-sass": "^2.1.1",
+    "imagemin-jpegtran": "^4.3.2",
+    "imagemin-pngquant": "^4.2.0",
+    "jquery": "^2.1.4",
     "swiper": "^3.2.7",
     "vex-js": "^2.3.3"
   }
