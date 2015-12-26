@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "babel-cli": "^6.3.17",
+    "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "bootstrap": "^3.3.6",
     "browser-sync": "^2.10.1",
@@ -32,6 +33,7 @@
     "grunt-responsive-images": "^0.1.7",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
+    "gulp-babel": "^6.1.1",
     "gulp-gm": "0.0.8",
     "gulp-imagemin": "^2.4.0",
     "gulp-install": "^0.6.0",

@@ -6,5 +6,4 @@ var Box = React.createClass({
 	}
 });
 
-ReactDOM.render(
-	<Box/>,document.getElementById('box'));
+ReactDOM.render(<Box/>,document.getElementById('box'));

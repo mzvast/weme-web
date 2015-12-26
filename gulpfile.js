@@ -10,18 +10,28 @@ var imageminPngquant = require('imagemin-pngquant');//loss but good
 var gm = require('gulp-gm');
 var rename = require("gulp-rename");
 var runSequence = require('run-sequence');
+var babel = require('gulp-babel');
 // we'd need a slight delay to reload browsers
 // connected to browser-sync after restarting nodemon
 var BROWSER_SYNC_RELOAD_DELAY = 500;
 
-	gulp.task('dev',['styles','browser-sync'], function() {
+	gulp.task('dev',['styles','browser-sync','babel-react'], function() {
 		gulp.watch('public/sass/**/*.scss',['styles']);
 		// gulp.watch('public/img_min/src/**/*.*',['img-min-all']);
 		// gulp.watch('public/img_min/_min/src**/*.*',['copy-img-min2dist']);
+		gulp.watch('public/jsx/*.jsx',['babel-react']);
 
 		 //  browserSync.init({
 			// 	server: './'
 			// });
+	});
+
+	gulp.task('babel-react', function() {
+		return gulp.src('public/jsx/*.jsx')
+			.pipe(babel({
+				presets: ['react']
+			}))
+			.pipe(gulp.dest('public/dist/js'));
 	});
 
 	gulp.task('img-min-dist',function() {
