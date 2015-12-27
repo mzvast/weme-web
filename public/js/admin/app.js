@@ -1,92 +1,54 @@
-initialCats=[
+initialUsers=[
 	{
-		clickCount:0,
 		name:'Tabby',
-		imgSrc:'img/1413379559_412a540d29_z.jpg',
-		imgAttribution:'',
-		nicknames:[
-    		'Tabtab',
-    		'fuck',
-    		'dog',
-    		'doggie'   		
-    	]
+		sex:'male',
+		school:'SEU'
 	},
 	{
-		clickCount:0,
 		name:'Fucker',
-		imgSrc:'img/22252709_010df3379e_z.jpg',
-		imgAttribution:'',
-		nicknames:[
-    		'Tabtab',
-    		'fuck',
-    		'dog',
-    		'doggie'   		
-    	]
+		sex:'male',
+		school:'SEU'
 	},
 	{
-		clickCount:0,
-		name:'Bitch',
-		imgSrc:'img/4154543904_6e2428c421_z.jpg',
-		imgAttribution:'',
-		nicknames:[
-    		'Tabtab',
-    		'fuck',
-    		'dog',
-    		'doggie'   		
-    	]
-	},
-	{
-		clickCount:0,
-		name:'BitchFucker',
-		imgSrc:'img/434164568_fea0ad4013_z.jpg',
-		imgAttribution:'',
-		nicknames:[
-    		'Tabtab',
-    		'fuck',
-    		'dog',
-    		'doggie'   		
-    	]
-	},
-	{
-		clickCount:0,
-		name:'FastFucker',
-		imgSrc:'img/9648464288_2516b35537_z.jpg',
-		imgAttribution:'',
-		nicknames:[
-    		'Tabtab',
-    		'fuck',
-    		'dog',
-    		'doggie'   		
-    	]
+		name:'bitch',
+		sex:'Female',
+		school:'SEU'
+	},	{
+		name:'egg',
+		sex:'Female',
+		school:'SEU'
+	},	{
+		name:'dick',
+		sex:'Female',
+		school:'SEU'
+	},	{
+		name:'pig',
+		sex:'Female',
+		school:'SEU'
+	},	{
+		name:'peer',
+		sex:'Female',
+		school:'SEU'
+	},	{
+		name:'Linda',
+		sex:'Female',
+		school:'SEU'
 	}
+	
 ];
 var ViewModel = function() {
 	var self = this;
-	this.catList = ko.observableArray([]);
+	this.userList = ko.observableArray([]);
 
-	initialCats.forEach(function(catItem) {
-		self.catList.push(new Cat(catItem));
+	initialUsers.forEach(function(UserItem) {
+		self.userList.push(new User(UserItem));
 	});
-
-	this.currentCat = ko.observable(this.catList()[0]);	
-	this.incementCounter = function() {
-		self.currentCat().clickCount(self.currentCat().clickCount()+1);
-	};
-	this.setCat = function(clickedCat) {
-		self.currentCat(clickedCat);
-	};//The 1st param is what elem has been clicked
-
 };
 
-var Cat = function(data) {
-	this.clickCount = ko.observable(data.clickCount);
+var User = function(data) {
 	this.name = ko.observable(data.name);
-	this.imgSrc = ko.observable(data.imgSrc);
-	this.imgAttribution = ko.observable(data.imgAttribution);;	
-	this.level = ko.computed(function() {
-        return this.clickCount()>100?"Teen":
-        (this.clickCount()>10?"Infant":"Newborn");
-    },this);	
-    this.nicknames = ko.observableArray(data.nicknames);	
+	this.sex = ko.observable(data.sex);
+	this.school = ko.observable(data.school);        
 };
+
 ko.applyBindings(new ViewModel())

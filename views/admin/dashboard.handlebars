@@ -11,6 +11,30 @@
     .l-box {
         padding: 1em;
     }
+
+    .custom-restricted-width {
+    /* To limit the menu width to the content of the menu: */
+    display: inline-block;
+    /* Or set the width explicitly: */
+    /* width: 10em; */
+	}
+	.activity-on{
+		color:white;
+	    font-size: 2em;
+	    margin: 0.2em 0 0;
+	    font-weight: 100;
+	    background: green;
+	}
+	.activity-off{
+		color:white;
+	    font-size: 2em;
+	    margin: 0.2em 0 0;
+	    font-weight: 100;
+	    background: red;
+	}
+	.custom-restricted-width{
+		text-align:center;
+	}
 </style>
 {{/ section}}
 
@@ -35,9 +59,9 @@
         <div class="pure-menu">
             <a class="pure-menu-heading" href="#">WeMe</a>
 
-            <ul class="pure-menu-list">
+            <ul class="pure-menu-list activity-list">
                 <li class="pure-menu-item"><a href="#" class="pure-menu-link">活动发布</a></li>
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">报名审核</a></li>
+                <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">报名审核</a></li>
 
                 <li class="pure-menu-item" class="menu-item-divided pure-menu-selected">
                     <a href="#" class="pure-menu-link">用户管理</a>
@@ -49,38 +73,51 @@
     </div>
 
     <div id="main">
+		<div class="content">
+		    <div class="pure-g">
+			    <div class="pure-u-1-3">
+						<div class="pure-menu custom-restricted-width">
+					    <span class="pure-menu-heading activity-on">进行中</span>
+					    <ul  class="pure-menu-list">
+					        <li class="pure-menu-item "><a href="#" class="pure-menu-link">牵手东大</a></li>
+					        <li class="pure-menu-item"><a href="#" class="pure-menu-link">建筑之春</a></li>
+					        <li class="pure-menu-item "><a href="#" class="pure-menu-link">日本春天</a></li>
+					        <li class="pure-menu-item"><a href="#" class="pure-menu-link">美国春天</a></li>
+					    </ul>
 
-        <div class="content">
-            <h2 class="content-subhead">How to use this layout</h2>
-            <p>
-                To use this layout, you can just copy paste the HTML, along with the CSS in <a href="/css/layouts/side-menu.css" alt="Side Menu CSS">side-menu.css</a>, and the JavaScript in <a href="/js/ui.js">ui.js</a>. The JS file uses vanilla JavaScript to simply toggle an <code>active</code> class that makes the menu responsive.
-            </p>
+					    <span  class="pure-menu-heading activity-off">已结束</span>
+					    <ul class="pure-menu-list"> 
+					        <li class="pure-menu-item"><a href="#" class="pure-menu-link">夏威夷</a></li>
+					        <li class="pure-menu-item"><a href="#" class="pure-menu-link">阿呆</a></li>
+					        <li class="pure-menu-item"><a href="#" class="pure-menu-link">尼玛!</a></li>
+					    </ul>
+					</div>
 
-            <h2 class="content-subhead">Now Let's Speak Some Latin</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+			    </div>
+			    <div class="pure-u-2-3">
+					<table class="pure-table pure-table-horizontal">
+						    <thead>
+						        <tr>
+						            <th>姓名</th>
+						            <th>性别</th>
+						            <th>学校</th>
+						        </tr>
+						    </thead>
 
-            <div class="pure-g">
-                <div class="pure-u-1-4">
-                    <img class="pure-img-responsive" src="http://farm3.staticflickr.com/2875/9069037713_1752f5daeb.jpg" alt="Peyto Lake">
-                </div>
-                <div class="pure-u-1-4">
-                    <img class="pure-img-responsive" src="http://farm3.staticflickr.com/2813/9069585985_80da8db54f.jpg" alt="Train">
-                </div>
-                <div class="pure-u-1-4">
-                    <img class="pure-img-responsive" src="http://farm6.staticflickr.com/5456/9121446012_c1640e42d0.jpg" alt="T-Shirt Store">
-                </div>
-                <div class="pure-u-1-4">
-                    <img class="pure-img-responsive" src="http://farm8.staticflickr.com/7357/9086701425_fda3024927.jpg" alt="Mountain">
-                </div>
-            </div>
+						    <tbody data-bind="foreach:userList">
+						        <tr>
+						            <td data-bind="text:name"></td>
+						            <td data-bind="text:sex"></td>
+						            <td data-bind="text:school"></td>
+						        </tr>
+						    </tbody>
+						</table>
+			    </div>
+			</div>
+	
 
-            <h2 class="content-subhead">Try Resizing your Browser</h2>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
-        </div>
+		</div>
+        
     </div>
 </div>
 {{# section 'jquery' }}
