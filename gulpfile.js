@@ -10,29 +10,31 @@ var imageminPngquant = require('imagemin-pngquant');//loss but good
 var gm = require('gulp-gm');
 var rename = require("gulp-rename");
 var runSequence = require('run-sequence');
-var babel = require('gulp-babel');
+// var babel = require('gulp-babel');
 // we'd need a slight delay to reload browsers
 // connected to browser-sync after restarting nodemon
 var BROWSER_SYNC_RELOAD_DELAY = 500;
 
-	gulp.task('dev',['styles','browser-sync','babel-react'], function() {
+	gulp.task('dev',['styles','browser-sync'], function() {
 		gulp.watch('public/sass/**/*.scss',['styles']);
+		gulp.watch('public/js/**/*.*',['copy-js-dist']);
+		gulp.watch('bower_components/**/*.*',['copy-bower-dist']);
 		// gulp.watch('public/img_min/src/**/*.*',['img-min-all']);
 		// gulp.watch('public/img_min/_min/src**/*.*',['copy-img-min2dist']);
-		gulp.watch('public/jsx/*.jsx',['babel-react']);
+		// gulp.watch('public/jsx/*.jsx',['babel-react']);
 
 		 //  browserSync.init({
 			// 	server: './'
 			// });
 	});
 
-	gulp.task('babel-react', function() {
-		return gulp.src('public/jsx/*.jsx')
-			.pipe(babel({
-				presets: ['react']
-			}))
-			.pipe(gulp.dest('public/dist/js'));
-	});
+	// gulp.task('babel-react', function() {
+	// 	return gulp.src('public/jsx/*.jsx')
+	// 		.pipe(babel({
+	// 			presets: ['react']
+	// 		}))
+	// 		.pipe(gulp.dest('public/dist/js'));
+	// });
 
 	gulp.task('img-min-dist',function() {
 		runSequence(
@@ -44,8 +46,9 @@ var BROWSER_SYNC_RELOAD_DELAY = 500;
 			);
 	});
 
-	gulp.task('dist',['img-min-dist',
-		'copy-vendor-dist',
+	gulp.task('dist',
+		['img-min-dist',
+		'copy-bower-dist',
 		'copy-js-dist']
 	);
 	
@@ -60,25 +63,31 @@ var BROWSER_SYNC_RELOAD_DELAY = 500;
 
 
 // ================== copy ===========================
-	gulp.task('copy-vendor-dist',function() {
-		gulp.src('node_modules/bootstrap/dist/**/*.*')
-		.pipe(gulp.dest('public/dist/vendor/bootstrap'));
+	// gulp.task('copy-vendor-dist',function() {
+	// 	gulp.src('node_modules/bootstrap/dist/**/*.*')
+	// 	.pipe(gulp.dest('public/dist/vendor/bootstrap'));
 
-		gulp.src('node_modules/swiper/dist/**/*.*')
-		.pipe(gulp.dest('public/dist/vendor/swiper'));
+	// 	gulp.src('node_modules/swiper/dist/**/*.*')
+	// 	.pipe(gulp.dest('public/dist/vendor/swiper'));
 
-		gulp.src('node_modules/jquery/dist/**/*.*')
-		.pipe(gulp.dest('public/dist/vendor/jquery'));
+	// 	gulp.src('node_modules/jquery/dist/**/*.*')
+	// 	.pipe(gulp.dest('public/dist/vendor/jquery'));
 
-		gulp.src(['node_modules/vex-js/js/**/*.*',
-			'node_modules/vex-js/css/**/*.*'],
-			{base: 'node_modules/vex-js'})
-		.pipe(gulp.dest('public/dist/vendor/vex-js'));
-	});
+	// 	gulp.src(['node_modules/vex-js/js/**/*.*',
+	// 		'node_modules/vex-js/css/**/*.*'],
+	// 		{base: 'node_modules/vex-js'})
+	// 	.pipe(gulp.dest('public/dist/vendor/vex-js'));
+	// });
 
 	gulp.task('copy-js-dist', function() {
 		return gulp.src('public/js/**/*.js')
 			.pipe(gulp.dest('public/dist/js'));
+	});
+
+	gulp.task('copy-bower-dist', function() {
+		return gulp.src('bower_components/**/*.*',
+			{base: 'bower_components'})
+			.pipe(gulp.dest('public/dist/vendor'));
 	});
 
 	gulp.task('copy-img-dist',function() {
@@ -221,8 +230,8 @@ var BROWSER_SYNC_RELOAD_DELAY = 500;
 		var started = false;
 		
 		return nodemon({
-			script: 'wein.js',
-			watch:['wein.js']
+			script: 'weme.js',
+			watch:['weme.js']
 		}).on('start', function () {
 			// to avoid nodemon being started multiple times
 			// thanks @matthisk

@@ -1,0 +1,25 @@
+{
+  "name": "weme",
+  "description": "",
+  "main": "weme.js",
+  "authors": [
+    "mzvast"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/mzvast/weme",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "knockout": "~3.4.0",
+    "jquery": "~2.1.4",
+    "Swiper": "swiper#~3.2.7",
+    "vex": "~2.3.3",
+    "bootstrap": "~3.3.6"
+  }
+}

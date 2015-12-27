@@ -1,32 +1,26 @@
 {
-  "name": "wein",
+  "name": "weme",
   "version": "1.0.0",
   "description": "",
-  "main": "wein.js",
+  "main": "weme.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mzvast/wein.git"
+    "url": "git+https://github.com/mzvast/weme.git"
   },
   "author": "mzvast",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mzvast/wein/issues"
+    "url": "https://github.com/mzvast/weme/issues"
   },
-  "homepage": "https://github.com/mzvast/wein#readme",
+  "homepage": "https://github.com/mzvast/weme#readme",
   "dependencies": {
     "express": "^4.13.3",
-    "express-handlebars": "^2.0.1",
-    "react": "^0.14.3",
-    "react-dom": "^0.14.3"
+    "express-handlebars": "^2.0.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.3.17",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13",
-    "bootstrap": "^3.3.6",
     "browser-sync": "^2.10.1",
     "grunt": "^0.4.5",
     "grunt-cli": "^0.1.13",
@@ -43,9 +37,6 @@
     "imagemin-jpegtran": "^4.3.2",
     "imagemin-optipng": "^4.3.0",
     "imagemin-pngquant": "^4.2.0",
-    "jquery": "^2.1.4",
-    "run-sequence": "^1.1.5",
-    "swiper": "^3.2.7",
-    "vex-js": "^2.3.3"
+    "run-sequence": "^1.1.5"
   }
 }

@@ -13,9 +13,6 @@ app.engine('handlebars', exphbs({
 	}
 }));
 app.set('view engine', 'handlebars');
-/*set up ReactJS*/
-var React = require('react');
-var ReactDOM = require('react-dom');
 /*set up PORT*/
 app.set('port', process.env.PORT || 3000);
 /*set up STATIC file folder*/
@@ -39,7 +36,7 @@ app.get('/home', function(req, res) {
 	res.render('home');
 });
 app.get('/admin', function(req, res) {
-	res.render('admin');
+	res.render('admin/dashboard');
 });
 app.get('/about', function(req, res) {
 	var randomFortune =
