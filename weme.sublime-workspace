@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"bs3-co",
+				"bs3-col:9	bs3-col-9"
+			],
+			[
+				"bs3-col",
+				"bs3-col:3	bs3-col-3"
+			],
+			[
+				"bs3",
+				"bs3-row	bs3-row"
+			],
+			[
+				"v",
+				"vendor	(css_bt.handlebars)"
+			],
+			[
+				"sec",
+				"section"
+			],
+			[
+				"d",
+				"dist"
+			],
+			[
+				"bower",
+				"bower_components"
+			],
+			[
 				"p",
 				"public/"
 			],
@@ -144,10 +172,6 @@
 				"setName	(Cat.js)"
 			],
 			[
-				"bs3",
-				"bs3-col	bs3-col"
-			],
-			[
 				"myCounter",
 				"myCounterBook"
 			],
@@ -186,10 +210,6 @@
 			[
 				"this",
 				"thisCounter"
-			],
-			[
-				"v",
-				"vote	(index.html)"
 			],
 			[
 				"ind",
@@ -292,10 +312,26 @@
 	"buffers":
 	[
 		{
-			"file": "views/admin.handlebars",
+			"file": "weme.js",
 			"settings":
 			{
-				"buffer_size": 208,
+				"buffer_size": 1807,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/admin/dashboard.handlebars",
+			"settings":
+			{
+				"buffer_size": 464,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "public/js/admin.js",
+			"settings":
+			{
+				"buffer_size": 1887,
 				"line_ending": "Windows"
 			}
 		}
@@ -307,20 +343,32 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 242.0,
-		"last_filter": "",
+		"height": 311.0,
+		"last_filter": "git stat",
 		"selected_items":
 		[
+			[
+				"git stat",
+				"Git: Status"
+			],
+			[
+				"pcrp",
+				"Package Control: Remove Package"
+			],
+			[
+				"pclp",
+				"Package Control: List Packages"
+			],
+			[
+				"pcip",
+				"Package Control: Install Package"
+			],
 			[
 				"git push",
 				"Git: Push"
 			],
 			[
-				"gitlog",
-				"Git: Log All"
-			],
-			[
-				"git co",
+				"git com",
 				"Git: Commit"
 			],
 			[
@@ -328,32 +376,36 @@
 				"Git: Add All"
 			],
 			[
-				"git stat",
-				"Git: Status"
+				"git re",
+				"Git: Reset (unstage) All"
 			],
 			[
-				"pcip",
-				"Package Control: Install Package"
+				"git co",
+				"Git: Commit"
 			],
 			[
-				"pcrp",
-				"Package Control: Remove Package"
+				"git reset",
+				"Git: Reset (unstage) All"
+			],
+			[
+				"git diff",
+				"Git: Diff Staged Files"
+			],
+			[
+				"git c",
+				"Git: Commit"
+			],
+			[
+				"gitlog",
+				"Git: Log All"
 			],
 			[
 				"REPL no",
 				"SublimeREPL: Node"
 			],
 			[
-				"pclp",
-				"Package Control: List Packages"
-			],
-			[
 				"pilp",
 				"Package Control: List Packages"
-			],
-			[
-				"git c",
-				"Git: Commit"
 			],
 			[
 				"git a",
@@ -362,14 +414,6 @@
 			[
 				"git log",
 				"Git: Log All"
-			],
-			[
-				"git com",
-				"Git: Commit"
-			],
-			[
-				"git diff",
-				"Git: Diff All Files"
 			],
 			[
 				"error",
@@ -382,10 +426,6 @@
 			[
 				"git status",
 				"Git: Status"
-			],
-			[
-				"git reset",
-				"Git: Reset (unstage) Current File"
 			],
 			[
 				"coment",
@@ -466,22 +506,30 @@
 	"expanded_folders":
 	[
 		"/D/WorkSpaces/weme",
-		"/D/WorkSpaces/weme/public",
 		"/D/WorkSpaces/weme/public/dist",
-		"/D/WorkSpaces/weme/public/dist/js",
-		"/D/WorkSpaces/weme/public/js",
-		"/D/WorkSpaces/weme/public/jsx",
 		"/D/WorkSpaces/weme/views",
+		"/D/WorkSpaces/weme/views/admin",
 		"/D/WorkSpaces/weme/views/layouts",
 		"/D/WorkSpaces/weme/views/partials"
 	],
 	"file_history":
 	[
-		"/D/WorkSpaces/weme/views/landing_mix.handlebars",
+		"/D/WorkSpaces/weme/views/layouts/main_purecss.handlebars",
+		"/D/WorkSpaces/weme/views/partials/css_bt.handlebars",
+		"/D/WorkSpaces/weme/views/partials/css_pure.handlebars",
+		"/D/WorkSpaces/weme/views/layouts/main_no_bt.handlebars",
 		"/D/WorkSpaces/weme/views/layouts/main_bt.handlebars",
-		"/D/WorkSpaces/weme/gulpfile.js",
-		"/D/WorkSpaces/weme/wein.js",
+		"/D/WorkSpaces/weme/views/landing.handlebars",
 		"/D/WorkSpaces/weme/package.json",
+		"/D/WorkSpaces/weme/.gitignore",
+		"/D/WorkSpaces/weme/gulpfile.js",
+		"/D/WorkSpaces/weme/views/partials/jquery.handlebars",
+		"/D/WorkSpaces/weme/views/partials/js_bt.handlebars",
+		"/D/WorkSpaces/weme/views/landing_mix.handlebars",
+		"/D/WorkSpaces/weme/bower.json",
+		"/D/WorkSpaces/weme/.bowerrc",
+		"/D/WorkSpaces/weme/views/admin.handlebars",
+		"/D/WorkSpaces/weme/wein.js",
 		"/D/WorkSpaces/weme/public/jsx/admin.jsx",
 		"/C/Users/mzvast/AppData/Roaming/Sublime Text 3/Packages/Terminal/Terminal.sublime-settings",
 		"/C/Users/mzvast/AppData/Roaming/Sublime Text 3/Packages/SublimeREPL/SublimeREPL.sublime-settings",
@@ -497,11 +545,6 @@
 		"/D/WorkSpaces/weme/views/partials/swiper_content.handlebars",
 		"/D/WorkSpaces/weme/views/partials/landing_head.handlebars",
 		"/D/WorkSpaces/weme/node_modules/jquery/src/event.js",
-		"/D/WorkSpaces/weme/views/landing.handlebars",
-		"/D/WorkSpaces/weme/views/partials/js_bt.handlebars",
-		"/D/WorkSpaces/weme/views/admin.handlebars",
-		"/D/WorkSpaces/weme/views/partials/jquery.handlebars",
-		"/D/WorkSpaces/weme/views/partials/css_bt.handlebars",
 		"/D/WorkSpaces/weme/public/js/admin.js",
 		"/D/WorkSpaces/weme/views/partials/swiper.handlebars",
 		"/D/WorkSpaces/weme/public/dist/css/stars_bg.css",
@@ -598,17 +641,11 @@
 		"/D/WorkSpaces/ud549/SpecRunner.html",
 		"/D/WorkSpaces/ud892/Lesson 4 - Part 2 - Lesson 5/js/main.js",
 		"/D/WorkSpaces/ud892/Lesson 4 - Part 2 - Lesson 5/js/extra.js",
-		"/D/WorkSpaces/ud989/index.js",
-		"/D/WorkSpaces/ud989/npm-debug.log",
-		"/D/WorkSpaces/ud549/src/Contact.js",
-		"/D/WorkSpaces/ud549/src/AddressBook.js",
-		"/D/WorkSpaces/ud549/spec/AddressBookSpec.js",
-		"/D/WorkSpaces/ud549/spec/ContactSpec.js",
-		"/D/WorkSpaces/ud549/spec/PlayerSpec.js"
+		"/D/WorkSpaces/ud989/index.js"
 	],
 	"find":
 	{
-		"height": 39.0
+		"height": 40.0
 	},
 	"find_in_files":
 	{
@@ -623,6 +660,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"if",
+			"/",
+			"wein",
+			"vex-js",
+			"copy-vendor-dist",
+			"copy-bower-dist",
+			"wein",
 			"\\",
 			"babel",
 			" ",
@@ -709,24 +753,24 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "views/admin.handlebars",
+					"file": "weme.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 208,
+						"buffer_size": 1807,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								208,
-								208
+								1087,
+								1087
 							]
 						],
 						"settings":
@@ -735,63 +779,241 @@
 							"auto_complete": false,
 							"bh_regions":
 							[
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
 								"bh_angle_close",
 								"bh_angle_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 396.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "views/admin/dashboard.handlebars",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 464,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								464,
+								464
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"auto_complete": false,
+							"bh_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
-								"bh_tag_content"
+								"bh_tag_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
 							],
 							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "public/js/admin.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1887,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"auto_complete": false,
+							"bh_regions":
+							[
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"open_with_edit": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,

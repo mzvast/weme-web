@@ -15,7 +15,7 @@ var runSequence = require('run-sequence');
 // connected to browser-sync after restarting nodemon
 var BROWSER_SYNC_RELOAD_DELAY = 500;
 
-	gulp.task('dev',['styles','browser-sync'], function() {
+	gulp.task('dev',['styles','copy-js-dist','browser-sync'], function() {
 		gulp.watch('public/sass/**/*.scss',['styles']);
 		gulp.watch('public/js/**/*.*',['copy-js-dist']);
 		gulp.watch('bower_components/**/*.*',['copy-bower-dist']);

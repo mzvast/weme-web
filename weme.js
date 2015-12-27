@@ -36,7 +36,7 @@ app.get('/home', function(req, res) {
 	res.render('home');
 });
 app.get('/admin', function(req, res) {
-	res.render('admin/dashboard');
+	res.render('admin/dashboard',{layout:'main_pure'});
 });
 app.get('/about', function(req, res) {
 	var randomFortune =
