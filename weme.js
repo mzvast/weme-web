@@ -1,4 +1,6 @@
 var express = require('express');
+var http = require('http'); 
+var querystring = require('querystring');
 var app = express();
 // set up handlebars view engine
 var exphbs = require('express-handlebars')
@@ -26,6 +28,45 @@ var fortuneCookies = [
 	"Whenever possible, keep it simple.",
 ];
 /*set up Routers*/
+app.get('/api',function(reqs,resp) {
+	console.log("get you api endpoint!");
+	// var postData = querystring.stringify({
+	// 	  "token": "884d20eb7ceb8e83f8ab7cb89fa238c0"
+	// 	});
+	var postData = JSON.stringify({
+		  "token": "884d20eb7ceb8e83f8ab7cb89fa238c0"
+		});
+	var options = {
+		  hostname: '218.244.147.240',
+		  port: 8080,
+		  path: '/getprofile',
+		  method: 'POST',
+		  headers: {
+		    'Content-Type': 'application/json',
+		    'Content-Length': postData.length
+		  }};
+		console.log(options);
+	  var req = http.request(options, function(res) {
+			  console.log('STATUS: ' + res.statusCode);
+			  console.log('HEADERS: ' + JSON.stringify(res.headers));
+			  res.setEncoding('utf8');
+			  res.on('data', function (chunk) {
+			    console.log('BODY: ' + chunk);
+			  });
+			  res.on('end', function() {
+			    console.log('No more data in response.')
+			  })
+			});
+		  req.on('error', function(e) {
+			  console.log('problem with request: ' + e.message);
+			});
+
+			// write data to request body
+		req.write(postData);
+		req.end();
+
+});
+
 app.get('/1', function(req, res) {
 	res.render('landing_mix',{layout:'main_bt'});
 });

@@ -39,10 +39,31 @@ initialUsers=[
 var ViewModel = function() {
 	var self = this;
 	this.userList = ko.observableArray([]);
-
+	self.getProfile=function() {
+		console.log("Button has been clicked!");
+		$.ajax({
+				  type: "POST",
+				  url: "http://218.244.147.240:8080/getprofile",
+				  dataType: "jsonp",
+				  contentType: "json",
+				  data: {
+				    "token": "884d20eb7ceb8e83f8ab7cb89fa238c0"
+				  },
+				  jsonp: false,
+				  jsonpCallback: "myJsonMethod",
+				  success: function(json) {
+				       console.log(json);
+				    },
+				  error: function(e) {
+				       console.log(e);
+    				}
+				});
+	};
 	initialUsers.forEach(function(UserItem) {
 		self.userList.push(new User(UserItem));
 	});
+
+
 };
 
 var User = function(data) {
