@@ -32,7 +32,7 @@ var fortuneCookies = [
 /*set up Routers*/
 
 router.get('/login', function(req, res) {
-    res.render('auth/login',{layout:'main_pure'});  
+    res.render('auth/login');  
 });
 app.get('/api/:method',function(reqs,resp) {
 	console.log("get you api endpoint!");
