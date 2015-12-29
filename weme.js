@@ -33,6 +33,7 @@ app.get('/api',function(reqs,resp) {
 	// var postData = querystring.stringify({
 	// 	  "token": "884d20eb7ceb8e83f8ab7cb89fa238c0"
 	// 	});
+	var data="";
 	var postData = JSON.stringify({
 		  "token": "884d20eb7ceb8e83f8ab7cb89fa238c0"
 		});
@@ -52,10 +53,12 @@ app.get('/api',function(reqs,resp) {
 			  res.setEncoding('utf8');
 			  res.on('data', function (chunk) {
 			    console.log('BODY: ' + chunk);
+			    data=chunk;
 			  });
 			  res.on('end', function() {
-			    console.log('No more data in response.')
-			  })
+			    console.log('No more data in response.');
+			  	resp.send(data);//send data back to front end
+			  });
 			});
 		  req.on('error', function(e) {
 			  console.log('problem with request: ' + e.message);
