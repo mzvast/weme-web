@@ -2,6 +2,7 @@ var express = require('express');
 var http = require('http'); 
 var querystring = require('querystring');
 var app = express();
+var router = express.Router();
 // set up handlebars view engine
 var exphbs = require('express-handlebars')
 app.engine('handlebars', exphbs({
@@ -19,6 +20,7 @@ app.set('view engine', 'handlebars');
 app.set('port', process.env.PORT || 3000);
 /*set up STATIC file folder*/
 app.use(express.static(__dirname + '/public'));
+app.use('/auth',express.static(__dirname + '/public'));
 
 var fortuneCookies = [
 	"Conquer your fears or they will conquer you.",
@@ -28,7 +30,11 @@ var fortuneCookies = [
 	"Whenever possible, keep it simple.",
 ];
 /*set up Routers*/
-app.get('/api',function(reqs,resp) {
+
+router.get('/login', function(req, res) {
+    res.render('auth/login',{layout:'main_pure'});  
+});
+app.get('/api/:method',function(reqs,resp) {
 	console.log("get you api endpoint!");
 	// var postData = querystring.stringify({
 	// 	  "token": "884d20eb7ceb8e83f8ab7cb89fa238c0"
@@ -41,7 +47,7 @@ app.get('/api',function(reqs,resp) {
 		  hostname: '218.244.147.240',
 		  port: 8080,
 		  path: '/getprofile',
-		  method: 'POST',
+		  method: reqs.params.method.toUpperCase(),
 		  headers: {
 		    'Content-Type': 'application/json',
 		    'Content-Length': postData.length
@@ -76,9 +82,9 @@ app.get('/1', function(req, res) {
 app.get('/', function(req, res) {
 	res.render('landing',{layout:'main_bt'});
 });
-app.get('/home', function(req, res) {
-	res.render('home');
-});
+// app.get('/home', function(req, res) {
+// 	res.render('home');
+// });
 app.get('/admin', function(req, res) {
 	res.render('admin/dashboard',{layout:'main_pure'});
 });
@@ -92,7 +98,7 @@ app.get('/about', function(req, res) {
 app.get('/jquery', function(req, res) {
 	res.render('jquery-test');
 });
-
+app.use('/auth', router);
 /*set up Error handler*/
 // 404 catch-all handler (middleware)
 app.use(function(req, res, next) {
@@ -105,6 +111,7 @@ app.use(function(err, req, res, next) {
 	res.status(500);
 	res.render('500');
 });
+
 /*Start up the App*/
 app.listen(app.get('port'), function() {
 	console.log('Express started on http://localhost:' +

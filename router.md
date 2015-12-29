@@ -1,0 +1,7 @@
+Router Design:
+
+/
+	
+/auth/
+
+/admin/
