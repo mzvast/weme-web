@@ -28,7 +28,9 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 })); 
 app.use(session({
   secret: 'recommand 128 bytes random string', // 建议使用 128 个字符的随机字符串
-  cookie: { maxAge: 60 * 1000 }
+  cookie: { maxAge: 60 * 1000 },
+  resave: true,
+  saveUninitialized: true
 }));
 /*set up Routers*/
 app.use(function(req,res,next) {
@@ -78,15 +80,21 @@ router.post('/login', function(request, response) {
 			  });
 			  res.on('end', function() {
 			    console.log('No more data in response.');
-			    var json_data = JSON.parse(data)
+			    try {
+			    	var json_data = JSON.parse(data)
+				}
+				catch(err) {
+				    console.log(err);
+				    response.send('sorry error,please retry later');
+				}
 			    if (json_data["state"]==="successful") {
 			    	console.log('login success!');
 			    	request.session.isLogin=true;//session SET!
 			    	request.session.isAdmin=true;//session SET!
 			    	console.log("session login state: "+request.session.isLogin);
 			    	/*登陆成功数据处理*/
-			  		response.render('auth/login',{session:request.session});
-			  		// response.redirect(301,'/admin');//login to Admin
+			  		// response.render('auth/login',{session:request.session});
+			  		response.redirect(301,'/admin/publish');//login to Admin
 			    };
 			  });
 			});
@@ -146,7 +154,8 @@ app.get('/1', function(req, res) {
 	res.render('landing_mix',{layout:'main_bt'});
 });
 app.get('/', function(req, res) {
-	res.render('landing',{layout:'main_bt'});
+	res.redirect(301,'/auth/login');//调试方便，临时重定向
+	// res.render('landing',{layout:'main_bt'});
 });
 // app.get('/home', function(req, res) {
 // 	res.render('home');
@@ -170,17 +179,22 @@ app.use('/user', router);
 router.get('/home',function(req,res) {
 	res.render('user/home',{session:req.session});
 });
+/*保护Admin下面的路由必须isAdmin才可以访问,临时关闭，方便调试*/
+// app.use(function(req, res, next) {
+//     console.log("user admin state: "+req.session.isAdmin);
+//     if (req.session.isAdmin===true) {
+//     	next();  
+//     }else{
+//     	res.redirect(301,'/auth/login',{session:req.session});
+//     };
+// });
+app.use('/admin', router);
 
-app.use(function(req, res, next) {
-    console.log("user admin state: "+req.session.isAdmin);
-    if (req.session.isAdmin===true) {
-    	next();  
-    }else{
-    	res.redirect(301,'/auth/login',{session:req.session});
-    };
-});
-app.get('/admin', function(req, res) {
+router.get('/', function(req, res) {
 	res.render('admin/dashboard',{layout:'main_pure'});
+});
+router.get('/publish', function(req, res) {
+	res.render('admin/publish',{layout:'main_pure'});
 });
 /*set up Error handler*/
 // 404 catch-all handler (middleware)

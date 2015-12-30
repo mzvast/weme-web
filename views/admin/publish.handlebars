@@ -35,6 +35,16 @@
 	.custom-restricted-width{
 		text-align:center;
 	}
+	table {
+    width: 100%;
+	}
+
+	thead {
+	    height: 1em;
+	}
+	tr {
+	    height: 1em;
+	}
 </style>
 {{/ section}}
 
@@ -45,46 +55,48 @@
         <!-- Hamburger icon -->
         <span></span>
     </a>
-{{> admin/leftbar}}
+{{> admin/leftbar publish=true}}
 
     <div id="main">
 		<div class="content">
 		    <div class="pure-g">
-			    <div class="pure-u-1-3">
-						<div class="pure-menu custom-restricted-width">
-					    <span class="pure-menu-heading activity-on">进行中</span>
-					    <ul  class="pure-menu-list">
-					        <li class="pure-menu-item "><a href="#" class="pure-menu-link">牵手东大</a></li>
-					        <li class="pure-menu-item"><a href="#" class="pure-menu-link">建筑之春</a></li>
-					        <li class="pure-menu-item "><a href="#" class="pure-menu-link">日本春天</a></li>
-					        <li class="pure-menu-item"><a href="#" class="pure-menu-link">美国春天</a></li>
-					    </ul>
-
-					    <span  class="pure-menu-heading activity-off">已结束</span>
-					    <ul class="pure-menu-list"> 
-					        <li class="pure-menu-item"><a href="#" class="pure-menu-link">夏威夷</a></li>
-					        <li class="pure-menu-item"><a href="#" class="pure-menu-link">阿呆</a></li>
-					        <li class="pure-menu-item"><a href="#" class="pure-menu-link">尼玛!</a></li>
-					    </ul>
-					</div>
-
-			    </div>
-			    <div class="pure-u-2-3">
-			    <button data-bind="click:getProfile">Click Me</button>
+		
+			    <div class="pure-u-1">
+			    <button data-bind="click:getActivity">刷新</button>
 					<table class="pure-table pure-table-horizontal">
 						    <thead>
 						        <tr>
-						            <th>姓名</th>
-						            <th>性别</th>
-						            <th>学校</th>
+						            <td >标题</td>
+						            <td >地点</td>
+						            <td >学校</td>
+						            <td >时间</td>
+						            <td >宣传语</td>
+						            <td >作者</td>
+						            <td >人数</td>
+						            {{!-- <td >authorid</td>
+						            <td >gender</td>
+						            <td >id</td> --}}
+						            {{!-- <td >remark</td> --}}
+						            {{!-- <td >signnumber</td> --}}
+						            <td >state</td>
 						        </tr>
 						    </thead>
 
-						    <tbody data-bind="foreach:userList">
+						    <tbody data-bind="foreach:activityList">
 						        <tr>
-						            <td data-bind="text:name"></td>
-						            <td data-bind="text:gender"></td>
+						            <td data-bind="text:title"></td>
+						            <td data-bind="text:location"></td>
 						            <td data-bind="text:school"></td>
+						            <td data-bind="text:time"></td>
+						            <td data-bind="text:advertise"></td>
+						            <td data-bind="text:author"></td>
+						            <td data-bind="text:number"></td>
+						            {{!-- <td data-bind="text:authorid"></td>
+						            <td data-bind="text:gender"></td>
+						            <td data-bind="text:id"></td> --}}
+						            {{!-- <td data-bind="text:remark"></td> --}}
+						            {{!-- <td data-bind="text:signnumber"></td> --}}
+						            <td data-bind="text:state"></td>
 						        </tr>
 						    </tbody>
 						</table>
