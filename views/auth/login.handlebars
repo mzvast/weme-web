@@ -8,20 +8,21 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-4 col-md-offset-4">
-				<form action="" method="POST" role="form">
+				<form action="/auth/login" method="POST" role="form">
 					<legend>登录喂米</legend>
 
 					<div class="form-group">
 						<label for="">用户名</label>
-						<input type="text" class="form-control"  data-bind="textInput: username" placeholder="username">
+						<input type="text" class="form-control" name="username" data-bind="textInput: username" placeholder="username">
 
 						<label data-bind="text: username"></label>
 
 						<label for="">密码</label>
 						<input type="password" class="form-control" data-bind="textInput: password" placeholder="password">
 						<label data-bind="text: password"></label>
+						<input type="hidden" class="form-control" name="password" data-bind="textInput: passhash" placeholder="passhash">
 					</div>
-					<button type="submit" class="btn btn-primary btn-block" data-bind="click:doLogin">登陆</button>
+					<button type="submit" class="btn btn-primary btn-block" >登陆</button>
 				</form>
 			
 		</div>

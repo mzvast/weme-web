@@ -19,7 +19,8 @@
   "dependencies": {
     "body-parser": "^1.14.2",
     "express": "^4.13.3",
-    "express-handlebars": "^2.0.1"
+    "express-handlebars": "^2.0.1",
+    "express-session": "^1.12.1"
   },
   "devDependencies": {
     "browser-sync": "^2.10.1",
