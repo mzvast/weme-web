@@ -168,7 +168,7 @@ router.use(function(req, res, next) {
 app.use('/user', router);
 
 router.get('/home',function(req,res) {
-	res.render('user/home');
+	res.render('user/home',{session:req.session});
 });
 
 app.use(function(req, res, next) {
@@ -176,7 +176,7 @@ app.use(function(req, res, next) {
     if (req.session.isAdmin===true) {
     	next();  
     }else{
-    	res.redirect(301,'/auth/login');
+    	res.redirect(301,'/auth/login',{session:req.session});
     };
 });
 app.get('/admin', function(req, res) {
