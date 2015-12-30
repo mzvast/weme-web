@@ -27,9 +27,12 @@ var ViewModel = function() {
 	self.getProfile=function() {
 		console.log("Button has been clicked!");
 		$.ajax({
-				  type: "GET",
-				  url: "/api/post",
+				  type: "POST",
+				  url: "/api/post/getprofile",
 				  dataType: "json",
+				  data:{
+				  	"token": "884d20eb7ceb8e83f8ab7cb89fa238c0"
+				  },
 				  success: function(json) {
 				       console.log(json);
 				    },

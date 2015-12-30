@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"ko",
+				"ko.o	knockoutjs observable"
+			],
+			[
+				"se",
+				"section	Tag"
+			],
+			[
+				"cont",
+				"container	(navbar.handlebars)"
+			],
+			[
+				"nav",
+				"navbar	(navbar.handlebars)"
+			],
+			[
+				"lo",
+				"login"
+			],
+			[
+				"parse",
+				"parseJSON〔function〕"
+			],
+			[
 				"text",
 				"text-align"
 			],
@@ -106,10 +130,6 @@
 			[
 				"cat",
 				"catList"
-			],
-			[
-				"ko",
-				"ko.[]	knockoutjs observable array"
 			],
 			[
 				"nick",
@@ -327,23 +347,23 @@
 			"file": "views/admin/dashboard.handlebars",
 			"settings":
 			{
-				"buffer_size": 4040,
+				"buffer_size": 4104,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "public/sass/admin/top-menu.scss",
+			"file": "views/auth/login.handlebars",
 			"settings":
 			{
-				"buffer_size": 1187,
+				"buffer_size": 1058,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "public/sass/admin/side-menu.scss",
+			"file": "public/js/auth/login.js",
 			"settings":
 			{
-				"buffer_size": 5041,
+				"buffer_size": 218,
 				"line_ending": "Windows"
 			}
 		},
@@ -351,18 +371,16 @@
 			"file": "public/js/admin/app.js",
 			"settings":
 			{
-				"buffer_size": 812,
+				"buffer_size": 1700,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"contents": "Add UI and Data binding\n\n# Something add to layout\n# --------------\n# Please enter the commit message for your changes. Everything below\n# this paragraph is ignored, and an empty message aborts the commit.\n# Just close the window to accept your message.\ndiff --git a/public/js/admin/app.js b/public/js/admin/app.js\nindex 1a92d6b..b0896c8 100644\n--- a/public/js/admin/app.js\n+++ b/public/js/admin/app.js\n@@ -1,92 +1,54 @@\n-initialCats=[\n+initialUsers=[\n 	{\n-		clickCount:0,\n 		name:'Tabby',\n-		imgSrc:'img/1413379559_412a540d29_z.jpg',\n-		imgAttribution:'',\n-		nicknames:[\n-    		'Tabtab',\n-    		'fuck',\n-    		'dog',\n-    		'doggie'   		\n-    	]\n+		sex:'male',\n+		school:'SEU'\n 	},\n 	{\n-		clickCount:0,\n 		name:'Fucker',\n-		imgSrc:'img/22252709_010df3379e_z.jpg',\n-		imgAttribution:'',\n-		nicknames:[\n-    		'Tabtab',\n-    		'fuck',\n-    		'dog',\n-    		'doggie'   		\n-    	]\n+		sex:'male',\n+		school:'SEU'\n 	},\n 	{\n-		clickCount:0,\n-		name:'Bitch',\n-		imgSrc:'img/4154543904_6e2428c421_z.jpg',\n-		imgAttribution:'',\n-		nicknames:[\n-    		'Tabtab',\n-    		'fuck',\n-    		'dog',\n-    		'doggie'   		\n-    	]\n-	},\n-	{\n-		clickCount:0,\n-		name:'BitchFucker',\n-		imgSrc:'img/434164568_fea0ad4013_z.jpg',\n-		imgAttribution:'',\n-		nicknames:[\n-    		'Tabtab',\n-    		'fuck',\n-    		'dog',\n-    		'doggie'   		\n-    	]\n-	},\n-	{\n-		clickCount:0,\n-		name:'FastFucker',\n-		imgSrc:'img/9648464288_2516b35537_z.jpg',\n-		imgAttribution:'',\n-		nicknames:[\n-    		'Tabtab',\n-    		'fuck',\n-    		'dog',\n-    		'doggie'   		\n-    	]\n+		name:'bitch',\n+		sex:'Female',\n+		school:'SEU'\n+	},	{\n+		name:'egg',\n+		sex:'Female',\n+		school:'SEU'\n+	},	{\n+		name:'dick',\n+		sex:'Female',\n+		school:'SEU'\n+	},	{\n+		name:'pig',\n+		sex:'Female',\n+		school:'SEU'\n+	},	{\n+		name:'peer',\n+		sex:'Female',\n+		school:'SEU'\n+	},	{\n+		name:'Linda',\n+		sex:'Female',\n+		school:'SEU'\n 	}\n+	\n ];\n var ViewModel = function() {\n 	var self = this;\n-	this.catList = ko.observableArray([]);\n+	this.userList = ko.observableArray([]);\n \n-	initialCats.forEach(function(catItem) {\n-		self.catList.push(new Cat(catItem));\n+	initialUsers.forEach(function(UserItem) {\n+		self.userList.push(new User(UserItem));\n 	});\n-\n-	this.currentCat = ko.observable(this.catList()[0]);	\n-	this.incementCounter = function() {\n-		self.currentCat().clickCount(self.currentCat().clickCount()+1);\n-	};\n-	this.setCat = function(clickedCat) {\n-		self.currentCat(clickedCat);\n-	};//The 1st param is what elem has been clicked\n-\n };\n \n-var Cat = function(data) {\n-	this.clickCount = ko.observable(data.clickCount);\n+var User = function(data) {\n 	this.name = ko.observable(data.name);\n-	this.imgSrc = ko.observable(data.imgSrc);\n-	this.imgAttribution = ko.observable(data.imgAttribution);;	\n-	this.level = ko.computed(function() {\n-        return this.clickCount()>100?\"Teen\":\n-        (this.clickCount()>10?\"Infant\":\"Newborn\");\n-    },this);	\n-    this.nicknames = ko.observableArray(data.nicknames);	\n+	this.sex = ko.observable(data.sex);\n+	this.school = ko.observable(data.school);        \n };\n+\n ko.applyBindings(new ViewModel())\n\\ No newline at end of file\ndiff --git a/public/sass/admin/side-menu.scss b/public/sass/admin/side-menu.scss\nindex 6d82e4a..f7aec52 100644\n--- a/public/sass/admin/side-menu.scss\n+++ b/public/sass/admin/side-menu.scss\n@@ -41,8 +41,9 @@ The content `<div>` is where all your content goes.\n .content {\n     margin: 0 auto;\n     padding: 0 2em;\n-    max-width: 960px;\n-    margin-bottom: 50px;\n+    max-width: 1000px;\n+    margin-bottom: 30px;\n+    margin-top: 30px;\n     line-height: 1.6em;\n }\n \ndiff --git a/public/sass/admin/top-menu.scss b/public/sass/admin/top-menu.scss\nindex e593c56..c134704 100644\n--- a/public/sass/admin/top-menu.scss\n+++ b/public/sass/admin/top-menu.scss\n@@ -10,6 +10,7 @@\n     box-shadow: 0 1px 1px rgba(0,0,0, 0.10);\n }\n .home-menu {\n+    padding: 0.2em;\n     background: #191818;\n }\n .pure-menu.pure-menu-fixed {\ndiff --git a/views/admin/dashboard.handlebars b/views/admin/dashboard.handlebars\nindex 0157c37..2012b27 100644\n--- a/views/admin/dashboard.handlebars\n+++ b/views/admin/dashboard.handlebars\n@@ -11,6 +11,30 @@\n     .l-box {\n         padding: 1em;\n     }\n+\n+    .custom-restricted-width {\n+    /* To limit the menu width to the content of the menu: */\n+    display: inline-block;\n+    /* Or set the width explicitly: */\n+    /* width: 10em; */\n+	}\n+	.activity-on{\n+		color:white;\n+	    font-size: 2em;\n+	    margin: 0.2em 0 0;\n+	    font-weight: 100;\n+	    background: green;\n+	}\n+	.activity-off{\n+		color:white;\n+	    font-size: 2em;\n+	    margin: 0.2em 0 0;\n+	    font-weight: 100;\n+	    background: red;\n+	}\n+	.custom-restricted-width{\n+		text-align:center;\n+	}\n </style>\n {{/ section}}\n \n@@ -35,9 +59,9 @@\n         <div class=\"pure-menu\">\n             <a class=\"pure-menu-heading\" href=\"#\">WeMe</a>\n \n-            <ul class=\"pure-menu-list\">\n+            <ul class=\"pure-menu-list activity-list\">\n                 <li class=\"pure-menu-item\"><a href=\"#\" class=\"pure-menu-link\">活动发布</a></li>\n-                <li class=\"pure-menu-item\"><a href=\"#\" class=\"pure-menu-link\">报名审核</a></li>\n+                <li class=\"pure-menu-item pure-menu-selected\"><a href=\"#\" class=\"pure-menu-link\">报名审核</a></li>\n \n                 <li class=\"pure-menu-item\" class=\"menu-item-divided pure-menu-selected\">\n                     <a href=\"#\" class=\"pure-menu-link\">用户管理</a>\n@@ -49,38 +73,51 @@\n     </div>\n \n     <div id=\"main\">\n+		<div class=\"content\">\n+		    <div class=\"pure-g\">\n+			    <div class=\"pure-u-1-3\">\n+						<div class=\"pure-menu custom-restricted-width\">\n+					    <span class=\"pure-menu-heading activity-on\">进行中</span>\n+					    <ul  class=\"pure-menu-list\">\n+					        <li class=\"pure-menu-item \"><a href=\"#\" class=\"pure-menu-link\">牵手东大</a></li>\n+					        <li class=\"pure-menu-item\"><a href=\"#\" class=\"pure-menu-link\">建筑之春</a></li>\n+					        <li class=\"pure-menu-item \"><a href=\"#\" class=\"pure-menu-link\">日本春天</a></li>\n+					        <li class=\"pure-menu-item\"><a href=\"#\" class=\"pure-menu-link\">美国春天</a></li>\n+					    </ul>\n \n-        <div class=\"content\">\n-            <h2 class=\"content-subhead\">How to use this layout</h2>\n-            <p>\n-                To use this layout, you can just copy paste the HTML, along with the CSS in <a href=\"/css/layouts/side-menu.css\" alt=\"Side Menu CSS\">side-menu.css</a>, and the JavaScript in <a href=\"/js/ui.js\">ui.js</a>. The JS file uses vanilla JavaScript to simply toggle an <code>active</code> class that makes the menu responsive.\n-            </p>\n+					    <span  class=\"pure-menu-heading activity-off\">已结束</span>\n+					    <ul class=\"pure-menu-list\"> \n+					        <li class=\"pure-menu-item\"><a href=\"#\" class=\"pure-menu-link\">夏威夷</a></li>\n+					        <li class=\"pure-menu-item\"><a href=\"#\" class=\"pure-menu-link\">阿呆</a></li>\n+					        <li class=\"pure-menu-item\"><a href=\"#\" class=\"pure-menu-link\">尼玛!</a></li>\n+					    </ul>\n+					</div>\n \n-            <h2 class=\"content-subhead\">Now Let's Speak Some Latin</h2>\n-            <p>\n-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n-            </p>\n+			    </div>\n+			    <div class=\"pure-u-2-3\">\n+					<table class=\"pure-table pure-table-horizontal\">\n+						    <thead>\n+						        <tr>\n+						            <th>姓名</th>\n+						            <th>性别</th>\n+						            <th>学校</th>\n+						        </tr>\n+						    </thead>\n \n-            <div class=\"pure-g\">\n-                <div class=\"pure-u-1-4\">\n-                    <img class=\"pure-img-responsive\" src=\"http://farm3.staticflickr.com/2875/9069037713_1752f5daeb.jpg\" alt=\"Peyto Lake\">\n-                </div>\n-                <div class=\"pure-u-1-4\">\n-                    <img class=\"pure-img-responsive\" src=\"http://farm3.staticflickr.com/2813/9069585985_80da8db54f.jpg\" alt=\"Train\">\n-                </div>\n-                <div class=\"pure-u-1-4\">\n-                    <img class=\"pure-img-responsive\" src=\"http://farm6.staticflickr.com/5456/9121446012_c1640e42d0.jpg\" alt=\"T-Shirt Store\">\n-                </div>\n-                <div class=\"pure-u-1-4\">\n-                    <img class=\"pure-img-responsive\" src=\"http://farm8.staticflickr.com/7357/9086701425_fda3024927.jpg\" alt=\"Mountain\">\n-                </div>\n-            </div>\n+						    <tbody data-bind=\"foreach:userList\">\n+						        <tr>\n+						            <td data-bind=\"text:name\"></td>\n+						            <td data-bind=\"text:sex\"></td>\n+						            <td data-bind=\"text:school\"></td>\n+						        </tr>\n+						    </tbody>\n+						</table>\n+			    </div>\n+			</div>\n+	\n \n-            <h2 class=\"content-subhead\">Try Resizing your Browser</h2>\n-            <p>\n-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n-            </p>\n-        </div>\n+		</div>\n+        \n     </div>\n </div>\n {{# section 'jquery' }}",
+			"file": "weme.js",
 			"settings":
 			{
-				"buffer_size": 9588,
-				"line_ending": "Windows",
-				"name": "COMMIT_EDITMSG",
-				"scratch": true
+				"buffer_size": 3251,
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -373,12 +391,16 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 380.0,
-		"last_filter": "git com",
+		"height": 150.0,
+		"last_filter": "git push",
 		"selected_items":
 		[
 			[
-				"git com",
+				"git push",
+				"Git: Push"
+			],
+			[
+				"git co",
 				"Git: Commit"
 			],
 			[
@@ -386,8 +408,28 @@
 				"Git: Add All"
 			],
 			[
+				"git diff",
+				"Git: Diff Current File"
+			],
+			[
+				"git c",
+				"Git: Commit"
+			],
+			[
 				"git stat",
 				"Git: Status"
+			],
+			[
+				"git re",
+				"Git: Reset (unstage) All"
+			],
+			[
+				"repl nod",
+				"SublimeREPL: Node"
+			],
+			[
+				"git com",
+				"Git: Commit"
 			],
 			[
 				"pcrp",
@@ -402,28 +444,8 @@
 				"Package Control: Install Package"
 			],
 			[
-				"git push",
-				"Git: Push"
-			],
-			[
-				"git re",
-				"Git: Reset (unstage) All"
-			],
-			[
-				"git co",
-				"Git: Commit"
-			],
-			[
 				"git reset",
 				"Git: Reset (unstage) All"
-			],
-			[
-				"git diff",
-				"Git: Diff Staged Files"
-			],
-			[
-				"git c",
-				"Git: Commit"
 			],
 			[
 				"gitlog",
@@ -537,17 +559,30 @@
 	[
 		"/D/WorkSpaces/weme",
 		"/D/WorkSpaces/weme/public",
+		"/D/WorkSpaces/weme/public/dist/css",
 		"/D/WorkSpaces/weme/public/js",
 		"/D/WorkSpaces/weme/public/js/admin",
+		"/D/WorkSpaces/weme/public/js/auth",
 		"/D/WorkSpaces/weme/public/sass",
 		"/D/WorkSpaces/weme/public/sass/admin",
 		"/D/WorkSpaces/weme/views",
 		"/D/WorkSpaces/weme/views/admin",
+		"/D/WorkSpaces/weme/views/auth",
 		"/D/WorkSpaces/weme/views/layouts",
 		"/D/WorkSpaces/weme/views/partials"
 	],
 	"file_history":
 	[
+		"/D/WorkSpaces/weme/public/js/auth/md5.js",
+		"/D/WorkSpaces/weme/views/partials/navbar.handlebars",
+		"/D/WorkSpaces/weme/views/partials/css_bt.handlebars",
+		"/D/WorkSpaces/weme/public/sass/navbar-fixed-top.scss",
+		"/D/WorkSpaces/weme/public/dist/css/navbar-fixed-top.css",
+		"/D/WorkSpaces/weme/views/partials/head_pure.handlebars",
+		"/D/WorkSpaces/weme/public/js/admin/app.js",
+		"/D/WorkSpaces/weme/router.md",
+		"/D/WorkSpaces/weme/views/partials/css_pure.handlebars",
+		"/D/WorkSpaces/weme/views/layouts/main_pure.handlebars",
 		"/D/WorkSpaces/weme/public/sass/admin/side-menu.scss",
 		"/D/WorkSpaces/weme/public/sass/admin/top-menu.scss",
 		"/D/WorkSpaces/weme/public/dist/css/admin/top-menu.css",
@@ -555,11 +590,8 @@
 		"/D/WorkSpaces/weme/public/js/admin/ui.js",
 		"/D/WorkSpaces/weme/public/sass/admin/side-bar.scss",
 		"/D/WorkSpaces/weme/public/js/menu.js",
-		"/D/WorkSpaces/weme/views/partials/css_pure.handlebars",
-		"/D/WorkSpaces/weme/views/layouts/main_pure.handlebars",
 		"/D/WorkSpaces/weme/weme.js",
 		"/D/WorkSpaces/weme/views/layouts/main_purecss.handlebars",
-		"/D/WorkSpaces/weme/views/partials/css_bt.handlebars",
 		"/D/WorkSpaces/weme/views/layouts/main_no_bt.handlebars",
 		"/D/WorkSpaces/weme/views/layouts/main_bt.handlebars",
 		"/D/WorkSpaces/weme/views/landing.handlebars",
@@ -668,14 +700,7 @@
 		"/D/WorkSpaces/ud989/src/CounterBook.js",
 		"/D/WorkSpaces/ud989/spec/CounterBookSpec.js",
 		"/D/WorkSpaces/ud989/index2.html",
-		"/D/WorkSpaces/ud989/node_modules/bootstrap/dist/js/bootstrap.min.js",
-		"/D/WorkSpaces/ud989/package.json",
-		"/D/WorkSpaces/ud989/SpecRunner.html",
-		"/D/WorkSpaces/ud989/src/AddressBook.js",
-		"/D/WorkSpaces/ud989/spec/AddressBookSpec.js",
-		"/D/WorkSpaces/ud989/src/myJS.js",
-		"/D/WorkSpaces/ud989/spec/SpecHelper.js",
-		"/D/WorkSpaces/ud892/Lesson 4 - Part 2 - Lesson 5/gulpfile.js"
+		"/D/WorkSpaces/ud989/node_modules/bootstrap/dist/js/bootstrap.min.js"
 	],
 	"find":
 	{
@@ -694,6 +719,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"top",
+			"router",
+			":",
+			",",
+			"\"",
 			"Cat",
 			"catList",
 			"Cat",
@@ -790,6 +820,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			""
 		],
 		"reverse": false,
 		"show_context": true,
@@ -800,7 +831,7 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -809,15 +840,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4040,
+						"buffer_size": 4104,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3404,
-								3404
+								883,
+								883
 							]
 						],
 						"settings":
@@ -826,31 +857,6 @@
 							"auto_complete": false,
 							"bh_regions":
 							[
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
@@ -866,6 +872,31 @@
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
@@ -876,70 +907,46 @@
 								"bh_unmatched_open",
 								"bh_unmatched_close",
 								"bh_unmatched_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content"
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
 							],
 							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
 							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage",
 							"word_wrap": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1771.0,
+						"translation.y": 480.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "public/sass/admin/top-menu.scss",
+					"file": "views/auth/login.handlebars",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1187,
+						"buffer_size": 1058,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								899,
-								906
+								1028,
+								1028
 							]
 						],
 						"settings":
 						{
 							"BracketHighlighterBusy": false,
+							"auto_complete": false,
 							"bh_regions":
 							[
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
@@ -955,6 +962,31 @@
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
@@ -965,19 +997,17 @@
 								"bh_unmatched_open",
 								"bh_unmatched_close",
 								"bh_unmatched_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content"
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
 							],
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
-							"syntax": "Packages/SCSS/SCSS.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"open_with_edit": true,
+							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 603.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,
@@ -985,109 +1015,19 @@
 				},
 				{
 					"buffer": 2,
-					"file": "public/sass/admin/side-menu.scss",
+					"file": "public/js/auth/login.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5041,
+						"buffer_size": 218,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								722,
-								722
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"bh_regions":
-							[
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content"
-							],
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
-							"syntax": "Packages/SCSS/SCSS.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 517.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "public/js/admin/app.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 812,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								375,
-								375
+								180,
+								180
 							]
 						],
 						"settings":
@@ -1096,31 +1036,6 @@
 							"auto_complete": false,
 							"bh_regions":
 							[
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
@@ -1136,6 +1051,31 @@
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
 								"bh_round",
 								"bh_round_center",
 								"bh_round_open",
@@ -1146,37 +1086,39 @@
 								"bh_unmatched_open",
 								"bh_unmatched_close",
 								"bh_unmatched_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content"
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
 							],
 							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
 							"open_with_edit": true,
-							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage"
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"semi_transient": false,
+					"buffer": 3,
+					"file": "public/js/admin/app.js",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 9588,
+						"buffer_size": 1700,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								23,
-								23
+								458,
+								458
 							]
 						],
 						"settings":
@@ -1184,70 +1126,161 @@
 							"BracketHighlighterBusy": false,
 							"bh_regions":
 							[
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
 								"bh_curly",
 								"bh_curly_center",
 								"bh_curly_open",
 								"bh_curly_close",
 								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
 								"bh_default_close",
 								"bh_default_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
 								"bh_double_quote",
 								"bh_double_quote_center",
 								"bh_double_quote_open",
 								"bh_double_quote_close",
 								"bh_double_quote_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
-								"bh_unmatched_content"
+								"bh_unmatched_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
 							],
-							"default_dir": "D:\\WorkSpaces\\weme",
-							"syntax": "Packages/Git/syntax/Git Commit Message.tmLanguage"
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 200.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "weme.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3251,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								906,
+								906
+							]
+						],
+						"settings":
+						{
+							"BracketHighlighterBusy": false,
+							"auto_complete": false,
+							"bh_regions":
+							[
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content"
+							],
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 280.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -1296,7 +1329,7 @@
 	"project": "weme.sublime-project",
 	"replace":
 	{
-		"height": 52.0
+		"height": 66.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1342,7 +1375,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 306.0,
+	"side_bar_width": 228.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

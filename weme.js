@@ -3,6 +3,7 @@ var http = require('http');
 var querystring = require('querystring');
 var app = express();
 var router = express.Router();
+var bodyParser = require('body-parser')
 // set up handlebars view engine
 var exphbs = require('express-handlebars')
 app.engine('handlebars', exphbs({
@@ -21,6 +22,10 @@ app.set('port', process.env.PORT || 3000);
 /*set up STATIC file folder*/
 app.use(express.static(__dirname + '/public'));
 app.use('/auth',express.static(__dirname + '/public'));
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
 
 var fortuneCookies = [
 	"Conquer your fears or they will conquer you.",
@@ -34,36 +39,37 @@ var fortuneCookies = [
 router.get('/login', function(req, res) {
     res.render('auth/login');  
 });
-app.get('/api/:method',function(reqs,resp) {
+app.post('/api/:method/:path',function(request,response) {
 	console.log("get you api endpoint!");
+	console.log("method: "+request.params.method);
+	console.log("body: "+ request.body.token);
+	console.log("path: /"+request.params.path);
 	// var postData = querystring.stringify({
 	// 	  "token": "884d20eb7ceb8e83f8ab7cb89fa238c0"
 	// 	});
 	var data="";
-	var postData = JSON.stringify({
-		  "token": "884d20eb7ceb8e83f8ab7cb89fa238c0"
-		});
+	var postData = JSON.stringify(request.body);
 	var options = {
 		  hostname: '218.244.147.240',
 		  port: 8080,
-		  path: '/getprofile',
-		  method: reqs.params.method.toUpperCase(),
+		  path: '/'+request.params.path,
+		  method: request.params.method.toUpperCase(),
 		  headers: {
 		    'Content-Type': 'application/json',
 		    'Content-Length': postData.length
 		  }};
-		console.log(options);
+		// console.log(options);
 	  var req = http.request(options, function(res) {
-			  console.log('STATUS: ' + res.statusCode);
-			  console.log('HEADERS: ' + JSON.stringify(res.headers));
+			  // console.log('STATUS: ' + res.statusCode);
+			  // console.log('HEADERS: ' + JSON.stringify(res.headers));
 			  res.setEncoding('utf8');
 			  res.on('data', function (chunk) {
-			    console.log('BODY: ' + chunk);
+			    // console.log('BODY: ' + chunk);
 			    data=chunk;
 			  });
 			  res.on('end', function() {
 			    console.log('No more data in response.');
-			  	resp.send(data);//send data back to front end
+			  	response.send(data);//send data back to front end
 			  });
 			});
 		  req.on('error', function(e) {
