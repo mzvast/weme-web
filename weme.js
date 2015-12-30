@@ -22,7 +22,6 @@ app.set('view engine', 'handlebars');
 app.set('port', process.env.PORT || 3000);
 /*set up STATIC file folder*/
 app.use(express.static(__dirname + '/public'));
-app.use('/auth',express.static(__dirname + '/public'));
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
@@ -33,17 +32,23 @@ app.use(session({
 }));
 /*set up Routers*/
 
+app.use(function(req,res,next) {
+	if (req.session.isLogin===undefined) {req.session.isLogin=false;} 
+	next();
+});
+
 router.get('/login', function(req, res) {
-	// req.session.isLogin=false;
 	console.log("session login state: "+req.session.isLogin);
     res.render('auth/login');  
+});
+router.get('/logout', function(req, res) {
+	console.log("session login state: "+req.session.isLogin);
+    res.render('auth/login',{session:{isLogin:false}});  
 });
 router.post('/login', function(request, response) {
 	// request.session.isLogin=false;
 	console.log("session login state: "+request.session.isLogin);
 	// response.send(request.body); 
-
-
 	var data="";
 	var postData = JSON.stringify(request.body);
 	var options = {
@@ -71,7 +76,8 @@ router.post('/login', function(request, response) {
 			    	console.log('login success!');
 			    	request.session.isLogin=true;
 			    	console.log("session login state: "+request.session.isLogin);
-			  		response.redirect(301,'/admin');//login to Admin
+			  		response.render('auth/login',{session:{isLogin:true}});//login to Admin
+			  		// response.redirect(301,'/admin');//login to Admin
 			    };
 			  });
 			});
@@ -92,6 +98,11 @@ router.post('/login', function(request, response) {
     // 	console.log("successful: "+postData);
     // };  
 });
+
+router.get('/home',function(req,res) {
+	res.render('user/home');
+});
+
 app.post('/api/:method/:path',function(request,response) {
 	console.log("get you api endpoint!");
 	console.log("method: "+request.params.method);
@@ -122,13 +133,7 @@ app.post('/api/:method/:path',function(request,response) {
 			  });
 			  res.on('end', function() {
 			    console.log('No more data in response.');
-			  	response.send(data);//send data back to front end
-			    var json_data = JSON.parse(data)
-			    if (request.params.path==='login'&&json_data["state"]==="successful") {
-			    	console.log('login success!');
-			    	request.session.isLogin=true;
-			    	console.log("session login state: "+request.session.isLogin);
-			    };
+			  	response.send(data);//send data back to front end			   
 			  });
 			});
 		  req.on('error', function(e) {
@@ -170,6 +175,7 @@ app.get('/jquery', function(req, res) {
 	res.render('jquery-test');
 });
 app.use('/auth', router);
+app.use('/user', router);
 /*set up Error handler*/
 // 404 catch-all handler (middleware)
 app.use(function(req, res, next) {
