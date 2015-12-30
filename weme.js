@@ -31,19 +31,26 @@ app.use(session({
   cookie: { maxAge: 60 * 1000 }
 }));
 /*set up Routers*/
-
 app.use(function(req,res,next) {
-	if (req.session.isLogin===undefined) {req.session.isLogin=false;} 
+	if (req.session.isLogin===undefined) {
+		req.session.isLogin=false;
+		req.session.isAdmin=false;} 
 	next();
 });
 
+app.use('/auth', router);
+
+router.get('/logout', function(req, res) {
+		req.session.isLogin=false;
+		req.session.isAdmin=false;
+	console.log("session login state: "+req.session.isLogin);
+	console.log("session Admin state: "+req.session.isAdmin);
+    res.redirect(301,'auth/login');  
+});
 router.get('/login', function(req, res) {
 	console.log("session login state: "+req.session.isLogin);
+	console.log("session Admin state: "+req.session.isAdmin);
     res.render('auth/login');  
-});
-router.get('/logout', function(req, res) {
-	console.log("session login state: "+req.session.isLogin);
-    res.render('auth/login',{session:{isLogin:false}});  
 });
 router.post('/login', function(request, response) {
 	// request.session.isLogin=false;
@@ -74,9 +81,11 @@ router.post('/login', function(request, response) {
 			    var json_data = JSON.parse(data)
 			    if (json_data["state"]==="successful") {
 			    	console.log('login success!');
-			    	request.session.isLogin=true;
+			    	request.session.isLogin=true;//session SET!
+			    	request.session.isAdmin=true;//session SET!
 			    	console.log("session login state: "+request.session.isLogin);
-			  		response.render('auth/login',{session:{isLogin:true}});//login to Admin
+			    	/*登陆成功数据处理*/
+			  		response.render('auth/login',{session:request.session});
 			  		// response.redirect(301,'/admin');//login to Admin
 			    };
 			  });
@@ -88,19 +97,6 @@ router.post('/login', function(request, response) {
 			// write data to request body
 		req.write(postData);
 		req.end();
-	// response.redirect('/admin'); 
-    // var postData = JSON.stringify(request.body);
-    // console.log("empty token: "+postData);
-    // if (!postData.token) {
-    // 	console.log("empty token: "+postData);
-    // } else 
-    // {
-    // 	console.log("successful: "+postData);
-    // };  
-});
-
-router.get('/home',function(req,res) {
-	res.render('user/home');
 });
 
 app.post('/api/:method/:path',function(request,response) {
@@ -155,27 +151,37 @@ app.get('/', function(req, res) {
 // app.get('/home', function(req, res) {
 // 	res.render('home');
 // });
-app.get('/admin', function(req, res) {
-	console.log("session login state: "+req.session.isLogin);
-	if (req.session.isLogin==undefined||!req.session.isLogin) {
-		res.redirect(301,'/auth/login');
-	} 
-		else{
-			res.render('admin/dashboard',{layout:'main_pure'});
-		};
-});
-app.get('/about', function(req, res) {
-	var randomFortune =
-		fortuneCookies[Math.floor(Math.random() * fortuneCookies.length)];
-	res.render('about', {
-		fortune: randomFortune
-	});
-});
+
 app.get('/jquery', function(req, res) {
 	res.render('jquery-test');
 });
-app.use('/auth', router);
+
+/*保护user下面的路由必须登陆才可以访问*/
+router.use(function(req, res, next) {
+    console.log("user login state: "+req.session.isLogin);
+    if (req.session.isLogin===true) {
+    	next();  
+    }else{
+    	res.redirect(301,'/auth/login');
+    };
+});
 app.use('/user', router);
+
+router.get('/home',function(req,res) {
+	res.render('user/home');
+});
+
+app.use(function(req, res, next) {
+    console.log("user admin state: "+req.session.isAdmin);
+    if (req.session.isAdmin===true) {
+    	next();  
+    }else{
+    	res.redirect(301,'/auth/login');
+    };
+});
+app.get('/admin', function(req, res) {
+	res.render('admin/dashboard',{layout:'main_pure'});
+});
 /*set up Error handler*/
 // 404 catch-all handler (middleware)
 app.use(function(req, res, next) {

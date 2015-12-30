@@ -25,7 +25,10 @@
           <ul class="nav navbar-nav navbar-right">
             {{#if session.isLogin}}
               <li><a href="/user/home">我</a></li>
-              <li ><a href="/auth/logout">注销 <span class="sr-only">(current)</span></a></li>
+              <li ><a href="/auth/logout">注销</a></li>
+            {{/if}} 
+            {{#if session.isAdmin}}
+              <li><a href="/admin">后台管理</a></li>
             {{/if}}
           </ul>
         </div><!--/.nav-collapse -->
