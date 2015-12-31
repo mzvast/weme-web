@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 app.use(cookieParser());
 app.use(session({
   secret: 'recommand 128 bytes random string', // 建议使用 128 个字符的随机字符串
-  cookie: { maxAge: 60 * 1000 },
+  cookie: { maxAge: 15 * 60 * 1000 },
   resave: true,
   saveUninitialized: true
 }));
@@ -38,7 +38,7 @@ app.use(session({
 app.use(function(req,res,next) {
 	req.session.isLogin=req.session.isLogin||false;
 	req.session.isAdmin=req.session.isAdmin||false;
-	res.cookie("token",(req.cookies.token?req.cookies.token:""),{ maxAge: 60 * 1000 });
+	res.cookie("token",(req.cookies.token?req.cookies.token:""),{ maxAge: 15 * 60 * 1000 });
 	console.log("cookies token: "+req.cookies.token);
 	next();
 });
@@ -46,8 +46,8 @@ app.use(function(req,res,next) {
 app.use('/auth', router);
 
 router.get('/logout', function(req, res) {
-		req.session.destroy();
-		res.clearCookie('token');
+	req.session.destroy();
+	res.clearCookie('token');
     res.redirect(301,'auth/login');  
 });
 router.get('/login', function(req, res) {

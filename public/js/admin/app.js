@@ -29,6 +29,7 @@ var ViewModel = function() {
 	self.userList = ko.observableArray([]);
 	self.activityList = ko.observableArray([]);
 	self.showRefresh = ko.observable(false);
+	self.token =  getCookie("token");
 	self.getProfile=function() {
 		console.log("Button has been clicked!");
 		$.ajax({
@@ -36,10 +37,12 @@ var ViewModel = function() {
 				  url: "/api/post/getprofile",
 				  dataType: "json",
 				  data:{
-				  	"token": "884d20eb7ceb8e83f8ab7cb89fa238c0"
+				  	"token": self.token
 				  },
 				  success: function(json) {
 				       console.log(json);
+				       $.ajax(this);//automatic retry after fail
+                		return;
 				    },
 				  error: function(e) {
 				       console.log(e);
@@ -56,7 +59,7 @@ var ViewModel = function() {
 				  url: "/api/post/getactivityinformation",
 				  dataType: "json",
 				  data:{
-				  	"token": "884d20eb7ceb8e83f8ab7cb89fa238c0"
+				  	"token": self.token
 				  },
 				  success: function(json) {
 				       console.dir(json.result);
@@ -65,12 +68,13 @@ var ViewModel = function() {
 					initialActivities.forEach(function(activityItem) {
 						self.activityList.push(new Activity(activityItem));
 						}); 
-					console.log("array length: "+initialActivities.length>0?false:true)
 					self.showRefresh(initialActivities.length>1?false:true);//设置按钮
 				    },
 				  error: function(e) {
 				  	self.showRefresh(true);
 				       console.log(e);
+				  		$.ajax(this);//automatic retry after fail
+                		return;
     				}
 				});
 		// for (var i = 0; i < actvities.length; i++) {			
@@ -83,11 +87,11 @@ var ViewModel = function() {
 	       
 	};
 
-		self.getActivity(); 
 	initialUsers.forEach(function(UserItem) {
 		self.userList.push(new User(UserItem));
 	});
-			console.log(self.userList()[0]);
+			// console.log(self.userList()[0]);
+		self.getActivity(); 
 
 	// initialActivities.forEach(function(activityItem) {
 	// 	self.activityList.push(new Activity(activityItem));
