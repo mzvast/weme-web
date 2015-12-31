@@ -5,6 +5,7 @@ var app = express();
 var router = express.Router();
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var cookieParser = require('cookie-parser');
 // set up handlebars view engine
 var exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({
@@ -26,6 +27,7 @@ app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
+app.use(cookieParser());
 app.use(session({
   secret: 'recommand 128 bytes random string', // 建议使用 128 个字符的随机字符串
   cookie: { maxAge: 60 * 1000 },
@@ -34,28 +36,33 @@ app.use(session({
 }));
 /*set up Routers*/
 app.use(function(req,res,next) {
-	if (req.session.isLogin===undefined) {
-		req.session.isLogin=false;
-		req.session.isAdmin=false;} 
+	req.session.isLogin=req.session.isLogin||false;
+	req.session.isAdmin=req.session.isAdmin||false;
+	res.cookie("token",(req.cookies.token?req.cookies.token:""),{ maxAge: 60 * 1000 });
+	console.log("cookies token: "+req.cookies.token);
 	next();
 });
 
 app.use('/auth', router);
 
 router.get('/logout', function(req, res) {
-		req.session.isLogin=false;
-		req.session.isAdmin=false;
-	console.log("session login state: "+req.session.isLogin);
-	console.log("session Admin state: "+req.session.isAdmin);
+		req.session.destroy();
+		res.clearCookie('token');
     res.redirect(301,'auth/login');  
 });
 router.get('/login', function(req, res) {
 	console.log("session login state: "+req.session.isLogin);
 	console.log("session Admin state: "+req.session.isAdmin);
+	console.log("cookies token: "+req.cookies.token);
+	if (req.session.isLogin) {
+		res.redirect(301,"/admin/publish");
+	};
+	res.clearCookie('token');
     res.render('auth/login');  
 });
 router.post('/login', function(request, response) {
 	// request.session.isLogin=false;
+	console.log("=======login=======");
 	console.log("session login state: "+request.session.isLogin);
 	// response.send(request.body); 
 	var data="";
@@ -75,11 +82,11 @@ router.post('/login', function(request, response) {
 			  // console.log('HEADERS: ' + JSON.stringify(res.headers));
 			  res.setEncoding('utf8');
 			  res.on('data', function (chunk) {
-			    console.log('BODY: ' + chunk);
+			    // console.log('BODY: ' + chunk);
 			    data=chunk;
 			  });
 			  res.on('end', function() {
-			    console.log('No more data in response.');
+			    // console.log('No more data in response.');
 			    try {
 			    	var json_data = JSON.parse(data)
 				}
@@ -88,18 +95,21 @@ router.post('/login', function(request, response) {
 				    response.send('sorry error,please retry later');
 				}
 			    if (json_data["state"]==="successful") {
-			    	console.log('login success!');
 			    	request.session.isLogin=true;//session SET!
 			    	request.session.isAdmin=true;//session SET!
+					response.cookie("token",json_data["token"]);//cookies store token
+			    	console.log("request.cookies.token: "+json_data["token"]);
 			    	console.log("session login state: "+request.session.isLogin);
 			    	/*登陆成功数据处理*/
 			  		// response.render('auth/login',{session:request.session});
 			  		response.redirect(301,'/admin/publish');//login to Admin
+			    	console.log("======login success!======");
 			    };
 			  });
 			});
 		  req.on('error', function(e) {
 			  console.log('problem with request: ' + e.message);
+			  console.log("========login error=======");
 			});
 
 			// write data to request body
@@ -108,10 +118,10 @@ router.post('/login', function(request, response) {
 });
 
 app.post('/api/:method/:path',function(request,response) {
-	console.log("get you api endpoint!");
-	console.log("method: "+request.params.method);
-	console.log("body: "+ request.body.token);
-	console.log("path: /"+request.params.path);
+	console.log("========api=======");
+	// console.log("method: "+request.params.method);
+	// console.log("body: "+ request.body.token);
+	// console.log("path: /"+request.params.path);
 	// var postData = querystring.stringify({
 	// 	  "token": "884d20eb7ceb8e83f8ab7cb89fa238c0"
 	// 	});
@@ -132,16 +142,18 @@ app.post('/api/:method/:path',function(request,response) {
 			  // console.log('HEADERS: ' + JSON.stringify(res.headers));
 			  res.setEncoding('utf8');
 			  res.on('data', function (chunk) {
-			    console.log('BODY: ' + chunk);
+			    // console.log('BODY: ' + chunk);
 			    data=chunk;
 			  });
 			  res.on('end', function() {
-			    console.log('No more data in response.');
-			  	response.send(data);//send data back to front end			   
+			    // console.log('No more data in response.');
+			  	response.send(data);//send data back to front end	
+				console.log("========api success=======");
 			  });
 			});
 		  req.on('error', function(e) {
 			  console.log('problem with request: ' + e.message);
+			  console.log("========api error=======");
 			});
 
 			// write data to request body
@@ -194,6 +206,7 @@ router.get('/', function(req, res) {
 	res.render('admin/dashboard',{layout:'main_pure'});
 });
 router.get('/publish', function(req, res) {
+	console.log("cookies token: "+req.cookies.token);
 	res.render('admin/publish',{layout:'main_pure'});
 });
 /*set up Error handler*/
