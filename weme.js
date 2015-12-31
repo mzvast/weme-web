@@ -109,7 +109,13 @@ router.post('/login', function(request, response) {
 			  		// response.render('auth/login',{session:request.session});
 			  		response.redirect(301,'/admin/publish');//login to Admin
 			    	console.log("======login success!======");
-			    };
+			    }else {
+			    	console.log("======login fail!======");
+			    	console.log(json_data["reason"]);
+			    	request.flash('msg', json_data["reason"]);
+			    	// request.flash('msg', "smsmsmsmsm");
+			    	response.redirect(301,'/auth/login');
+			    };;
 			  });
 			});
 		  req.on('error', function(e) {
@@ -171,7 +177,7 @@ router.post('/register', function(request, response) {
 			    	console.log(json_data["reason"]);
 			    	request.flash('msg', json_data["reason"]);
 			    	// request.flash('msg', "smsmsmsmsm");
-			    	response.render('auth/register');
+			    	response.redirect(301,'/auth/register');
 			    };
 			  });
 			});

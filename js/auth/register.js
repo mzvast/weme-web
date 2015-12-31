@@ -2,8 +2,8 @@ $(function() {
 
 	var ViewModel = function() {
 		var self = this;
-		self.username = ko.observable("administrator");
-		self.password = ko.observable("12345678");
+		self.username = ko.observable();
+		self.password = ko.observable();
 		self.passhash = ko.computed(function() {
         	return md5(self.password());
     	});
