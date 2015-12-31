@@ -36,15 +36,21 @@
 		text-align:center;
 	}
 table{
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     table-layout: fixed;
     width: 100%;
 }
 
 th, td {
-    border: 1px solid black;
+    /*border: 1px solid black;*/
     overflow: hidden;
-    width: 80px;
+    width: auto;
+}
+.button-success {
+            background: rgb(28, 184, 65); /* this is a green */
+        }
+.button-error {
+    background: rgb(202, 60, 60); /* this is a maroon */
 }
 
 </style>
@@ -67,37 +73,42 @@ th, td {
 					<table class="pure-table pure-table-horizontal">
 						    <thead>
 						        <tr>
-						            <td >标题</td>
-						            <td >地点</td>
-						            <td >学校</td>
-						            <td >时间</td>
-						            <td >宣传语</td>
-						            <td >作者</td>
-						            <td >人数</td>
-						            {{!-- <td >authorid</td>
-						            <td >gender</td>
-						            <td >id</td> --}}
+						            <td style="width:0.5em">id</td>
+						            <td style="width:3em">标题</td>
+						            <td style="width:3em">地点</td>
+						            {{!-- <td >学校</td> --}}
+						            <td style="width:3em">时间</td>
+						            {{!-- <td >宣传语</td> --}}
+						            <td style="width:2em">作者</td>
+						            <td style="width:2em">人数</td>
+						            {{!-- <td >authorid</td> --}}
+						            {{!-- <td >gender</td> --}}
 						            {{!-- <td >remark</td> --}}
 						            {{!-- <td >signnumber</td> --}}
-						            <td >state</td>
+						            <td style="width:2em">状态</td>
+						            <td style="width:2em">操作</td>
 						        </tr>
 						    </thead>
 
 						    <tbody data-bind="foreach:activityList">
 						        <tr>
+						            <td data-bind="text:id"></td>
 						            <td data-bind="text:title"></td>
 						            <td data-bind="text:location"></td>
-						            <td data-bind="text:school"></td>
+						            {{!-- <td data-bind="text:school"></td> --}}
 						            <td data-bind="text:time"></td>
-						            <td data-bind="text:advertise"></td>
+						            {{!-- <td data-bind="text:advertise"></td> --}}
 						            <td data-bind="text:author"></td>
 						            <td data-bind="text:number"></td>
-						            {{!-- <td data-bind="text:authorid"></td>
-						            <td data-bind="text:gender"></td>
-						            <td data-bind="text:id"></td> --}}
+						            {{!-- <td data-bind="text:authorid"></td> --}}
+						            {{!-- <td data-bind="text:gender"></td> --}}
 						            {{!-- <td data-bind="text:remark"></td> --}}
 						            {{!-- <td data-bind="text:signnumber"></td> --}}
-						            <td data-bind="text:state"></td>
+						            <td  data-bind="text:state"></td>
+						            <td style="width:2em">
+						            	<button class="pure-button button-success" data-bind="click:$root.setPassActivity">批准</button><br>
+						            	<button class="pure-button button-error" data-bind="click:$root.setNoPassActivity">否决</button>
+						            </td>
 						        </tr>
 						    </tbody>
 						</table>

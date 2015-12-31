@@ -50,10 +50,12 @@ var ViewModel = function() {
     				}
 				});
 	};
-
+	self.dolog=function(data) {
+		console.log("hello: "+data.id());
+	};
 	self.getActivity=function() {
 		console.log("正在获取活动信息!");
-		// self.activityList=[];
+		self.activityList([]);
 		// console.log("activityList has been reset!");
 		$.ajax({
 				  type: "POST",
@@ -64,7 +66,7 @@ var ViewModel = function() {
 				  	"page": self.currentPage()
 				  },
 				  success: function(json) {
-				       // console.dir(json.result);
+				       console.dir(json.result);
 			       	initialActivities=json.result;
 					// console.log(initialActivities);
 					initialActivities.forEach(function(activityItem) {
@@ -80,16 +82,52 @@ var ViewModel = function() {
                 		return;
     				}
 				});
-		// for (var i = 0; i < actvities.length; i++) {			
-		// 	self.activityList.push(new Activity(actvities[i]));
-		// 	console.log(actvities[i]);
-		// };
-	     
-
-	       
-	       
 	};
+	self.setPassActivity=function(data) {
+		console.log("正在设置审核通过!");
+		self.activityList([]);
+		// console.log("activityList has been reset!");
+		$.ajax({
+				  type: "POST",
+				  url: "/api/post/setpassactivity",
+				  dataType: "json",
+				  data:{
+				  	"token": self.token,
+				  	"activitylist":[data.id()]
+				  },
+				  success: function(json) {
+				       console.dir(json.result);
+				       self.getActivity();
+				    },
+				  error: function(e) {
+				       console.log(e);
+                		return;
+    				}
+				});
+	};	
 
+	self.setNoPassActivity=function(data) {
+		console.log("正在设置审核否决!");
+		self.activityList([]);
+		// console.log("activityList has been reset!");
+		$.ajax({
+				  type: "POST",
+				  url: "/api/post/setnopassactivity",
+				  dataType: "json",
+				  data:{
+				  	"token": self.token,
+				  	"activitylist":[data.id()]
+				  },
+				  success: function(json) {
+				       console.dir(json.result);
+				       self.getActivity();
+				    },
+				  error: function(e) {
+				       console.log(e);
+                		return;
+    				}
+				});
+	};
 	initialUsers.forEach(function(UserItem) {
 		self.userList.push(new User(UserItem));
 	});
