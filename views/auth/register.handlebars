@@ -11,12 +11,12 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-4 col-md-offset-7">
-				<form action="/auth/login" method="POST" role="form">
-					<legend>登录</legend>
+			<form action="/auth/register" method="POST" role="form">
+				<legend>注册</legend>
 
-					<div class="form-group">
+				<div class="form-group">
 					<div class="field">
-						<input id="username" type="text" class="form-control" name="username" data-bind="textInput: username" placeholder="用户名" maxlength="20" autocomplete="on">
+						<input id="username" type="text" class="form-control" name="username" data-bind="textInput: username" placeholder="用户名" maxlength="20" autocomplete="off">
 						{{!-- <label data-bind="text: username"></label> --}}
 					</div>
 					<br>
@@ -26,11 +26,11 @@
 						<input type="hidden" class="form-control" name="password" data-bind="textInput: passhash" placeholder="passhash">
 					</div>
 				</div>
-					<button type="submit" class="btn btn-primary btn-block" >登录</button>
-					<hr>
-					<a href="/auth/register">新来喂米？注册</a><br>
-					<a href="#resetpasswd">忘记密码？</a>
-				</form>
+				<button type="submit" class="btn btn-primary btn-block" >注册</button>
+				<hr>
+				<a href="/auth/login">已有账号？登录</a><br>
+				<a href="#resetpasswd">忘记密码？</a>
+			</form>
 			
 		</div>
 	</div>

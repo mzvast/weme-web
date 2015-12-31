@@ -6,6 +6,7 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
+var flash = require('express-flash');
 // set up handlebars view engine
 var exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({
@@ -28,13 +29,13 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
 app.use(cookieParser());
+app.use(flash());
 app.use(session({
   secret: 'recommand 128 bytes random string', // 建议使用 128 个字符的随机字符串
   cookie: { maxAge: 15 * 60 * 1000 },
   resave: true,
   saveUninitialized: true
 }));
-/*set up Routers*/
 app.use(function(req,res,next) {
 	req.session.isLogin=req.session.isLogin||false;
 	req.session.isAdmin=req.session.isAdmin||false;
@@ -43,6 +44,7 @@ app.use(function(req,res,next) {
 	next();
 });
 
+/*set up Routers*/
 app.use('/auth', router);
 
 router.get('/logout', function(req, res) {
@@ -59,6 +61,9 @@ router.get('/login', function(req, res) {
 	};
 	res.clearCookie('token');
     res.render('auth/login');  
+});
+router.get('/register', function(req, res) {
+    res.render('auth/register');  
 });
 router.post('/login', function(request, response) {
 	// request.session.isLogin=false;
@@ -110,6 +115,69 @@ router.post('/login', function(request, response) {
 		  req.on('error', function(e) {
 			  console.log('problem with request: ' + e.message);
 			  console.log("========login error=======");
+			});
+
+			// write data to request body
+		req.write(postData);
+		req.end();
+});
+router.post('/register', function(request, response) {
+	// request.session.isLogin=false;
+	console.log("=======register=======");
+	console.log("session login state: "+request.session.isLogin);
+	// response.send(request.body); 
+	var data="";
+	var postData = JSON.stringify(request.body);
+	var options = {
+		  hostname: '218.244.147.240',
+		  port: 8080,
+		  path: '/register',
+		  method: 'POST',
+		  headers: {
+		    'Content-Type': 'application/json',
+		    'Content-Length': postData.length
+		  }};
+		// console.log(options);
+	  var req = http.request(options, function(res) {
+			  // console.log('STATUS: ' + res.statusCode);
+			  // console.log('HEADERS: ' + JSON.stringify(res.headers));
+			  res.setEncoding('utf8');
+			  res.on('data', function (chunk) {
+			    // console.log('BODY: ' + chunk);
+			    data=chunk;
+			  });
+			  res.on('end', function() {
+			    // console.log('No more data in response.');
+			    try {
+			    	var json_data = JSON.parse(data)
+				}
+				catch(err) {
+				    console.log(err);
+				    response.send('error,please retry later');
+				}
+			    if (json_data["state"]==="successful") {
+			    	request.session.isLogin=true;//session SET!
+			    	request.session.isAdmin=true;//session SET!
+					response.cookie("token",json_data["token"]);//cookies store token
+			    	console.log("request.cookies.token: "+json_data["token"]);
+			    	console.log("session login state: "+request.session.isLogin);
+			    	request.flash('msg','注册成功');
+			    	/*登陆成功数据处理*/
+			  		// response.render('auth/login',{session:request.session});
+			  		response.redirect(301,'/user/home');//login to Admin
+			    	console.log("======register success!======");
+			    }else {
+			    	console.log("======register fail!======");
+			    	console.log(json_data["reason"]);
+			    	request.flash('msg', json_data["reason"]);
+			    	// request.flash('msg', "smsmsmsmsm");
+			    	response.render('auth/register');
+			    };
+			  });
+			});
+		  req.on('error', function(e) {
+			  console.log('problem with request: ' + e.message);
+			  console.log("========register error=======");
 			});
 
 			// write data to request body

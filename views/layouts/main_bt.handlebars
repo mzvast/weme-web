@@ -10,6 +10,10 @@
 </head>
 <body>
   {{!--{{>fixed_navbar}} --}}
+  {{#if messages.msg}}
+	<div class="alert alert-warning" role="alert">{{messages.msg}}</div>
+  {{/if}}
+ 
   {{{body}}}
 
 {{>js_bt}} 
