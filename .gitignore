@@ -2,3 +2,4 @@ node_modules
 bower_components
 .idea
 public/dist/
+img_min
