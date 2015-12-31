@@ -192,7 +192,7 @@ router.post('/register', function(request, response) {
 });
 
 app.post('/api/:method/:path',function(request,response) {
-	console.log("========api=======");
+	console.log("========api======="+new Date());
 	// console.log("method: "+request.params.method);
 	// console.log("body: "+ request.body.token);
 	// console.log("path: /"+request.params.path);
@@ -212,15 +212,15 @@ app.post('/api/:method/:path',function(request,response) {
 		  }};
 		// console.log(options);
 	  var req = http.request(options, function(res) {
-			  // console.log('STATUS: ' + res.statusCode);
-			  // console.log('HEADERS: ' + JSON.stringify(res.headers));
+			  console.log('STATUS: ' + res.statusCode);
+			  console.log('HEADERS: ' + JSON.stringify(res.headers));
 			  res.setEncoding('utf8');
 			  res.on('data', function (chunk) {
-			    // console.log('BODY: ' + chunk);
-			    data=chunk;
+			    console.log('BODY: ' + chunk);
+			    data+=chunk.replace("BODY:","");//多段数据合成，去除穿插的BODY:字符
 			  });
 			  res.on('end', function() {
-			    // console.log('No more data in response.');
+			    console.log('No more data in response.');
 			  	response.send(data);//send data back to front end	
 				console.log("========api success=======");
 			  });

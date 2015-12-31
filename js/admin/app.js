@@ -30,6 +30,7 @@ var ViewModel = function() {
 	self.activityList = ko.observableArray([]);
 	self.showRefresh = ko.observable(false);
 	self.token =  getCookie("token");
+	self.currentPage = ko.observable(1);
 	self.getProfile=function() {
 		console.log("Button has been clicked!");
 		$.ajax({
@@ -51,29 +52,31 @@ var ViewModel = function() {
 	};
 
 	self.getActivity=function() {
-		console.log("Button has been clicked!");
+		console.log("正在获取活动信息!");
 		// self.activityList=[];
 		// console.log("activityList has been reset!");
 		$.ajax({
 				  type: "POST",
-				  url: "/api/post/getactivityinformation",
+				  url: "/api/post/getallactivity",
 				  dataType: "json",
 				  data:{
-				  	"token": self.token
+				  	"token": self.token,
+				  	"page": self.currentPage()
 				  },
 				  success: function(json) {
-				       console.dir(json.result);
+				       // console.dir(json.result);
 			       	initialActivities=json.result;
-					console.log(initialActivities);
+					// console.log(initialActivities);
 					initialActivities.forEach(function(activityItem) {
 						self.activityList.push(new Activity(activityItem));
 						}); 
 					self.showRefresh(initialActivities.length>1?false:true);//设置按钮
 				    },
 				  error: function(e) {
+				  	// console.log(e.responseText);
 				  	self.showRefresh(true);
 				       console.log(e);
-				  		$.ajax(this);//automatic retry after fail
+				  		// $.ajax(this);//automatic retry after fail
                 		return;
     				}
 				});
@@ -125,8 +128,10 @@ var Activity = function (data) {
 	this.advertise=ko.observable(data.advertise);
 	this.author=ko.observable(data.author);
 	this.authorid=ko.observable(data.authorid);
+	this.detail=ko.observable(data.detail);
 	this.gender=ko.observable(data.gender);
 	this.id=ko.observable(data.id);
+	this.imageurl=ko.observable(data.imageurl);
 	this.location=ko.observable(data.location);
 	this.number=ko.observable(data.number);
 	this.remark=ko.observable(data.remark) ;
@@ -134,7 +139,8 @@ var Activity = function (data) {
 	this.signnumber=ko.observable(data.signnumber);
 	this.state=ko.observable(data.state) ;
 	this.time=ko.observable(data.time) ;
-	this.title=ko.observable(data.title); 	
+	this.title=ko.observable(data.title);
+	this.whetherimage=ko.observable(data.whetherimage);
 }
 
 ko.applyBindings(new ViewModel())
