@@ -35,16 +35,18 @@
 	.custom-restricted-width{
 		text-align:center;
 	}
-	table {
+table{
+    border: 1px solid black;
+    table-layout: fixed;
     width: 100%;
-	}
+}
 
-	thead {
-	    height: 1em;
-	}
-	tr {
-	    height: 1em;
-	}
+th, td {
+    border: 1px solid black;
+    overflow: hidden;
+    width: 80px;
+}
+
 </style>
 {{/ section}}
 
@@ -62,7 +64,6 @@
 		    <div class="pure-g">
 		
 			    <div class="pure-u-1">
-			    <button data-bind="click:getActivity">刷新</button>
 					<table class="pure-table pure-table-horizontal">
 						    <thead>
 						        <tr>
@@ -100,6 +101,12 @@
 						        </tr>
 						    </tbody>
 						</table>
+						
+			    </div>
+			    <div class="pure-u-1">
+			    	<div style="text-align: center">
+							<button  class="pure-button" data-bind="click:getActivity,visible:showRefresh">网络抽了，点我刷新哟！</button>
+						</div>
 			    </div>
 			</div>
 	

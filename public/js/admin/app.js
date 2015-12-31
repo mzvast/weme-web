@@ -28,6 +28,7 @@ var ViewModel = function() {
 	var self = this;
 	self.userList = ko.observableArray([]);
 	self.activityList = ko.observableArray([]);
+	self.showRefresh = ko.observable(false);
 	self.getProfile=function() {
 		console.log("Button has been clicked!");
 		$.ajax({
@@ -61,11 +62,14 @@ var ViewModel = function() {
 				       console.dir(json.result);
 			       	initialActivities=json.result;
 					console.log(initialActivities);
-				initialActivities.forEach(function(activityItem) {
+					initialActivities.forEach(function(activityItem) {
 						self.activityList.push(new Activity(activityItem));
 						}); 
+					console.log("array length: "+initialActivities.length>0?false:true)
+					self.showRefresh(initialActivities.length>1?false:true);//设置按钮
 				    },
 				  error: function(e) {
+				  	self.showRefresh(true);
 				       console.log(e);
     				}
 				});
