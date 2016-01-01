@@ -53,7 +53,7 @@ var ViewModel = function() {
 				});
 	};
 	self.setCurrentActivity=function(data) {
-		var id = data.id();
+		var id = data.id;
 		self.currentActivityNum((self.activityList().indexOf(data))) ;
 		self.currentActivity(self.activityList()[self.currentActivityNum()]);
 		console.log("hello: "+id);
@@ -65,9 +65,22 @@ var ViewModel = function() {
 	// 	console.log(self.currentActivity());
 	// 	console.log(select.id());
 	// };
+	self.getUpPage=function() {
+		self.currentPage(self.currentPage()-1);
+		console.log(self.currentPage());
+		self.getActivity();
+	};
+	self.getNextPage=function() {
+		self.currentPage(self.currentPage()+1);
+		console.log(self.currentPage());
+		self.getActivity();
+	};
+	self.setActivityList=function() {
+
+	};
 	self.getActivity=function() {
 		console.log("正在获取活动信息!");
-		self.activityList([]);
+		// self.activityList([]);
 		// console.log("activityList has been reset!");
 		$.ajax({
 				  type: "POST",
@@ -81,9 +94,10 @@ var ViewModel = function() {
 				       console.dir(json.result);
 			       	initialActivities=json.result;
 					// console.log(initialActivities);
-					initialActivities.forEach(function(activityItem) {
-						self.activityList.push(new Activity(activityItem));
-						}); 
+					// initialActivities.forEach(function(activityItem) {
+					// 	self.activityList.push(new Activity(activityItem));
+					// 	}); 
+						self.activityList(initialActivities);
 					self.currentActivity(self.activityList()[self.currentActivityNum()])
 					self.showRefresh(initialActivities.length>1?false:true);//设置按钮
 				    },
@@ -107,7 +121,7 @@ var ViewModel = function() {
 				  dataType: "json",
 				  data:{
 				  	"token": self.token,
-				  	"activitylist":[data.id()]
+				  	"activitylist":[data.id]
 				  },
 				  success: function(json) {
 				       console.dir(json.result);
@@ -130,7 +144,7 @@ var ViewModel = function() {
 				  dataType: "json",
 				  data:{
 				  	"token": self.token,
-				  	"activitylist":[data.id()]
+				  	"activitylist":[data.id]
 				  },
 				  success: function(json) {
 				       console.dir(json.result);

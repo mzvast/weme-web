@@ -70,6 +70,21 @@ th, td {
 		<div class="container" style="margin-top: 30px;margin-bottom: 30px">
 		    <div class="row">
 			    <div class="col-md-4" style="margin-top: 30px">
+			    <nav>
+				  <ul class="pagination pagination-lg">
+				    <li>
+				      <a href="#" aria-label="Previous">
+				        <span aria-hidden="true" data-bind="click:getUpPage">&laquo;</span>
+				      </a>
+				    </li>
+				    <li><a href="#" data-bind="text:currentPage()"></a></li>
+				    <li>
+				      <a href="#" aria-label="Next">
+				        <span aria-hidden="true" data-bind="click:getNextPage">&raquo;</span>
+				      </a>
+				    </li>
+				  </ul>
+				</nav>
 					<table class="pure-table pure-table-horizontal">
 						    <thead>
 						        <tr>
