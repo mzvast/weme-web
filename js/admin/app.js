@@ -32,6 +32,7 @@ var ViewModel = function() {
 	self.token =  getCookie("token");
 	self.currentPage = ko.observable(1);
 	self.currentActivity = ko.observable();
+	self.currentActivityNum = ko.observable(0);
 	self.getProfile=function() {
 		console.log("Button has been clicked!");
 		$.ajax({
@@ -51,13 +52,19 @@ var ViewModel = function() {
     				}
 				});
 	};
-	self.dolog=function(data) {
-		console.log("hello: "+data.id());
+	self.setCurrentActivity=function(data) {
+		var id = data.id();
+		self.currentActivityNum((self.activityList().indexOf(data))) ;
+		self.currentActivity(self.activityList()[self.currentActivityNum()]);
+		console.log("hello: "+id);
+		console.log("index: "+self.activityList().indexOf(data));
+		console.log("currentActivityNum: "+self.currentActivityNum());
 	};
-	self.setCurrentActivity=function(select) {
-		self.currentActivity(select);
-		console.log(self.currentActivity());
-	};
+	// self.setCurrentActivity=function(select) {
+	// 	self.currentActivity(select);
+	// 	console.log(self.currentActivity());
+	// 	console.log(select.id());
+	// };
 	self.getActivity=function() {
 		console.log("正在获取活动信息!");
 		self.activityList([]);
@@ -77,7 +84,7 @@ var ViewModel = function() {
 					initialActivities.forEach(function(activityItem) {
 						self.activityList.push(new Activity(activityItem));
 						}); 
-					self.currentActivity(self.activityList()[0])
+					self.currentActivity(self.activityList()[self.currentActivityNum()])
 					self.showRefresh(initialActivities.length>1?false:true);//设置按钮
 				    },
 
@@ -187,6 +194,5 @@ var Activity = function (data) {
 	this.title=ko.observable(data.title);
 	this.whetherimage=ko.observable(data.whetherimage);
 }
-
 ko.applyBindings(new ViewModel())
 })
