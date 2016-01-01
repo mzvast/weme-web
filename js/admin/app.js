@@ -31,6 +31,7 @@ var ViewModel = function() {
 	self.showRefresh = ko.observable(false);
 	self.token =  getCookie("token");
 	self.currentPage = ko.observable(1);
+	self.currentActivity = ko.observable();
 	self.getProfile=function() {
 		console.log("Button has been clicked!");
 		$.ajax({
@@ -53,6 +54,10 @@ var ViewModel = function() {
 	self.dolog=function(data) {
 		console.log("hello: "+data.id());
 	};
+	self.setCurrentActivity=function(select) {
+		self.currentActivity(select);
+		console.log(self.currentActivity());
+	};
 	self.getActivity=function() {
 		console.log("正在获取活动信息!");
 		self.activityList([]);
@@ -72,8 +77,10 @@ var ViewModel = function() {
 					initialActivities.forEach(function(activityItem) {
 						self.activityList.push(new Activity(activityItem));
 						}); 
+					self.currentActivity(self.activityList()[0])
 					self.showRefresh(initialActivities.length>1?false:true);//设置按钮
 				    },
+
 				  error: function(e) {
 				  	// console.log(e.responseText);
 				  	self.showRefresh(true);

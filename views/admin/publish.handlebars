@@ -2,6 +2,7 @@
 	<title>WeMe|Dashboard</title>
 <link rel="stylesheet" type="text/css" href="/dist/css/admin/side-menu.css">
 <link rel="stylesheet" type="text/css" href="/dist/css/admin/top-menu.css">
+{{> css_bt}}
 <style>
     .pure-g > div {
         -webkit-box-sizing: border-box;
@@ -18,7 +19,7 @@
     /* Or set the width explicitly: */
     /* width: 10em; */
 	}
-	.activity-on{
+/*	.activity-on{
 		color:white;
 	    font-size: 2em;
 	    margin: 0.2em 0 0;
@@ -31,14 +32,14 @@
 	    margin: 0.2em 0 0;
 	    font-weight: 100;
 	    background: red;
-	}
+	}*/
 	.custom-restricted-width{
 		text-align:center;
 	}
 table{
     /*border: 1px solid black;*/
     table-layout: fixed;
-    width: 100%;
+    width: auto;
 }
 
 th, td {
@@ -66,58 +67,76 @@ th, td {
 {{> admin/leftbar publish=true}}
 
     <div id="main">
-		<div class="content">
-		    <div class="pure-g">
-		
-			    <div class="pure-u-1">
+		<div class="container" style="margin-top: 30px;margin-bottom: 30px">
+		    <div class="row">
+			    <div class="col-md-4" style="margin-top: 30px">
 					<table class="pure-table pure-table-horizontal">
 						    <thead>
 						        <tr>
-						            <td style="width:0.5em">id</td>
-						            <td style="width:3em">标题</td>
-						            <td style="width:3em">地点</td>
-						            {{!-- <td >学校</td> --}}
-						            <td style="width:3em">时间</td>
-						            {{!-- <td >宣传语</td> --}}
-						            <td style="width:2em">作者</td>
-						            <td style="width:2em">人数</td>
-						            {{!-- <td >authorid</td> --}}
-						            {{!-- <td >gender</td> --}}
-						            {{!-- <td >remark</td> --}}
-						            {{!-- <td >signnumber</td> --}}
-						            <td style="width:2em">状态</td>
-						            <td style="width:2em">操作</td>
+						            <td style="width:2em">标题</td>
+						            <td style="width:2em">时间</td>
+						            <td style="width:1em">状态</td>
 						        </tr>
 						    </thead>
-
 						    <tbody data-bind="foreach:activityList">
 						        <tr>
-						            <td data-bind="text:id"></td>
-						            <td data-bind="text:title"></td>
-						            <td data-bind="text:location"></td>
-						            {{!-- <td data-bind="text:school"></td> --}}
+						            <td data-bind="text:title,click:$root.setCurrentActivity"></td>
 						            <td data-bind="text:time"></td>
-						            {{!-- <td data-bind="text:advertise"></td> --}}
-						            <td data-bind="text:author"></td>
-						            <td data-bind="text:number"></td>
-						            {{!-- <td data-bind="text:authorid"></td> --}}
-						            {{!-- <td data-bind="text:gender"></td> --}}
-						            {{!-- <td data-bind="text:remark"></td> --}}
-						            {{!-- <td data-bind="text:signnumber"></td> --}}
 						            <td  data-bind="text:state"></td>
-						            <td style="width:2em">
-						            	<button class="pure-button button-success" data-bind="click:$root.setPassActivity">批准</button><br>
-						            	<button class="pure-button button-error" data-bind="click:$root.setNoPassActivity">否决</button>
-						            </td>
 						        </tr>
 						    </tbody>
-						</table>
-						
+					</table>
 			    </div>
+			    <div class="col-md-8" style="margin-top: 30px" data-bind="with:currentActivity()">
+				    <div class="col-md-6 " >
+				    	<ul class="list-group">
+							  <li class="list-group-item" >
+								  	<h2 data-bind="text:title"></h2>
+								  	<h3 data-bind="text:advertise"></h3>
+							  </li>
+							  <li class="list-group-item" ><b>详情:</b><span data-bind="text:detail"></span></li>
+						  <li class="list-group-item" >
+						  <b>发布者:</b><span data-bind="text:author"></span><br>
+							  <b>发布者id:</b><span data-bind="text:authorid"></span><br>
+							  <b>性别:</b><span data-bind="text:gender"></span><br>
+						  </li>
+						  <li class="list-group-item" ><b>联系方式:</b><br><span data-bind="text:remark"></span></li>
+						  <li class="list-group-item" >
+						  		<b>活动id:</b><span data-bind="text:id"></span><br>
+								<b>地点:</b><span data-bind="text:location"></span><br>
+								<b>人数:</b><span data-bind="text:number"></span><br>
+								<b>学校:</b><span data-bind="text:school"></span><br>
+								<b>报名人数:</b><span data-bind="text:signnumber"></span><br>
+								<b>时间:</b><span data-bind="text:time"></span><br>
+								<b>有图片:</b><span data-bind="text:whetherimage"></span>
+						  </li>
+						 
+						</ul>
+				    </div>
+				    <div class="col-md-6" >
+				    	<ul class="list-group" >
+					    	 <li class="list-group-item" >
+									<b>审核状态:</b><span data-bind="text:state"><br>
+							 </li>
+					    	 <li class="list-group-item" >
+								  	 <div>
+						            	<button class="pure-button button-success" data-bind="click:$root.setPassActivity">批准</button>
+						            	<button class="pure-button button-error" data-bind="click:$root.setNoPassActivity">否决</button>
+						            </div>
+				            </li>
+				          <li class="list-group-item" >
+						   		<img style="width:300px" class="media-object" src="" data-bind="attr: { src: imageurl }" alt="">
+						  </li>	
+						</ul>
+				    </div>
+				    
+				   </div>
+			    </div>
+
 			    <div class="pure-u-1">
 			    	<div style="text-align: center">
 							<button  class="pure-button" data-bind="click:getActivity,visible:showRefresh">网络抽了，自动刷新中！</button>
-						</div>
+					</div>
 			    </div>
 			</div>
 	
@@ -126,6 +145,7 @@ th, td {
         
     </div>
 </div>
+{{>js_bt}}
 {{# section 'jquery' }}
 	<script type="text/javascript" src="/dist/vendor/knockout/dist/knockout.js"></script>
 	<script type="text/javascript" src="/dist/js/admin/ui.js"></script>
