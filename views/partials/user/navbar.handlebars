@@ -1,0 +1,57 @@
+ <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">喂米</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            {{#if session.isLogin}}
+
+              {{#if home}}
+              <li class="active"><a href="#">主页</a></li>
+              {{else}}
+              <li><a href="/user/home">主页</a></li>
+              {{/if}}
+
+              {{#if activity}}
+              <li class="dropdown active">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">活动 <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li class="disabled"><a href="#">发起活动</a></li>
+                <li class="disabled"><a href="#">参与活动</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/user/activity/manage">活动管理</a></li>
+              </ul>
+              {{else}}
+              {{!-- <li ><a href="/user/activity">活动</a></li> --}}
+              <li ><a href="/user/activity/manage">活动</a></li>
+              {{/if}}
+              
+
+              {{#if community}}
+              <li class="active"><a href="#">社区</a></li>
+              {{else}}
+              <li><a href="/user/community">社区</a></li>
+              {{/if}}
+
+            {{/if}}
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {{#if session.isLogin}}
+              <li><a href="/user/home">我</a></li>
+              <li ><a href="/auth/logout">注销</a></li>
+            {{/if}} 
+            {{#if session.isAdmin}}
+              <li><a href="/admin">后台管理</a></li>
+            {{/if}}
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>

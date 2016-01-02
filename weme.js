@@ -32,14 +32,14 @@ app.use(cookieParser());
 app.use(flash());
 app.use(session({
   secret: 'recommand 128 bytes random string', // 建议使用 128 个字符的随机字符串
-  cookie: { maxAge: 60 * 60 * 1000 },
+  cookie: { maxAge: 600 * 60 * 1000 },
   resave: true,
   saveUninitialized: true
 }));
 app.use(function(req,res,next) {
 	req.session.isLogin=req.session.isLogin||false;
 	req.session.isAdmin=req.session.isAdmin||false;
-	res.cookie("token",(req.cookies.token?req.cookies.token:""),{ maxAge: 60 * 60 * 1000 });
+	res.cookie("token",(req.cookies.token?req.cookies.token:""),{ maxAge: 600 * 60 * 1000 });
 	console.log("cookies token: "+req.cookies.token);
 	next();
 });
@@ -271,6 +271,15 @@ app.use('/user', router);
 
 router.get('/home',function(req,res) {
 	res.render('user/home',{session:req.session});
+});
+router.get('/activity',function(req,res) {
+	res.render('user/activity',{session:req.session});
+});
+router.get('/activity/manage',function(req,res) {
+	res.render('user/activity/manage',{session:req.session});
+});
+router.get('/community',function(req,res) {
+	res.render('user/community',{session:req.session});
 });
 
 /*保护下面的路由必须isAdmin才可以访问,临时关闭，方便调试*/
