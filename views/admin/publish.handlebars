@@ -53,7 +53,14 @@ th, td {
 .button-error {
     background: rgb(202, 60, 60); /* this is a maroon */
 }
-
+.selected
+{
+    background-color:#97DDEB;
+}
+.pass
+{
+	color:green;
+}
 </style>
 {{/ section}}
 
@@ -70,7 +77,12 @@ th, td {
 		<div class="container" style="margin-top: 30px;margin-bottom: 30px">
 		    <div class="row">
 			    <div class="col-md-4" style="margin-top: 30px">
-			    <div><button type="button" class="btn btn-default btn-block" data-bind="click:detectLastPage">Detect</button></div>
+			    	<div style="text-align: center">
+						<button  class="pure-button" data-bind="click:updateActivityList,visible:showRefresh">网络抽了，自动刷新中！</button>
+					</div>
+			    	<div>
+			    		<button type="button" class="btn btn-default btn-block" data-bind="click:detectLastPage">Detect</button>
+			    	</div>
 			    <nav>
 				  <ul class="pagination pagination-lg">
 				    <li>
@@ -97,10 +109,10 @@ th, td {
 						        </tr>
 						    </thead>
 						    <tbody data-bind="foreach:activityList">
-						        <tr>
-						            <td data-bind="text:title,click:$root.setCurrentActivity"></td>
+						        <tr data-bind="click:$root.setCurrentActivity,css: {'selected':$root.currentActivity()==$data}">
+						            <td data-bind="text:title"></td>
 						            <td data-bind="text:time"></td>
-						            <td  data-bind="text:state"></td>
+						            <td  data-bind="text:state,css:{'pass':$data.state()==="通过"}"></td>
 						        </tr>
 						    </tbody>
 					</table>
@@ -152,11 +164,7 @@ th, td {
 				   </div>
 			    </div>
 
-			    <div class="pure-u-1">
-			    	<div style="text-align: center">
-							<button  class="pure-button" data-bind="click:updateActivityList,visible:showRefresh">网络抽了，自动刷新中！</button>
-					</div>
-			    </div>
+
 			</div>
 	
 

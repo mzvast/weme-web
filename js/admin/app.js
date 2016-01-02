@@ -81,17 +81,13 @@ var ViewModel = function() {
 			       if (data.length>0) {
 			       		self.lastPage(self.lastPage()+1);
 			       		console.log("last page is : "+self.lastPage());
-			       		self.detectLastPage()
+			       		self.detectLastPage();
+			       		return;
 			       }
 			       else{
 			       		console.log("last page is : "+self.lastPage());
 			       		return;
 			       };
-			  //      data.forEach(function(activityItem) {
-					// self.activityList.push(new Activity(activityItem));
-					// }); 
-					// self.currentActivity(self.activityList()[self.currentActivityNum()])
-					// self.showRefresh(data.length>1?false:true);//设置按钮
 				})
 		.fail(function(e) {
 				  	self.showRefresh(true);
@@ -119,11 +115,6 @@ var ViewModel = function() {
 			       		self.currentActivityNum(0);
 			       		self.updateActivityList();
 			       };
-			  //      data.forEach(function(activityItem) {
-					// self.activityList.push(new Activity(activityItem));
-					// }); 
-					// self.currentActivity(self.activityList()[self.currentActivityNum()])
-					// self.showRefresh(data.length>1?false:true);//设置按钮
 				})
 		.fail(function(e) {
 				  	self.showRefresh(true);
@@ -151,11 +142,6 @@ var ViewModel = function() {
 			       		self.currentActivityNum(0);
 			       		self.updateActivityList();
 			       };
-			  //      data.forEach(function(activityItem) {
-					// self.activityList.push(new Activity(activityItem));
-					// }); 
-					// self.currentActivity(self.activityList()[self.currentActivityNum()])
-					// self.showRefresh(data.length>1?false:true);//设置按钮
 				})
 		.fail(function(e) {
 				  	self.showRefresh(true);
@@ -184,7 +170,7 @@ var ViewModel = function() {
 					self.activityList.push(new Activity(activityItem));
 					}); 
 					self.currentActivity(self.activityList()[self.currentActivityNum()])
-					self.showRefresh(data.length>1?false:true);//设置按钮
+					self.showRefresh(data.length>0?false:true);//设置按钮
 				})
 		.fail(function(e) {
 				  	self.showRefresh(true);
