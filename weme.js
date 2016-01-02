@@ -101,13 +101,20 @@ router.post('/login', function(request, response) {
 				}
 			    if (json_data["state"]==="successful") {
 			    	request.session.isLogin=true;//session SET!
-			    	request.session.isAdmin=true;//session SET!
+			    	console.log(">>>>>>>>>>>>"+request.body.username+"<<<<<<<<<<<<");
+			    	//session Admin SET!
+			    	request.session.isAdmin=(request.body.username=="administrator"?true:false);
 					response.cookie("token",json_data["token"]);//cookies store token
 			    	console.log("request.cookies.token: "+json_data["token"]);
 			    	console.log("session login state: "+request.session.isLogin);
+					console.log("session Admin state: "+request.session.isAdmin);
+					if (request.session.isAdmin) {
+			  			response.redirect(301,'/admin/publish');//login to Admin
+					} else{
+						response.redirect(301,'/user/home');
+					};
 			    	/*登陆成功数据处理*/
 			  		// response.render('auth/login',{session:request.session});
-			  		response.redirect(301,'/admin/publish');//login to Admin
 			    	console.log("======login success!======");
 			    }else {
 			    	console.log("======login fail!======");
@@ -251,7 +258,7 @@ app.get('/jquery', function(req, res) {
 	res.render('jquery-test');
 });
 
-/*保护user下面的路由必须登陆才可以访问*/
+/*保护user下面的路由必须Login才可以访问*/
 router.use(function(req, res, next) {
     console.log("user login state: "+req.session.isLogin);
     if (req.session.isLogin===true) {
@@ -265,20 +272,25 @@ app.use('/user', router);
 router.get('/home',function(req,res) {
 	res.render('user/home',{session:req.session});
 });
-/*保护Admin下面的路由必须isAdmin才可以访问,临时关闭，方便调试*/
-// app.use(function(req, res, next) {
-//     console.log("user admin state: "+req.session.isAdmin);
-//     if (req.session.isAdmin===true) {
-//     	next();  
-//     }else{
-//     	res.redirect(301,'/auth/login',{session:req.session});
-//     };
-// });
-app.use('/admin', router);
 
+/*保护下面的路由必须isAdmin才可以访问,临时关闭，方便调试*/
+app.use(function(req, res, next) {
+    console.log("user admin state: "+req.session.isAdmin);
+    if (req.session.isAdmin===true) {
+    	next();  
+    }else{
+    	res.render('404');
+    };
+});
+app.use('/admin', router);
 router.get('/', function(req, res) {
 	res.render('admin/dashboard',{layout:'main_pure'});
 });
+router.get('/eventRegister', function(req, res) {
+	console.log("cookies token: "+req.cookies.token);
+	res.render('admin/eventRegister',{layout:'main_pure'});
+});
+
 router.get('/publish', function(req, res) {
 	console.log("cookies token: "+req.cookies.token);
 	res.render('admin/publish',{layout:'main_pure'});
