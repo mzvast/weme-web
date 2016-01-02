@@ -23,7 +23,6 @@ initialUsers=[
 		wechat:""
 	}	
 ];
-var initialActivities;
 var ViewModel = function() {
 	var self = this;
 	self.userList = ko.observableArray([]);
@@ -31,6 +30,7 @@ var ViewModel = function() {
 	self.showRefresh = ko.observable(false);
 	self.token =  getCookie("token");
 	self.currentPage = ko.observable(1);
+	self.lastPage = ko.observable(1);
 	self.currentActivity = ko.observable();
 	self.currentActivityNum = ko.observable(0);
 	self.getProfile=function() {
@@ -53,35 +53,120 @@ var ViewModel = function() {
 				});
 	};
 	self.setCurrentActivity=function(data) {
-		var id = data.id;
+		var id = data.id();
 		self.currentActivityNum((self.activityList().indexOf(data))) ;
 		self.currentActivity(self.activityList()[self.currentActivityNum()]);
 		console.log("hello: "+id);
 		console.log("index: "+self.activityList().indexOf(data));
 		console.log("currentActivityNum: "+self.currentActivityNum());
 	};
-	// self.setCurrentActivity=function(select) {
-	// 	self.currentActivity(select);
-	// 	console.log(self.currentActivity());
-	// 	console.log(select.id());
-	// };
-	self.getUpPage=function() {
-		self.currentPage(self.currentPage()-1);
-		console.log(self.currentPage());
-		self.getActivity();
-	};
-	self.getNextPage=function() {
-		self.currentPage(self.currentPage()+1);
-		console.log(self.currentPage());
-		self.getActivity();
-	};
-	self.setActivityList=function() {
+	self.hasNext=ko.observable(function() {
+		console.log(self.currentPage()+"/"+self.lastPage());
+		return self.currentPage()!==self.lastPage();
+	});
+	self.detectLastPage=function() {
+		console.log("正在探测活动信息! page:"+(self.lastPage()+1));
+		$.ajax({
+				  type: "POST",
+				  url: "/api/post/getallactivity",
+				  dataType: "json",
+				  data:{
+				  	"token": self.token,
+				  	"page": self.lastPage()+1
+				  },
+				})
+		.done(function(json) {
+					var data = json.result
+			       console.dir(data.length);
+			       if (data.length>0) {
+			       		self.lastPage(self.lastPage()+1);
+			       		console.log("last page is : "+self.lastPage());
+			       		self.detectLastPage()
+			       }
+			       else{
+			       		console.log("last page is : "+self.lastPage());
+			       		return;
+			       };
+			  //      data.forEach(function(activityItem) {
+					// self.activityList.push(new Activity(activityItem));
+					// }); 
+					// self.currentActivity(self.activityList()[self.currentActivityNum()])
+					// self.showRefresh(data.length>1?false:true);//设置按钮
+				})
+		.fail(function(e) {
+				  	self.showRefresh(true);
+				       console.log(e);
+                		return;
 
+				});		
 	};
-	self.getActivity=function() {
-		console.log("正在获取活动信息!");
-		// self.activityList([]);
-		// console.log("activityList has been reset!");
+	self.fetchPreviousActivityList=function() {
+		console.log("正在获取活动信息! page:"+(self.currentPage()-1));
+		$.ajax({
+				  type: "POST",
+				  url: "/api/post/getallactivity",
+				  dataType: "json",
+				  data:{
+				  	"token": self.token,
+				  	"page": self.currentPage()-1
+				  },
+				})
+		.done(function(json) {
+					var data = json.result
+			       console.dir(data.length);
+			       if (data.length>0) {
+			       		self.currentPage(self.currentPage()-1);
+			       		self.currentActivityNum(0);
+			       		self.updateActivityList();
+			       };
+			  //      data.forEach(function(activityItem) {
+					// self.activityList.push(new Activity(activityItem));
+					// }); 
+					// self.currentActivity(self.activityList()[self.currentActivityNum()])
+					// self.showRefresh(data.length>1?false:true);//设置按钮
+				})
+		.fail(function(e) {
+				  	self.showRefresh(true);
+				       console.log(e);
+                		return;
+
+				});
+	};	
+	self.fetchNextActivityList=function() {
+		console.log("正在获取活动信息! page:"+(self.currentPage()+1));
+		$.ajax({
+				  type: "POST",
+				  url: "/api/post/getallactivity",
+				  dataType: "json",
+				  data:{
+				  	"token": self.token,
+				  	"page": self.currentPage()+1
+				  },
+				})
+		.done(function(json) {
+					var data = json.result
+			       console.dir(data.length);
+			       if (data.length>0) {
+			       		self.currentPage(self.currentPage()+1);
+			       		self.currentActivityNum(0);
+			       		self.updateActivityList();
+			       };
+			  //      data.forEach(function(activityItem) {
+					// self.activityList.push(new Activity(activityItem));
+					// }); 
+					// self.currentActivity(self.activityList()[self.currentActivityNum()])
+					// self.showRefresh(data.length>1?false:true);//设置按钮
+				})
+		.fail(function(e) {
+				  	self.showRefresh(true);
+				       console.log(e);
+                		return;
+
+				});
+	};
+
+	self.updateActivityList=function() {
+		console.log("正在获取活动信息! page:"+self.currentPage());
 		$.ajax({
 				  type: "POST",
 				  url: "/api/post/getallactivity",
@@ -90,42 +175,37 @@ var ViewModel = function() {
 				  	"token": self.token,
 				  	"page": self.currentPage()
 				  },
-				  success: function(json) {
-				       console.dir(json.result);
-			       	initialActivities=json.result;
-					// console.log(initialActivities);
-					// initialActivities.forEach(function(activityItem) {
-					// 	self.activityList.push(new Activity(activityItem));
-					// 	}); 
-						self.activityList(initialActivities);
+				})
+		.done(function(json) {
+					var data = json.result
+			       console.dir(data);
+			       self.activityList([]);
+			       data.forEach(function(activityItem) {
+					self.activityList.push(new Activity(activityItem));
+					}); 
 					self.currentActivity(self.activityList()[self.currentActivityNum()])
-					self.showRefresh(initialActivities.length>1?false:true);//设置按钮
-				    },
-
-				  error: function(e) {
-				  	// console.log(e.responseText);
+					self.showRefresh(data.length>1?false:true);//设置按钮
+				})
+		.fail(function(e) {
 				  	self.showRefresh(true);
 				       console.log(e);
-				  		// $.ajax(this);//automatic retry after fail
                 		return;
-    				}
+
 				});
 	};
 	self.setPassActivity=function(data) {
 		console.log("正在设置审核通过!");
-		self.activityList([]);
-		// console.log("activityList has been reset!");
 		$.ajax({
 				  type: "POST",
 				  url: "/api/post/setpassactivity",
 				  dataType: "json",
 				  data:{
 				  	"token": self.token,
-				  	"activitylist":[data.id]
+				  	"activitylist":[data.id()]
 				  },
 				  success: function(json) {
 				       console.dir(json.result);
-				       self.getActivity();
+				       self.updateActivityList();
 				    },
 				  error: function(e) {
 				       console.log(e);
@@ -136,19 +216,17 @@ var ViewModel = function() {
 
 	self.setNoPassActivity=function(data) {
 		console.log("正在设置审核否决!");
-		self.activityList([]);
-		// console.log("activityList has been reset!");
 		$.ajax({
 				  type: "POST",
 				  url: "/api/post/setnopassactivity",
 				  dataType: "json",
 				  data:{
 				  	"token": self.token,
-				  	"activitylist":[data.id]
+				  	"activitylist":[data.id()]
 				  },
 				  success: function(json) {
 				       console.dir(json.result);
-				       self.getActivity();
+				       self.updateActivityList();
 				    },
 				  error: function(e) {
 				       console.log(e);
@@ -159,12 +237,9 @@ var ViewModel = function() {
 	initialUsers.forEach(function(UserItem) {
 		self.userList.push(new User(UserItem));
 	});
-			// console.log(self.userList()[0]);
-		self.getActivity(); 
+		self.updateActivityList(); 
+		self.detectLastPage();
 
-	// initialActivities.forEach(function(activityItem) {
-	// 	self.activityList.push(new Activity(activityItem));
-	// });
 
 };
 
@@ -208,5 +283,6 @@ var Activity = function (data) {
 	this.title=ko.observable(data.title);
 	this.whetherimage=ko.observable(data.whetherimage);
 }
-ko.applyBindings(new ViewModel())
+ko.options.deferUpdates = true;
+ko.applyBindings(new ViewModel('deferred'))
 })
