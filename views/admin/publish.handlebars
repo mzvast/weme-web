@@ -74,37 +74,17 @@ th, td {
 {{> admin/leftbar publish=true}}
 
     <div id="main">
-		<div class="container" style="margin-top: 30px;margin-bottom: 30px">
-		    <div class="row">
-			    <div class="col-md-4" style="margin-top: 30px">
+		<div class="container" style="margin: 30px auto">
+		    <div class="row" style="margin-top: 30px">
+			    <div class="col-md-4" >
 			    	<div style="text-align: center">
 						<button  class="pure-button" data-bind="click:fetchCurrentActivityList,visible:showRefresh">网络抽了，自动刷新中！</button>
 					</div>
 			    	<div>
 			    		<button type="button" class="btn btn-default btn-block" data-bind="click:detectLastPage,visible:showDetecLastPage">刷新页码</button>
 			    	</div>
-			    <nav>
-				  <ul class="pagination pagination-lg">
-				    <li data-bind="attr:{class:hasPrevious()?'':'disabled'}">
-				      <a href="#" aria-label="Previous" data-bind="click:fetchPreviousActivityList">
-				        <span aria-hidden="true" >上一页</span>
-				      </a>
-				    </li>
-				    <li data-bind="attr:{class:hasNext()?'':'disabled'}">
-				      <a href="#" aria-label="Next" data-bind="click:fetchNextActivityList">
-				        <span aria-hidden="true" >下一页</span>
-				      </a>
-				    </li>
-				  </ul>
-				</nav>
-				<nav >
-				  <ul class="pagination pagination-lg" data-bind="foreach:pageNumbers">
-				    <li data-bind="click:$root.gotoPage,attr:{class:$data==$root.currentPage()?'active':''}"> 
-				    	<a data-bind="text:$data"></a>
-				    </li>
-				  </ul>
-				</nav>
-				<div class="panel panel-default">
+
+				<div class="panel panel-default" style="margin-bottom: 0px">
 				<div class="panel-heading text-center"><b>活动列表</b></div>
 					<table class="table">
 						    <thead>
@@ -123,15 +103,34 @@ th, td {
 						    </tbody>
 					</table>
 				</div>
+				<nav class="text-center" >
+				<ul class="pagination pagination-sm">
+				    <li data-bind="attr:{class:hasPrevious()?'':'disabled'}">
+				      <a href="#" aria-label="Previous" data-bind="click:fetchPreviousActivityList">
+				        <span aria-hidden="true" >上一页</span>
+				      </a>
+				    </li>
+				</ul>
+				  <ul class="pagination pagination-sm" data-bind="foreach:pageNumbers">
+				    <li data-bind="click:$root.gotoPage,attr:{class:$data==$root.currentPage()?'active':''}"> 
+				    	<a data-bind="text:$data"></a>
+				    </li>
+				  </ul>
+				  <ul class="pagination pagination-sm">
+					<li data-bind="attr:{class:hasNext()?'':'disabled'}">
+				      <a href="#" aria-label="Next" data-bind="click:fetchNextActivityList">
+				        <span aria-hidden="true" >下一页</span>
+				      </a>
+				    </li>
+				  </ul>
+				</nav>
 			    </div>
-			    <div class="col-md-8" style="margin-top: 30px" data-bind="with:currentActivity()">
-				    <div class="col-md-6 " >
+				    <div class="col-md-4 " data-bind="with:currentActivity()">
 				    	<ul class="list-group">
 							  <li class="list-group-item" >
 								  	<h2 data-bind="text:title"></h2>
 								  	<h3 data-bind="text:advertise"></h3>
 							  </li>
-							  <li class="list-group-item" ><b>详情:</b><span data-bind="text:detail"></span></li>
 						  <li class="list-group-item" >
 						  <b>发布者:</b><span data-bind="text:author"></span><br>
 							  <b>发布者id:</b><span data-bind="text:authorid"></span><br>
@@ -150,8 +149,8 @@ th, td {
 						 
 						</ul>
 				    </div>
-				    <div class="col-md-6" >
-				    	<ul class="list-group" >
+				    <div class="col-md-3" >
+				    	<ul class="list-group" data-bind="with:currentActivity()">
 					    	 <li class="list-group-item" >
 									<b>审核状态:</b><span data-bind="text:state"><br>
 							 </li>
@@ -161,13 +160,14 @@ th, td {
 						            	<button class="pure-button button-error" data-bind="click:$root.setNoPassActivity">否决</button>
 						            </div>
 				            </li>
+						  <li class="list-group-item" ><b>详情:</b><span data-bind="text:detail"></span></li>
 				          <li class="list-group-item" >
 						   		<img style="width:300px" class="media-object" src="" data-bind="attr: { src: imageurl }" alt="">
 						  </li>	
 						</ul>
+
 				    </div>
 				    
-				   </div>
 			    </div>
 
 
