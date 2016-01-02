@@ -2,15 +2,18 @@ $(document).ready(function() {
 	
 var ViewModel = function() {
 	var self = this;
-	self.activityList = ko.observableArray([]).extend({ deferred: true });
+	self.activityList = ko.observableArray([]);//.extend({ deferred: true });
 	self.showRefresh = ko.observable(false);
 	self.token =  getCookie("token");
 	self.currentPage = ko.observable(1);
 	self.lastPage = ko.observable(1);
 	self.currentActivity = ko.observable();
 	self.currentActivityNum = ko.observable(0);
+	self.pageNumbers = ko.observableArray([1]);
 	self.hasNext=ko.observable(true);
 	self.hasPrevious=ko.observable(false);
+	self.initPageNumbers = ko.observable(false);
+	self.showDetecLastPage = ko.observable(false);
 	self.setCurrentActivity=function(data) {
 		var id = data.id();
 		self.currentActivityNum((self.activityList().indexOf(data))) ;
@@ -20,8 +23,20 @@ var ViewModel = function() {
 		console.log("currentActivityNum: "+self.currentActivityNum());
 	};
 
-//探测下一页，每次只探测下一页，原本设计反复回掉
+	self.gotoPage=function(page) {
+		self.currentPage(page);
+		self.fetchCurrentActivityList();
+		self.currentActivityNum(0);
+		console.log(self.currentPage());
+	};
+
+
 	self.detectLastPage=function() {
+		console.log("last page is : "+self.lastPage());
+		if (self.initPageNumbers()) {       		
+       		return;
+		}else
+		{
 		console.log("正在探测活动信息! page:"+(self.lastPage()+1));
 		$.ajax({
 				  type: "POST",
@@ -37,23 +52,31 @@ var ViewModel = function() {
 			       console.dir(data.length);
 			       if (data.length!==0) {
 			       		self.lastPage(self.lastPage()+1);
-			       		 return;
+			       		self.detectLastPage(this);
 			       }
 			       else{
-			       		console.log("last page is : "+self.lastPage());
+			       		self.initPageNumbers(true);
+			       		console.log("initPageNumbers: "+self.initPageNumbers());
+			       		self.showDetecLastPage(false);
 			       		return;
 			       };
 				})
 		.fail(function(e) {
-				  	self.showRefresh(true);
+				  	self.showDetecLastPage(true);
 				       console.log(e);
                 		return;
 
 				})
 		.always(function() {
+			self.pageNumbers.removeAll();
+			for (var i = 1; i <= self.lastPage(); i++) {
+				self.pageNumbers.push(i);
+			};
+			console.log(self.pageNumbers());
 			self.setHasNext();
 			self.setHasPrecious();
 		});		
+		};
 	};
 
 	self.setHasNext=function() {
@@ -67,6 +90,10 @@ var ViewModel = function() {
 		return;
 	};	
 	self.fetchPreviousActivityList=function() {
+		if(!self.hasPrevious()){
+			console.log("没有上一页了！");
+			return;
+		};
 		console.log("正在获取活动信息! page:"+(self.currentPage()-1));
 		$.ajax({
 				  type: "POST",
@@ -82,8 +109,9 @@ var ViewModel = function() {
 			       console.dir(data.length);
 			       if (data.length>0) {
 			       		self.currentPage(self.currentPage()-1);
-			       		self.currentActivityNum(0);
 			       		self.writeActivityList(data);
+			       		self.currentActivity(self.activityList()[self.currentActivityNum()]);
+			       		self.currentActivityNum(0);
 			       		return;
 			       };
 				})
@@ -92,9 +120,17 @@ var ViewModel = function() {
 				       console.log(e);
                 		return;
 
-				});
+				})
+		.always(function() {
+			self.setHasNext();
+			self.setHasPrecious();
+		});
 	};	
 	self.fetchNextActivityList=function() {
+		if(!self.hasNext()){
+			console.log("没有下一页了！");
+			return;
+		};
 		console.log("正在获取活动信息! page:"+(self.currentPage()+1));
 		$.ajax({
 				  type: "POST",
@@ -110,8 +146,9 @@ var ViewModel = function() {
 			       console.dir(data.length);
 			       if (data.length>0) {
 			       		self.currentPage(self.currentPage()+1);
-			       		self.currentActivityNum(0);
 			       		self.writeActivityList(data);
+			       		self.currentActivity(self.activityList()[self.currentActivityNum()]);
+			       		self.currentActivityNum(0);
 			       		return;
 			       };
 				})
@@ -120,14 +157,17 @@ var ViewModel = function() {
 				       console.log(e);
                 		return;
 
-				});
+				})
+		.always(function() {
+			self.setHasNext();
+			self.setHasPrecious();
+		});
 	};
 	self.writeActivityList=function(data) {
 		self.activityList([]);
 		data.forEach(function(activityItem) {
 			self.activityList.push(new Activity(activityItem));
 		});
-		self.detectLastPage();
 	};
 	self.fetchCurrentActivityList=function() {
 		console.log("正在获取活动信息! page:"+self.currentPage());
@@ -159,8 +199,16 @@ var ViewModel = function() {
 				       console.log(e);
                 		return;
 
-				});
-	}();
+				})
+		.always(function() {
+			if (!self.initPageNumbers()) {
+				self.detectLastPage();				
+			} else{
+				self.setHasNext();
+				self.setHasPrecious();
+			};
+		});
+	};
 	self.setPassActivity=function(data) {
 		console.log("正在设置审核通过!");
 		$.ajax({
@@ -203,6 +251,7 @@ var ViewModel = function() {
 				});
 	};
 
+	self.fetchCurrentActivityList();
 
 };
 

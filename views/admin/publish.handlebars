@@ -81,22 +81,26 @@ th, td {
 						<button  class="pure-button" data-bind="click:fetchCurrentActivityList,visible:showRefresh">网络抽了，自动刷新中！</button>
 					</div>
 			    	<div>
-			    		<button type="button" class="btn btn-default btn-block" data-bind="click:detectLastPage">Detect</button>
+			    		<button type="button" class="btn btn-default btn-block" data-bind="click:detectLastPage,visible:showDetecLastPage">刷新页码</button>
 			    	</div>
 			    <nav>
 				  <ul class="pagination pagination-lg">
 				    <li data-bind="attr:{class:hasPrevious()?'':'disabled'}">
 				      <a href="#" aria-label="Previous" data-bind="click:fetchPreviousActivityList">
-				        <span aria-hidden="true" >&laquo;</span>
+				        <span aria-hidden="true" >上一页</span>
 				      </a>
-				    </li>
-				    <li class="active">
-				    	<a  href="#" data-bind="text:currentPage()"></a>
 				    </li>
 				    <li data-bind="attr:{class:hasNext()?'':'disabled'}">
-				      <a href="#" class="visible:false" aria-label="Next" data-bind="click:fetchNextActivityList">
-				        <span aria-hidden="true" >&raquo;</span>
+				      <a href="#" aria-label="Next" data-bind="click:fetchNextActivityList">
+				        <span aria-hidden="true" >下一页</span>
 				      </a>
+				    </li>
+				  </ul>
+				</nav>
+				<nav >
+				  <ul class="pagination pagination-lg" data-bind="foreach:pageNumbers">
+				    <li data-bind="click:$root.gotoPage,attr:{class:$data==$root.currentPage()?'active':''}"> 
+				    	<a data-bind="text:$data"></a>
 				    </li>
 				  </ul>
 				</nav>
