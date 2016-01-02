@@ -125,18 +125,13 @@ th, td {
 				  </ul>
 				</nav>
 			    </div>
-				    <div class="col-md-4 " data-bind="with:currentActivity()">
+				    <div class="col-md-5 " data-bind="with:currentActivity()">
 				    	<ul class="list-group">
 							  <li class="list-group-item" >
 								  	<h2 data-bind="text:title"></h2>
 								  	<h3 data-bind="text:advertise"></h3>
 							  </li>
-						  <li class="list-group-item" >
-						  <b>发布者:</b><span data-bind="text:author"></span><br>
-							  <b>发布者id:</b><span data-bind="text:authorid"></span><br>
-							  <b>性别:</b><span data-bind="text:gender"></span><br>
-						  </li>
-						  <li class="list-group-item" ><b>联系方式:</b><br><span data-bind="text:remark"></span></li>
+						  <li class="list-group-item" ><b>详情:</b><span data-bind="text:detail"></span></li>
 						  <li class="list-group-item" >
 						  		<b>活动id:</b><span data-bind="text:id"></span><br>
 								<b>地点:</b><span data-bind="text:location"></span><br>
@@ -146,24 +141,29 @@ th, td {
 								<b>时间:</b><span data-bind="text:time"></span><br>
 								<b>有图片:</b><span data-bind="text:whetherimage"></span>
 						  </li>
+				          <li class="list-group-item" data-bind="visible:$data.whetherimage">
+						   		<img style="width:300px" class="media-object" src="" data-bind="attr: { src: imageurl }" alt="">
+						  </li>	
 						 
 						</ul>
 				    </div>
-				    <div class="col-md-3" >
+				    <div class="col-md-2" >
 				    	<ul class="list-group" data-bind="with:currentActivity()">
 					    	 <li class="list-group-item" >
 									<b>审核状态:</b><span data-bind="text:state"><br>
 							 </li>
-					    	 <li class="list-group-item" >
+					    	 <li class="list-group-item text-center" >
 								  	 <div>
 						            	<button class="pure-button button-success" data-bind="click:$root.setPassActivity">批准</button>
 						            	<button class="pure-button button-error" data-bind="click:$root.setNoPassActivity">否决</button>
 						            </div>
 				            </li>
-						  <li class="list-group-item" ><b>详情:</b><span data-bind="text:detail"></span></li>
-				          <li class="list-group-item" >
-						   		<img style="width:300px" class="media-object" src="" data-bind="attr: { src: imageurl }" alt="">
-						  </li>	
+						  <li class="list-group-item" >
+						  <b>发布者:</b><span data-bind="text:author"></span><br>
+							  <b>发布者id:</b><span data-bind="text:authorid"></span><br>
+							  <b>性别:</b><span data-bind="text:gender"></span><br>
+						  </li>
+						  <li class="list-group-item" ><b>联系方式:</b><br><span data-bind="text:remark"></span></li>
 						</ul>
 
 				    </div>
