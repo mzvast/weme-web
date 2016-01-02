@@ -1,31 +1,7 @@
 $(document).ready(function() {
 	
-initialUsers=[
-	{
-		birthday:"1991-03-04",
-		degree:"硕士",
-		department:"仪器仪表工程",
-		enrollment:"2014",
-		gender:"男",
-		hobby:"",
-		hometown:"呵呵",
-		id:958,
-		lookcount:"5",
-		name:"王小阳",
-		phone:"18667047301",
-		preference:"",
-		qq:"",
-		reason:"",
-		school:"东南大学",
-		state:"successful",
-		token:"884d20eb7ceb8e83f8ab7cb89fa238c0",
-		username:"mzvast",
-		wechat:""
-	}	
-];
 var ViewModel = function() {
 	var self = this;
-	self.userList = ko.observableArray([]);
 	self.activityList = ko.observableArray([]).extend({ deferred: true });
 	self.showRefresh = ko.observable(false);
 	self.token =  getCookie("token");
@@ -33,25 +9,8 @@ var ViewModel = function() {
 	self.lastPage = ko.observable(1);
 	self.currentActivity = ko.observable();
 	self.currentActivityNum = ko.observable(0);
-	self.getProfile=function() {
-		console.log("Button has been clicked!");
-		$.ajax({
-				  type: "POST",
-				  url: "/api/post/getprofile",
-				  dataType: "json",
-				  data:{
-				  	"token": self.token
-				  },
-				  success: function(json) {
-				       console.log(json);
-				       $.ajax(this);//automatic retry after fail
-                		return;
-				    },
-				  error: function(e) {
-				       console.log(e);
-    				}
-				});
-	};
+	self.hasNext=ko.observable(true);
+	self.hasPrevious=ko.observable(false);
 	self.setCurrentActivity=function(data) {
 		var id = data.id();
 		self.currentActivityNum((self.activityList().indexOf(data))) ;
@@ -60,9 +19,8 @@ var ViewModel = function() {
 		console.log("index: "+self.activityList().indexOf(data));
 		console.log("currentActivityNum: "+self.currentActivityNum());
 	};
-	self.hasNext=function() {
-		return self.currentPage()!==self.lastPage();
-	};
+
+//探测下一页，每次只探测下一页，原本设计反复回掉
 	self.detectLastPage=function() {
 		console.log("正在探测活动信息! page:"+(self.lastPage()+1));
 		$.ajax({
@@ -77,11 +35,9 @@ var ViewModel = function() {
 		.done(function(json) {
 					var data = json.result
 			       console.dir(data.length);
-			       if (data.length>0) {
+			       if (data.length!==0) {
 			       		self.lastPage(self.lastPage()+1);
-			       		console.log("last page is : "+self.lastPage());
-			       		self.detectLastPage();
-			       		return;
+			       		 return;
 			       }
 			       else{
 			       		console.log("last page is : "+self.lastPage());
@@ -93,8 +49,23 @@ var ViewModel = function() {
 				       console.log(e);
                 		return;
 
-				});		
+				})
+		.always(function() {
+			self.setHasNext();
+			self.setHasPrecious();
+		});		
 	};
+
+	self.setHasNext=function() {
+		self.hasNext(self.currentPage()!==self.lastPage());
+		console.log("hasNext: "+self.hasNext());
+		return;
+	};
+	self.setHasPrecious=function() {
+		self.hasPrevious(self.currentPage()!==1);
+		console.log("hasPrevious: "+self.hasPrevious());
+		return;
+	};	
 	self.fetchPreviousActivityList=function() {
 		console.log("正在获取活动信息! page:"+(self.currentPage()-1));
 		$.ajax({
@@ -112,7 +83,8 @@ var ViewModel = function() {
 			       if (data.length>0) {
 			       		self.currentPage(self.currentPage()-1);
 			       		self.currentActivityNum(0);
-			       		self.updateActivityList();
+			       		self.writeActivityList(data);
+			       		return;
 			       };
 				})
 		.fail(function(e) {
@@ -139,7 +111,8 @@ var ViewModel = function() {
 			       if (data.length>0) {
 			       		self.currentPage(self.currentPage()+1);
 			       		self.currentActivityNum(0);
-			       		self.updateActivityList();
+			       		self.writeActivityList(data);
+			       		return;
 			       };
 				})
 		.fail(function(e) {
@@ -149,8 +122,14 @@ var ViewModel = function() {
 
 				});
 	};
-
-	self.updateActivityList=function() {
+	self.writeActivityList=function(data) {
+		self.activityList([]);
+		data.forEach(function(activityItem) {
+			self.activityList.push(new Activity(activityItem));
+		});
+		self.detectLastPage();
+	};
+	self.fetchCurrentActivityList=function() {
 		console.log("正在获取活动信息! page:"+self.currentPage());
 		$.ajax({
 				  type: "POST",
@@ -163,13 +142,17 @@ var ViewModel = function() {
 				})
 		.done(function(json) {
 					var data = json.result
-			       console.dir(data);
-			       self.activityList([]);
-			       data.forEach(function(activityItem) {
-					self.activityList.push(new Activity(activityItem));
-					}); 
-					self.currentActivity(self.activityList()[self.currentActivityNum()])
-					self.showRefresh(data.length>0?false:true);//设置按钮
+			       console.dir(data);			       
+			       if (data.length==0) {
+			       		self.showRefresh(true);
+			       		return;
+			       } 
+			       else{
+				        self.writeActivityList(data);
+						self.currentActivity(self.activityList()[self.currentActivityNum()])
+						self.showRefresh(false);
+						return;
+			       };
 				})
 		.fail(function(e) {
 				  	self.showRefresh(true);
@@ -177,7 +160,7 @@ var ViewModel = function() {
                 		return;
 
 				});
-	};
+	}();
 	self.setPassActivity=function(data) {
 		console.log("正在设置审核通过!");
 		$.ajax({
@@ -190,7 +173,7 @@ var ViewModel = function() {
 				  },
 				  success: function(json) {
 				       console.dir(json.result);
-				       self.updateActivityList();
+				       self.fetchCurrentActivityList();
 				    },
 				  error: function(e) {
 				       console.log(e);
@@ -211,7 +194,7 @@ var ViewModel = function() {
 				  },
 				  success: function(json) {
 				       console.dir(json.result);
-				       self.updateActivityList();
+				       self.fetchCurrentActivityList();
 				    },
 				  error: function(e) {
 				       console.log(e);
@@ -219,35 +202,8 @@ var ViewModel = function() {
     				}
 				});
 	};
-	initialUsers.forEach(function(UserItem) {
-		self.userList.push(new User(UserItem));
-	});
-		// self.detectLastPage();
-		self.updateActivityList(); 
 
 
-};
-
-var User = function(data) {
-	this.birthday=ko.observable(data.birthday);
-	this.degree=ko.observable(data.degree);
-	this.department=ko.observable(data.department);
-	this.enrollment=ko.observable(data.enrollment);
-	this.gender=ko.observable(data.gender);
-	this.hobby=ko.observable(data.hobby);
-	this.hometown=ko.observable(data.hometown);
-	this.id=ko.observable(data.id);
-	this.lookcount=ko.observable(data.lookcount);
-	this.name=ko.observable(data.name);
-	this.phone=ko.observable(data.phone);
-	this.preference=ko.observable(data.preference);
-	this.qq=ko.observable(data.qq);
-	this.reason=ko.observable(data.reason);
-	this.school=ko.observable(data.school);
-	this.state=ko.observable(data.state);
-	this.token=ko.observable(data.token);
-	this.username=ko.observable(data.username);
-	this.wechat=ko.observable(data.wechat);   
 };
 
 var Activity = function (data) {
