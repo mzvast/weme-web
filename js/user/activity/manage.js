@@ -19,36 +19,53 @@ $(document).ready(function() {
 			return self.flag()==1?"通过":"未通过";
 		});
 	};
+	var shouter = new ko.subscribable();
 
-	var ViewModel = function() {
+	var viewModel1 = function() {
 		var self = this;
+		self.itemSizeOfActivityList = ko.observable(0);
+		self.itemSizeOfActivityList.subscribe(function(value) {
+			shouter.notifySubscribers(value,"Publish_itemSizeOfActivityList");
+		});
 		self.activityList = ko.observableArray();
 		self.signupList = ko.observableArray();
-		self.currentActivity = ko.observable();
-		self.currentActivityPage = ko.observable(1);
-		self.currentSignupListPage = ko.observable(1);
+		self.selectedActivity = ko.observable();
+		self.currentActivityListPageNum = ko.observable(1);
+		self.currentSignupListPageNum = ko.observable(1);
 		self.token = "027706ea56487ce6af2ab2b0e65268fc";
+
+		shouter.subscribe(function(value) {
+			self.currentActivityListPageNum(value);
+			self.fetchPublishedActivity();
+			console.log("self.currentActivityListPageNum()="+self.currentActivityListPageNum());
+		},self,"Publish_ActivityListPageNum");
+
+		self.testChangeItemSize = function() {
+			self.itemSizeOfActivityList(1999);
+		};
 		self.writeActivityList=function(data) {
 			self.activityList([]);
 			data.forEach(function(activityItem) {
 				self.activityList.push(new ActivityLite(activityItem));
 			});
-		};		
+		};	
+
 		self.writeSignupList=function(data) {
 			self.signupList([]);
 			data.forEach(function(signupItem) {
 				self.signupList.push(new Signup(signupItem));
 			});
 		};
+
 		self.fetchPublishedActivity =function() {
-			console.log("正在获取已发布活动信息! page:"+self.currentActivityPage());
+			console.log("正在获取已发布活动信息! page:"+self.currentActivityListPageNum());
 			$.ajax({
 					  type: "POST",
 					  url: "/api/post/getpublishactivity",
 					  dataType: "json",
 					  data:{
 					  	"token": self.token,
-					  	"page": self.currentActivityPage()
+					  	"page": self.currentActivityListPageNum()
 					  },
 					})
 			.done(function(json) {
@@ -62,7 +79,7 @@ $(document).ready(function() {
 				       else{
 				       		console.dir("got data!");
 				       		self.writeActivityList(data);
-				       		self.currentActivity(self.activityList()[0]);
+				       		self.selectedActivity(self.activityList()[0]);
 				       		console.dir(data);
 							return;
 				       };
@@ -73,16 +90,20 @@ $(document).ready(function() {
 	                		return;
 
 					})
-		}();
+		};
+
+		self.fetchPublishedActivity();//初始化的时候先运行一遍
+
 		self.getSignupList = function(data) {
 			console.log("activityid: "+data.id());
 			self.fetchSignupList(data.id);
-			self.currentActivity(data);
-			console.dir(self.currentActivity());
+			self.selectedActivity(data);
+			console.dir(self.selectedActivity());
 			return;
 		};
+
 		self.fetchSignupList =function(activityId) {
-			console.log("正在获取报名信息! page:"+self.currentSignupListPage());
+			console.log("正在获取报名信息! page:"+self.currentSignupListPageNum());
 			$.ajax({
 					  type: "POST",
 					  url: "/api/post/getactivityattentuser",
@@ -90,7 +111,7 @@ $(document).ready(function() {
 					  data:{
 					  	"token": self.token,
 					  	"activityid":activityId,
-					  	"page": self.currentSignupListPage()
+					  	"page": self.currentSignupListPageNum()
 					  },
 					})
 			.done(function(json) {
@@ -118,5 +139,38 @@ $(document).ready(function() {
 		};
 
 	};
-	ko.applyBindings(new ViewModel());
+	//发布的活动的pignation
+	var viewModel2 = function() {
+		var self = this;
+		self.itemSize = ko.observable();
+		self.pageNumbers = ko.observableArray();
+		self.currentActivityListPageNum = ko.observable(1);
+		self.currentActivityListPageNum.subscribe(function(value) {
+			shouter.notifySubscribers(value,"Publish_ActivityListPageNum");
+		});
+
+		shouter.subscribe(function(value) {
+			self.itemSize(value);
+			console.log("VM2 self.itemSize()="+self.itemSize());
+		},self,"Publish_itemSizeOfActivityList");
+
+		self.nextPage = function() {
+			self.currentActivityListPageNum(self.currentActivityListPageNum()+1);
+			console.log("self.currentActivityListPageNum()="+self.currentActivityListPageNum());
+		};
+
+		self.previousPage = function() {
+			self.currentActivityListPageNum(self.currentActivityListPageNum()-1);
+			console.log("self.currentActivityListPageNum()="+self.currentActivityListPageNum());
+		};
+
+	};
+
+	var masterVM = (function() {
+		var self = this;
+		self.viewModel1 = new viewModel1();
+		self.viewModel2 = new viewModel2();
+	})();
+
+	ko.applyBindings(masterVM);
 });

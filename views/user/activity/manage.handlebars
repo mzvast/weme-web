@@ -16,10 +16,10 @@
 				</div>
 		</div>
 		<div class="col-md-4">
-			<div class="panel panel-default">
+			<div class="panel panel-default" data-bind="with:viewModel1">
 				  <div class="panel-heading text-center">我发布的活动</div>
 				<div class="list-group" data-bind="foreach:activityList">
-				  <a href="#" class="list-group-item" data-bind="click:$root.getSignupList,attr:{class:($root.currentActivity()==$data)?'list-group-item active':'list-group-item'}">
+				  <a href="#" class="list-group-item" data-bind="click:$parent.getSignupList,attr:{class:($parent.selectedActivity()==$data)?'list-group-item active':'list-group-item'}">
 				    <h4 class="list-group-item-heading" data-bind="text:title"></h4>
 				    <p class="list-group-item-text" >
 				    <span data-bind="text:time"></span>
@@ -28,11 +28,11 @@
 				  </a>				  
 				</div>
 			</div>
-			<nav class="text-center" >
+			<nav class="text-center" data-bind="with:viewModel2">
 				  <ul class="pagination pagination-sm">
 				    <li >
 				      <a href="#" aria-label="Previous" >
-				        <span aria-hidden="true" >上一页</span>
+				        <span aria-hidden="true" data-bind="click:previousPage">上一页</span>
 				      </a>
 				    </li>
 				  </ul>
@@ -44,14 +44,14 @@
 				  <ul class="pagination pagination-sm">
 					<li >
 				      <a href="#" aria-label="Next" >
-				        <span aria-hidden="true" >下一页</span>
+				        <span aria-hidden="true" data-bind="click:nextPage">下一页</span>
 				      </a>
 				    </li>
 				  </ul>
 			</nav>
 		</div>		
 		<div class="col-md-5">
-				<div class="panel panel-default" style="margin-bottom: 0px">
+				<div class="panel panel-default" style="margin-bottom: 0px" data-bind="with:viewModel1">
 				  <!-- Default panel contents -->
 				  <div class="panel-heading text-center">报名用户</div>
 					<div class="list-group" data-bind="visible:signupList().length===0">
@@ -79,7 +79,7 @@
 						</tbody>
 					</table>
 				</div>
-				<nav class="text-center" >
+				<nav class="text-center" data-bind="with:viewModel1">
 					  <ul class="pagination pagination-sm">
 					    <li >
 					      <a href="#" aria-label="Previous" >
@@ -95,7 +95,7 @@
 					  <ul class="pagination pagination-sm">
 						<li >
 					      <a href="#" aria-label="Next" >
-					        <span aria-hidden="true" >下一页</span>
+					        <span aria-hidden="true" data-bind="click:testChangeItemSize">下一页</span>
 					      </a>
 					    </li>
 					  </ul>
