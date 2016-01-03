@@ -19,7 +19,7 @@
 			<div class="panel panel-default">
 				  <div class="panel-heading text-center">我发布的活动</div>
 				<div class="list-group" data-bind="foreach:activityList">
-				  <a href="#" class="list-group-item" data-bind="click:$root.getSignupUserList,attr:{class:($root.currentActivity()==$data)?'list-group-item active':'list-group-item'}">
+				  <a href="#" class="list-group-item" data-bind="click:$root.getSignupList,attr:{class:($root.currentActivity()==$data)?'list-group-item active':'list-group-item'}">
 				    <h4 class="list-group-item-heading" data-bind="text:title"></h4>
 				    <p class="list-group-item-text" >
 				    <span data-bind="text:time"></span>
@@ -28,36 +28,78 @@
 				  </a>				  
 				</div>
 			</div>
+			<nav class="text-center" >
+				  <ul class="pagination pagination-sm">
+				    <li >
+				      <a href="#" aria-label="Previous" >
+				        <span aria-hidden="true" >上一页</span>
+				      </a>
+				    </li>
+				  </ul>
+				  <ul class="pagination pagination-sm" >
+				    <li > 
+				    	<a >1</a>
+			   		</li>
+			  	  </ul>
+				  <ul class="pagination pagination-sm">
+					<li >
+				      <a href="#" aria-label="Next" >
+				        <span aria-hidden="true" >下一页</span>
+				      </a>
+				    </li>
+				  </ul>
+			</nav>
 		</div>		
 		<div class="col-md-5">
 				<div class="panel panel-default" style="margin-bottom: 0px">
 				  <!-- Default panel contents -->
 				  <div class="panel-heading text-center">报名用户</div>
-					<div class="list-group" data-bind="visible:signupUserList().length===0">
+					<div class="list-group" data-bind="visible:signupList().length===0">
 						<a class="list-group-item text-center">无人报名</a>
 					</div>
 
-				<table class="table table-hover" data-bind="visible:signupUserList().length!==0">
-					<thead>
-						<tr>
-							<th>Id</th>
-							<th>姓名</th>
-							<th>学校</th>
-							<th>性别</th>
-							<th>状态</th>
-						</tr>
-					</thead>
-					<tbody data-bind="foreach:signupUserList">
-						<tr>
-							<td data-bind="text:id"></td>
-							<td data-bind="text:name"></td>
-							<td data-bind="text:school"></td>
-							<td data-bind="text:gender"></td>
-							<td data-bind="text:flagStatus"></td>
-						</tr>
-					</tbody>
-				</table>
+					<table class="table table-hover" data-bind="visible:signupList().length!==0">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>姓名</th>
+								<th>学校</th>
+								<th>性别</th>
+								<th>状态</th>
+							</tr>
+						</thead>
+						<tbody data-bind="foreach:signupList">
+							<tr>
+								<td data-bind="text:id"></td>
+								<td data-bind="text:name"></td>
+								<td data-bind="text:school"></td>
+								<td data-bind="text:gender"></td>
+								<td data-bind="text:flagStatus"></td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
+				<nav class="text-center" >
+					  <ul class="pagination pagination-sm">
+					    <li >
+					      <a href="#" aria-label="Previous" >
+					        <span aria-hidden="true" >上一页</span>
+					      </a>
+					    </li>
+					  </ul>
+					  <ul class="pagination pagination-sm" >
+					    <li > 
+					    	<a >1</a>
+				   		</li>
+				  	  </ul>
+					  <ul class="pagination pagination-sm">
+						<li >
+					      <a href="#" aria-label="Next" >
+					        <span aria-hidden="true" >下一页</span>
+					      </a>
+					    </li>
+					  </ul>
+				</nav>
 		</div>		
 	</div>
 	

@@ -89,15 +89,17 @@ th, td {
 					<table class="table">
 						    <thead>
 						        <tr>
-						            <td style="width:2em">标题</td>
-						            <td style="width:2em">时间</td>
+						            <td style="width:1em">标题</td>
+						            <td style="width:1em">时间</td>
+						            <td style="width:1em">作者</td>
 						            <td style="width:1em">状态</td>
 						        </tr>
 						    </thead>
 						    <tbody data-bind="foreach:activityList">
-						        <tr data-bind="click:$root.setCurrentActivity,css: {'selected':$root.currentActivity()==$data}">
+						        <tr  data-bind="click:$root.setCurrentActivity,css: {'selected':$root.currentActivity()==$data}">
 						            <td data-bind="text:title"></td>
 						            <td data-bind="text:time"></td>
+						            <td data-bind="text:author"></td>
 						            <td  data-bind="text:state,css:{'pass':$data.state()=="通过"}"></td>
 						        </tr>
 						    </tbody>
