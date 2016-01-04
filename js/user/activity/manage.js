@@ -19,6 +19,26 @@ $(document).ready(function() {
 			return self.flag()==1?"通过":"未通过";
 		});
 	};
+	var Profile = function(data) {
+		this.birthday = ko.observable(data.birthday);
+		this.degree = ko.observable(data.degree);
+		this.department = ko.observable(data.department);
+		this.enrollment = ko.observable(data.enrollment);
+		this.gender = ko.observable(data.gender);
+		this.hobby = ko.observable(data.hobby);
+		this.hometown = ko.observable(data.hometown);
+		this.id = ko.observable(data.id);
+		this.lookcount = ko.observable(data.lookcount);
+		this.name = ko.observable(data.name);
+		this.phone = ko.observable(data.phone);
+		this.preference = ko.observable(data.preference);
+		this.qq = ko.observable(data.qq);
+		this.reason = ko.observable(data.reason);
+		this.school = ko.observable(data.school);
+		this.state = ko.observable(data.state);
+		this.username = ko.observable(data.username);
+		this.wechat = ko.observable(data.wechat);
+	};
 	var shouter = new ko.subscribable();
 	//我发布的活动列表
 	var ViewModel1 = function() {
@@ -155,6 +175,12 @@ $(document).ready(function() {
 		self.token = "027706ea56487ce6af2ab2b0e65268fc";
 		self.list = ko.observableArray();
 		self.id = ko.observable(3);
+		self.clickedItem = ko.observable();
+		// Publish_clickedSignupItem to ViewModel5
+		self.clickedItem.subscribe(function(data) {
+			shouter.notifySubscribers(data.id(),"Publish_clickedSignupItem");
+			console.log("cliked publish data.id()= "+data.id());
+		});
 		self.currentPageIndex = ko.observable(1);
 		// Subscribe selectedActivityItem from ViewModel1
 		shouter.subscribe(function(data) {
@@ -167,7 +193,10 @@ $(document).ready(function() {
 			self.fetchList(self.id());
 		},self,"Publish_SignupListPageNum");
 
-
+		self.showModal = function(data) {
+			self.clickedItem(data);
+			console.log("cliked详情!");
+		};
 		self.writeList=function(data) {
 			self.list([]);
 			data.forEach(function(signupItem) {
@@ -264,13 +293,59 @@ $(document).ready(function() {
 		};
 
 	};
+	var ViewModel5 = function() {
+		var self = this;
+		self.token = "027706ea56487ce6af2ab2b0e65268fc";
+		self.currentId = ko.observable();
+		self.currentProfile = ko.observable();
+		// Subscribe Publish_clickedSignupItem from ViewModel3
+		shouter.subscribe(function(id) {
+			self.currentId(id);
+			self.getProfileById();
+		},self,"Publish_clickedSignupItem");
+		self.getProfileById = function()  {
+			console.log("正在获取个人信息!");
+			$.ajax({
+					  type: "POST",
+					  url: "/api/post/getprofilebyid",
+					  dataType: "json",
+					  data:{
+					  	"token": self.token,
+					  	"id":self.currentId(),
+					  },
+					})
+			.done(function(json) {
+				       if (json["state"]!=="successful") {
+				       		console.dir("no data");
+				       		// self.writeList(data);
+				       		console.dir(json);
+				       		return;
+				       } 
+				       else{
+				       		console.dir("got data!");
+				       		// self.writeList(data);
+				       		console.dir(json);
+				       		self.currentProfile(new Profile(json));
+				       		console.dir(self.currentProfile());
+							return;
+				       };
+					})
+			.fail(function(e) {
+					  	self.showRefresh(true);
+					       console.log(e);
+	                		return;
+
+					})
+		};
+	};
 
 	var masterVM = (function() {
 		var self = this;
-		self.ViewModel1 = new ViewModel1();
-		self.ViewModel2 = new ViewModel2();
-		self.ViewModel3 = new ViewModel3();
-		self.ViewModel4 = new ViewModel4();
+		self.ViewModel1 = new ViewModel1();//ActivitList
+		self.ViewModel2 = new ViewModel2();//ActivitList pignation
+		self.ViewModel3 = new ViewModel3();//SignupList
+		self.ViewModel4 = new ViewModel4();//SignupList pignation
+		self.ViewModel5 = new ViewModel5();//Model
 	})();
 
 	ko.applyBindings(masterVM);

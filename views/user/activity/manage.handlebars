@@ -66,6 +66,7 @@
 								<th>学校</th>
 								<th>性别</th>
 								<th>状态</th>
+								<th>操作</th>
 							</tr>
 						</thead>
 						<tbody data-bind="foreach:list">
@@ -75,6 +76,12 @@
 								<td data-bind="text:school"></td>
 								<td data-bind="text:gender"></td>
 								<td data-bind="text:flagStatus"></td>
+								<td>
+									<!-- Button trigger modal -->
+									<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" data-bind="click:$parent.showModal">
+									  详情
+									</button>
+								</td>
 							</tr>
 						</tbody>
 					</table>
@@ -99,11 +106,48 @@
 				      </a>
 				    </li>
 				  </ul>
-			</nav>
+				</nav>
+
 		</div>		
 	</div>
 	
 </div>
+				<!-- Modal -->
+				<div data-bind="with:ViewModel5" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content" data-bind="with:currentProfile()">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h4 class="modal-title" id="myModalLabel">个人信息</h4>
+				      </div>
+				      <div class="modal-body">
+				        <b>姓名:</b><span data-bind="text:name"></span><br>
+				        <b>性别:</b><span data-bind="text:gender"></span><br>
+				        <b>生日:</b><span data-bind="text:birthday"></span><br>
+				        <b>家乡:</b><span data-bind="text:hometown"></span><br>
+				        <hr>
+				        <b>学校:</b><span data-bind="text:school"></span><br>
+				        <b>学历:</b><span data-bind="text:degree"></span><br>
+				        <b>入学时间:</b><span data-bind="text:enrollment"></span><br>
+				        <b>学院:</b><span data-bind="text:department"></span><br>
+				        <hr>
+				        <b>爱好:</b><span data-bind="text:hobby"></span><br>
+				        <b>访客数量:</b><span data-bind="text:lookcount"></span><br>
+				        <b>喜好:</b><span data-bind="text:preference"></span><br>
+				        <hr>
+				        <b>用户名:</b><span data-bind="text:username"></span><br>
+				        <b>喂米id:</b><span data-bind="text:id"></span><br>
+				        <b>QQ:</b><span data-bind="text:qq"></span><br>
+				        <b>微信:</b><span data-bind="text:wechat"></span><br>
+				        <b>手机:</b><span data-bind="text:phone"></span><br>
+				        
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
 
 {{# section 'jquery' }}
 	<script type="text/javascript" src="/dist/vendor/knockout/dist/knockout.js"></script>
