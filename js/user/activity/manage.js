@@ -21,17 +21,19 @@ $(document).ready(function() {
 	};
 	var shouter = new ko.subscribable();
 
-	var viewModel1 = function() {
+	var ViewModel1 = function() {
 		var self = this;
 		self.itemSizeOfActivityList = ko.observable(0);
 		self.itemSizeOfActivityList.subscribe(function(value) {
 			shouter.notifySubscribers(value,"Publish_itemSizeOfActivityList");
 		});
 		self.activityList = ko.observableArray();
-		self.signupList = ko.observableArray();
 		self.selectedActivity = ko.observable();
+		self.selectedActivity.subscribe(function(data) {
+			shouter.notifySubscribers(data,"Publish_selectedActivity");
+		});
+
 		self.currentActivityListPageNum = ko.observable(1);
-		self.currentSignupListPageNum = ko.observable(1);
 		self.token = "027706ea56487ce6af2ab2b0e65268fc";
 
 		shouter.subscribe(function(value) {
@@ -40,9 +42,10 @@ $(document).ready(function() {
 			console.log("self.currentActivityListPageNum()="+self.currentActivityListPageNum());
 		},self,"Publish_ActivityListPageNum");
 
-		self.testChangeItemSize = function() {
-			self.itemSizeOfActivityList(1999);
+		self.getSignupList =function(data) {
+			self.selectedActivity(data);
 		};
+
 		self.writeActivityList=function(data) {
 			self.activityList([]);
 			data.forEach(function(activityItem) {
@@ -50,12 +53,6 @@ $(document).ready(function() {
 			});
 		};	
 
-		self.writeSignupList=function(data) {
-			self.signupList([]);
-			data.forEach(function(signupItem) {
-				self.signupList.push(new Signup(signupItem));
-			});
-		};
 
 		self.fetchPublishedActivity =function() {
 			console.log("正在获取已发布活动信息! page:"+self.currentActivityListPageNum());
@@ -94,53 +91,10 @@ $(document).ready(function() {
 
 		self.fetchPublishedActivity();//初始化的时候先运行一遍
 
-		self.getSignupList = function(data) {
-			console.log("activityid: "+data.id());
-			self.fetchSignupList(data.id);
-			self.selectedActivity(data);
-			console.dir(self.selectedActivity());
-			return;
-		};
-
-		self.fetchSignupList =function(activityId) {
-			console.log("正在获取报名信息! page:"+self.currentSignupListPageNum());
-			$.ajax({
-					  type: "POST",
-					  url: "/api/post/getactivityattentuser",
-					  dataType: "json",
-					  data:{
-					  	"token": self.token,
-					  	"activityid":activityId,
-					  	"page": self.currentSignupListPageNum()
-					  },
-					})
-			.done(function(json) {
-						var data = json.result
-				       console.dir(data);			       
-				       if (data.length==0) {
-				       		console.dir("no more data");
-				       		self.writeSignupList(data);
-				       		console.dir(data);
-				       		return;
-				       } 
-				       else{
-				       		console.dir("got data!");
-				       		self.writeSignupList(data);
-				       		console.dir(data);
-							return;
-				       };
-					})
-			.fail(function(e) {
-					  	self.showRefresh(true);
-					       console.log(e);
-	                		return;
-
-					})
-		};
 
 	};
 	//发布的活动的pignation
-	var viewModel2 = function() {
+	var ViewModel2 = function() {
 		var self = this;
 		self.itemSize = ko.observable();
 		self.pageNumbers = ko.observableArray();
@@ -166,10 +120,78 @@ $(document).ready(function() {
 
 	};
 
+	var ViewModel3 = function() {
+		var self = this;
+		self.itemSize = ko.observable(0);
+		self.token = "027706ea56487ce6af2ab2b0e65268fc";
+		self.list = ko.observableArray();
+		self.id = ko.observable(3);
+
+		shouter.subscribe(function(data) {
+			self.id(data.id());
+			self.fetchList(self.id());
+		},self,"Publish_selectedActivity");
+		self.currentPageNum = ko.observable(1);
+
+		self.writeList=function(data) {
+			self.list([]);
+			data.forEach(function(signupItem) {
+				self.list.push(new Signup(signupItem));
+			});
+		};
+
+		// self.getList = function(data) {
+		// 	console.log("activityid: "+data.id());
+		// 	self.fetchList(data.id);
+		// 	self.selectedActivity(data);
+		// 	console.dir(self.selectedActivity());
+		// 	return;
+		// };
+
+		self.fetchList =function(activityId) {
+			console.log("正在获取报名信息! page:"+self.currentPageNum());
+			$.ajax({
+					  type: "POST",
+					  url: "/api/post/getactivityattentuser",
+					  dataType: "json",
+					  data:{
+					  	"token": self.token,
+					  	"activityid":activityId,
+					  	"page": self.currentPageNum()
+					  },
+					})
+			.done(function(json) {
+						var data = json.result
+				       console.dir(data);			       
+				       if (data.length==0) {
+				       		console.dir("no more data");
+				       		self.writeList(data);
+				       		console.dir(data);
+				       		return;
+				       } 
+				       else{
+				       		console.dir("got data!");
+				       		self.writeList(data);
+				       		console.dir(data);
+							return;
+				       };
+					})
+			.fail(function(e) {
+					  	self.showRefresh(true);
+					       console.log(e);
+	                		return;
+
+					})
+		};
+
+		self.fetchList(self.id());
+	};
+
 	var masterVM = (function() {
 		var self = this;
-		self.viewModel1 = new viewModel1();
-		self.viewModel2 = new viewModel2();
+		self.ViewModel1 = new ViewModel1();
+		self.ViewModel2 = new ViewModel2();
+		self.ViewModel3 = new ViewModel3();
 	})();
 
 	ko.applyBindings(masterVM);
