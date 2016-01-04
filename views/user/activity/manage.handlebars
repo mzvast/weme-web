@@ -37,8 +37,8 @@
 				    </li>
 				  </ul>
 				  <ul class="pagination pagination-sm" data-bind="foreach:pageNumbers">
-				    <li > 
-				    	<a data-bind="text:$data"></a>
+				    <li data-bind="attr:{class:$data==$parent.currentPageIndex()?'active':''}"> 
+				    	<a data-bind="text:$data,click:$parent.goToPage"></a>
 			   		</li>
 			  	  </ul>
 				  <ul class="pagination pagination-sm">
@@ -95,8 +95,8 @@
 				    </li>
 				  </ul>
 				  <ul class="pagination pagination-sm" data-bind="foreach:pageNumbers">
-				    <li > 
-				    	<a data-bind="text:$data"></a>
+				    <li data-bind="attr:{class:$data==$parent.currentPageIndex()?'active':''}"> 
+				    	<a data-bind="text:$data,click:$parent.goToPage"></a>
 			   		</li>
 			  	  </ul>
 				  <ul class="pagination pagination-sm">

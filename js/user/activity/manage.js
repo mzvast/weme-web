@@ -46,7 +46,7 @@ $(document).ready(function() {
 		self.itemSize = ko.observable(0);
 		self.list = ko.observableArray();
 		self.currentPageIndex = ko.observable(1);
-		self.token = "027706ea56487ce6af2ab2b0e65268fc";
+		self.token = getCookie("token");
 		// Publish ActivityList itemSize to ViewModel2
 		self.itemSize.subscribe(function(value) {
 			shouter.notifySubscribers(value,"Publish_itemSizeOfActivityList");
@@ -98,7 +98,7 @@ $(document).ready(function() {
 				       		console.dir("got data!");
 				       		self.writeActivityList(data);
 				       		self.selectedItem(self.list()[0]);
-				       		self.itemSize(self.itemSize()||json.pages*10);//TODO:set itemSize
+				       		self.itemSize(self.itemSize()||json.pages*10);//set itemSize
 				       		console.dir("self.itemSize()===="+self.itemSize());
 				       		console.dir(data);
 							return;
@@ -147,6 +147,10 @@ $(document).ready(function() {
 			return self.currentPageIndex()>1;
 		});
 
+		self.goToPage = function(data) {
+			self.currentPageIndex(data);
+		};
+
 		self.makePageNumbers =function(lastPageIndex) {
 			self.pageNumbers.removeAll();
 			for (var i = 1; i <= lastPageIndex; i++) {
@@ -173,9 +177,9 @@ $(document).ready(function() {
 		self.itemSize.subscribe(function(value) {
 			shouter.notifySubscribers(value,"Publish_itemSizeOfSignupList");
 		});
-		self.token = "027706ea56487ce6af2ab2b0e65268fc";
+		self.token = getCookie("token");
 		self.list = ko.observableArray();
-		self.id = ko.observable(3);
+		self.id = ko.observable();
 		self.clickedItem = ko.observable();
 		// Publish_clickedSignupItem to ViewModel5
 		self.clickedItem.subscribe(function(data) {
@@ -230,7 +234,7 @@ $(document).ready(function() {
 				       		console.dir("got data!");
 				       		self.writeList(data);
 				       		console.dir(data);
-				       		self.itemSize(self.itemSize()||json.pages*10);//TODO:set itemSize
+				       		self.itemSize(self.itemSize()||json.pages*10);//set itemSize
 							return;
 				       };
 					})
@@ -276,6 +280,10 @@ $(document).ready(function() {
 			return self.currentPageIndex()>1;
 		});
 
+		self.goToPage = function(data) {
+			self.currentPageIndex(data);
+		};
+
 		self.makePageNumbers =function(lastPageIndex) {
 			self.pageNumbers.removeAll();
 			for (var i = 1; i <= lastPageIndex; i++) {
@@ -296,7 +304,7 @@ $(document).ready(function() {
 	};
 	var ViewModel5 = function() {
 		var self = this;
-		self.token = "027706ea56487ce6af2ab2b0e65268fc";
+		self.token = getCookie("token");
 		self.currentId = ko.observable();
 		self.currentProfile = ko.observable();
 		// Subscribe Publish_clickedSignupItem from ViewModel3
