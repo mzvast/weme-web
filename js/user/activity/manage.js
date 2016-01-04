@@ -98,7 +98,8 @@ $(document).ready(function() {
 				       		console.dir("got data!");
 				       		self.writeActivityList(data);
 				       		self.selectedItem(self.list()[0]);
-				       		// self.itemSize(19);//TODO:set itemSize
+				       		self.itemSize(self.itemSize()||json.pages*10);//TODO:set itemSize
+				       		console.dir("self.itemSize()===="+self.itemSize());
 				       		console.dir(data);
 							return;
 				       };
@@ -229,7 +230,7 @@ $(document).ready(function() {
 				       		console.dir("got data!");
 				       		self.writeList(data);
 				       		console.dir(data);
-				       		// self.itemSize(19);//TODO:set itemSize
+				       		self.itemSize(self.itemSize()||json.pages*10);//TODO:set itemSize
 							return;
 				       };
 					})
