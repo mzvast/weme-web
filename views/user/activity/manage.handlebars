@@ -18,8 +18,8 @@
 		<div class="col-md-4">
 			<div class="panel panel-default" data-bind="with:ViewModel1">
 				  <div class="panel-heading text-center">我发布的活动</div>
-				<div class="list-group" data-bind="foreach:activityList">
-				  <a href="#" class="list-group-item" data-bind="click:$parent.getSignupList,attr:{class:($parent.selectedActivity()==$data)?'list-group-item active':'list-group-item'}">
+				<div class="list-group" data-bind="foreach:list">
+				  <a href="#" class="list-group-item" data-bind="click:$parent.getSignupList,attr:{class:($parent.selectedItem()==$data)?'list-group-item active':'list-group-item'}">
 				    <h4 class="list-group-item-heading" data-bind="text:title"></h4>
 				    <p class="list-group-item-text" >
 				    <span data-bind="text:time"></span>
@@ -30,19 +30,19 @@
 			</div>
 			<nav class="text-center" data-bind="with:ViewModel2">
 				  <ul class="pagination pagination-sm">
-				    <li >
+				    <li data-bind="visible:hasPrecious()">
 				      <a href="#" aria-label="Previous" >
 				        <span aria-hidden="true" data-bind="click:previousPage">上一页</span>
 				      </a>
 				    </li>
 				  </ul>
-				  <ul class="pagination pagination-sm" >
+				  <ul class="pagination pagination-sm" data-bind="foreach:pageNumbers">
 				    <li > 
-				    	<a >1</a>
+				    	<a data-bind="text:$data"></a>
 			   		</li>
 			  	  </ul>
 				  <ul class="pagination pagination-sm">
-					<li >
+					<li data-bind="visible:hasNext()">
 				      <a href="#" aria-label="Next" >
 				        <span aria-hidden="true" data-bind="click:nextPage">下一页</span>
 				      </a>
@@ -79,27 +79,27 @@
 						</tbody>
 					</table>
 				</div>
-				<nav class="text-center" data-bind="with:ViewModel1">
-					  <ul class="pagination pagination-sm">
-					    <li >
-					      <a href="#" aria-label="Previous" >
-					        <span aria-hidden="true" >上一页</span>
-					      </a>
-					    </li>
-					  </ul>
-					  <ul class="pagination pagination-sm" >
-					    <li > 
-					    	<a >1</a>
-				   		</li>
-				  	  </ul>
-					  <ul class="pagination pagination-sm">
-						<li >
-					      <a href="#" aria-label="Next" >
-					        <span aria-hidden="true">下一页</span>
-					      </a>
-					    </li>
-					  </ul>
-				</nav>
+				<nav class="text-center" data-bind="with:ViewModel4">
+				  <ul class="pagination pagination-sm">
+				    <li data-bind="visible:hasPrecious()">
+				      <a href="#" aria-label="Previous" >
+				        <span aria-hidden="true" data-bind="click:previousPage">上一页</span>
+				      </a>
+				    </li>
+				  </ul>
+				  <ul class="pagination pagination-sm" data-bind="foreach:pageNumbers">
+				    <li > 
+				    	<a data-bind="text:$data"></a>
+			   		</li>
+			  	  </ul>
+				  <ul class="pagination pagination-sm">
+					<li data-bind="visible:hasNext()">
+				      <a href="#" aria-label="Next" >
+				        <span aria-hidden="true" data-bind="click:nextPage">下一页</span>
+				      </a>
+				    </li>
+				  </ul>
+			</nav>
 		</div>		
 	</div>
 	
