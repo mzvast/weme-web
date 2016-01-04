@@ -252,7 +252,7 @@ var BROWSER_SYNC_RELOAD_DELAY = 500;
 
 	gulp.task('browser-sync', ['nodemon'], function() {
 		browserSync.init(null, {
-			proxy: "http://localhost:3000",
+			proxy: "http://localhost:8080",
 	        // files: ["public/**/*.*"],
 	        files: ["public/dist/**/*.*","views/**/*.*"],
 	        // browser: "google chrome",
