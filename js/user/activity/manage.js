@@ -15,29 +15,44 @@ $(document).ready(function() {
 		self.school = ko.observable(data.school);
 		self.gender = ko.observable(data.gender);
 		self.flag = ko.observable(data.flag);
+		self.imgUrlSmall = ko.computed(function() {
+			return "//218.244.147.240:80/avatar/"+self.id()+"_thumbnail.jpg";
+		});		
 		self.flagStatus = ko.computed(function() {
 			return self.flag()==1?"通过":"未通过";
 		});
 	};
 	var Profile = function(data) {
-		this.birthday = ko.observable(data.birthday);
-		this.degree = ko.observable(data.degree);
-		this.department = ko.observable(data.department);
-		this.enrollment = ko.observable(data.enrollment);
-		this.gender = ko.observable(data.gender);
-		this.hobby = ko.observable(data.hobby);
-		this.hometown = ko.observable(data.hometown);
-		this.id = ko.observable(data.id);
-		this.lookcount = ko.observable(data.lookcount);
-		this.name = ko.observable(data.name);
-		this.phone = ko.observable(data.phone);
-		this.preference = ko.observable(data.preference);
-		this.qq = ko.observable(data.qq);
-		this.reason = ko.observable(data.reason);
-		this.school = ko.observable(data.school);
-		this.state = ko.observable(data.state);
-		this.username = ko.observable(data.username);
-		this.wechat = ko.observable(data.wechat);
+		var self = this;
+		self.birthday = ko.observable(data.birthday);
+		self.degree = ko.observable(data.degree);
+		self.department = ko.observable(data.department);
+		self.enrollment = ko.observable(data.enrollment);
+		self.gender = ko.observable(data.gender);
+		self.hobby = ko.observable(data.hobby);
+		self.hometown = ko.observable(data.hometown);
+		self.id = ko.observable(data.id);
+		self.lookcount = ko.observable(data.lookcount);
+		self.name = ko.observable(data.name);
+		self.phone = ko.observable(data.phone);
+		self.preference = ko.observable(data.preference);
+		self.qq = ko.observable(data.qq);
+		self.reason = ko.observable(data.reason);
+		self.school = ko.observable(data.school);
+		self.state = ko.observable(data.state);
+		self.username = ko.observable(data.username);
+		self.wechat = ko.observable(data.wechat);
+		self.phoneDisplay = ko.computed(function() {
+			if(self.phone()==""){
+				return "";
+			}else
+			{
+				return self.phone().slice(0,3)+"****"+self.phone().slice(6,-1);
+			}
+		});
+		self.imgUrl = ko.computed(function() {
+			return "//218.244.147.240:80/avatar/"+self.id();
+		});
 	};
 	var shouter = new ko.subscribable();
 	//我发布的活动列表

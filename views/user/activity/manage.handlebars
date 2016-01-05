@@ -63,6 +63,7 @@
 							<tr>
 								<th>Id</th>
 								<th>姓名</th>
+								<th>头像</th>
 								<th>学校</th>
 								<th>性别</th>
 								<th>状态</th>
@@ -73,6 +74,7 @@
 							<tr>
 								<td data-bind="text:id"></td>
 								<td data-bind="text:name"></td>
+								<td><img style="width:40px;border-radius: 50px 50px 50px 50px;" data-bind="attr:{src:imgUrlSmall()}"></td>
 								<td data-bind="text:school"></td>
 								<td data-bind="text:gender"></td>
 								<td data-bind="text:flagStatus"></td>
@@ -116,30 +118,42 @@
 				<div data-bind="with:ViewModel5" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 				  <div class="modal-dialog" role="document">
 				    <div class="modal-content" data-bind="with:currentProfile()">
-				      <div class="modal-header">
+				      <div class="modal-header text-center">
 				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				        <h4 class="modal-title" id="myModalLabel">个人信息</h4>
+				        <h3 class="modal-title" id="myModalLabel" >个人信息</h3>
 				      </div>
 				      <div class="modal-body">
-				        <b>姓名:</b><span data-bind="text:name"></span><br>
-				        <b>性别:</b><span data-bind="text:gender"></span><br>
-				        <b>生日:</b><span data-bind="text:birthday"></span><br>
-				        <b>家乡:</b><span data-bind="text:hometown"></span><br>
+				      	<div class="row">
+				      		<div class="col-md-4 col-md-offset-1">
+						        <b>姓名:</b><span data-bind="text:name"></span><br>
+						        <b>性别:</b><span data-bind="text:gender"></span><br>
+						        <b>生日:</b><span data-bind="text:birthday"></span><br>
+						        <b>家乡:</b><span data-bind="text:hometown"></span><br>
+						        <hr>
+						        <b>爱好:</b><span data-bind="text:hobby"></span><br>
+						        <b>访客数量:</b><span data-bind="text:lookcount"></span><br>
+						        <b>喜好:</b><span data-bind="text:preference"></span><br>
+				      		</div>
+				      		<div class="col-md-5 col-md-offset-1">
+				      			<img style="width:230px;border-radius: 50px 50px 50px 50px;" data-bind="attr:{src:imgUrl()}">
+				      		</div>
+				      	</div>
 				        <hr>
-				        <b>学校:</b><span data-bind="text:school"></span><br>
-				        <b>学历:</b><span data-bind="text:degree"></span><br>
-				        <b>入学时间:</b><span data-bind="text:enrollment"></span><br>
-				        <b>学院:</b><span data-bind="text:department"></span><br>
-				        <hr>
-				        <b>爱好:</b><span data-bind="text:hobby"></span><br>
-				        <b>访客数量:</b><span data-bind="text:lookcount"></span><br>
-				        <b>喜好:</b><span data-bind="text:preference"></span><br>
-				        <hr>
-				        <b>用户名:</b><span data-bind="text:username"></span><br>
-				        <b>喂米id:</b><span data-bind="text:id"></span><br>
-				        <b>QQ:</b><span data-bind="text:qq"></span><br>
-				        <b>微信:</b><span data-bind="text:wechat"></span><br>
-				        <b>手机:</b><span data-bind="text:phone"></span><br>
+				      	<div class="row">
+				      		<div class="col-md-4 col-md-offset-1">
+						        <b>唯觅id:</b><span data-bind="text:id"></span><br>
+						        <b>用户名:</b><span data-bind="text:username"></span><br>
+						        <b>QQ:</b><span data-bind="text:qq"></span><br>
+						        <b>微信:</b><span data-bind="text:wechat"></span><br>
+						        <b>手机:</b><span data-bind="text:phoneDisplay"></span><br>
+				      		</div>
+				      		<div class="col-md-3 col-md-offset-2">
+						        <b>学校:</b><span data-bind="text:school"></span><br>
+						        <b>学历:</b><span data-bind="text:degree"></span><br>
+						        <b>入学时间:</b><span data-bind="text:enrollment"></span><br>
+						        <b>学院:</b><span data-bind="text:department"></span><br>
+				      		</div>
+				      	</div>
 				        
 				      </div>
 				      <div class="modal-footer">

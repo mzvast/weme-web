@@ -154,18 +154,18 @@ var BROWSER_SYNC_RELOAD_DELAY = 500;
 	
 
 	gulp.task('img-resize-logo',function() {
-		gulp.src('public/img_resize/src/**/*.png',
+		gulp.src('public/img_resize/src/**/*.jpg',
 			{base: 'public/img_resize/src'})
 		.pipe(
 			gm(function (gmfile) { 
-	      return gmfile.resize(45, 45).quality(100);	 
+	      return gmfile.resize(60, 60).quality(100);	 
 	    },
 	    {
 	    	imageMagick: true
 	    }
 	    ))
 	    .pipe(rename({
-	    	suffix:"_45"
+	    	suffix:"_60"
 	    }))
 		.pipe(gulp.dest('public/img_resize/build'));
 	});
@@ -252,7 +252,7 @@ var BROWSER_SYNC_RELOAD_DELAY = 500;
 
 	gulp.task('browser-sync', ['nodemon'], function() {
 		browserSync.init(null, {
-			proxy: "http://localhost:8080",
+			proxy: "http://localhost:3000",
 	        // files: ["public/**/*.*"],
 	        files: ["public/dist/**/*.*","views/**/*.*"],
 	        // browser: "google chrome",
