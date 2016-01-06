@@ -190,7 +190,11 @@ $(document).ready(function() {
 	//报名用户列表
 	var ViewModel3 = function() {
 		var self = this;
-		self.showRefresh = ko.observable(true);
+		self.showDownload = ko.observable(false);
+		self.showExport = ko.computed(function() {
+			return !self.showDownload();
+		});
+		self.showRefresh = ko.observable(false);
 		self.pages = ko.observable(1);
 		self.itemSize = ko.observable(0);
 		// Publish SignupList itemSize to ViewModel4
@@ -211,6 +215,7 @@ $(document).ready(function() {
 		shouter.subscribe(function(data) {
 			self.id(data.id());
 			self.fetchList(self.id());
+			self.showDownload(false);
 		},self,"Publish_selectedActivity");		
 		// Subscribe currentPageIndex from ViewModel4
 		shouter.subscribe(function(value) {
@@ -219,59 +224,36 @@ $(document).ready(function() {
 		},self,"Publish_SignupListPageNum");
 
 		self.saveAs = function() {
-			// in this example we want to build an Excel file with one sheet and write some stuff
 			var ep=new ExcelPlus();
-			// We're going to do several tasks in one line of code:
-			// 1) create an Excel with one sheet called "Sheet1"
-			// 2) write some data from an array to the new-created sheet
-			// 3) create a new sheet called "Sheet2"
-			// 4) write "A1" in cell "A1" of the new-created sheet
-			// 5) write the today date in D1 of the "Sheet1" sheet
-			// 6) save it on the user computer (this last step only works with IE10+ and modern browsers)
 			ep.createFile("Sheet1")
-			.write({"content":[["id","姓名","性别","学校"]]});
+			  .write({"content":[["id","姓名","性别","学校"]]});
 			for (var i = 0; i < downloadList().length; i++) {
 				var data = downloadList()[i]
-				ep.write({  "cell":"A"+(i+2),"content":data['id'] });
-				ep.write({  "cell":"B"+(i+2),"content":data['name'] });
-				ep.write({  "cell":"C"+(i+2),"content":data['gender'] });
-				ep.write({  "cell":"D"+(i+2),"content":data['school'] });
+				ep.write({  "cell":"A"+(i+2),"content":data['id'] })
+				  .write({  "cell":"B"+(i+2),"content":data['name'] })
+				  .write({  "cell":"C"+(i+2),"content":data['gender'] })
+				  .write({  "cell":"D"+(i+2),"content":data['school'] });
 			};			  
-			  ep.saveAs("test.xlsx");
+			  ep.saveAs("活动_"+self.id()+"_报名表"+".xlsx");
+			  self.showDownload(false);
 		};		
-
-		// self.saveAs = function() {
-		// 	/* bookType can be 'xlsx' or 'xlsm' or 'xlsb' */
-		// 	var Workbook = function() {
-		// 			if(!(this instanceof Workbook)) return new Workbook();
-		// 			this.SheetNames = [];
-		// 			this.Sheets = downloadList();
-		// 		};
-		// 	var workbook = new Workbook();	
-		// 	var wopts = { bookType:'xlsx', bookSST:false, type:'binary' };
-
-		// 	var wbout = XLSX.write(workbook,wopts);
-
-		// 	var s2ab = function(s) {
-		// 	  var buf = new ArrayBuffer(s.length);
-		// 	  var view = new Uint8Array(buf);
-		// 	  for (var i=0; i!=s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
-		// 	  return buf;
-		// 	};
-
-		// 	/* the saveAs call downloads a file on the local machine */
-		// 	saveAs(new Blob([s2ab(wbout)],{type:""}), "活动名单_id"+self.id()+".xlsx");
-		// };
 
 		self.download = function() {
 			console.log("开始下载辣");
 			downloadList.removeAll();
 			console.log("BEFORE downloadList()==="+downloadList());
 			for (var i = 1; i <= self.pages(); i++) {
-				self.downloadPageData(i);
+				var toSave;
+				if (i==self.pages()) {
+					toSave = true;
+				} else{
+					toSave = false;
+				};
+				self.downloadPageData(i,toSave);
 			};
+			self.showDownload(true);
 		};
-		self.downloadPageData = function(pageIndex) {
+		self.downloadPageData = function(pageIndex,toSave) {
 			$.ajax({
 					  type: "POST",
 					  url: "/api/post/getactivityattentuser",
@@ -297,7 +279,11 @@ $(document).ready(function() {
 				       		});
 							console.log("AFTER downloadList()===");
 							console.log(downloadList());
-							return ;
+							if (toSave == true) {
+								return self.saveAs();
+							} else{
+							 	return ;
+							};
 				       };
 					})
 			.fail(function(e) {
@@ -318,9 +304,14 @@ $(document).ready(function() {
 		};
 		self.writeList=function(data) {
 			self.list([]);
-			data.forEach(function(signupItem) {
-				self.list.push(new Signup(signupItem));
-			});
+			if (data.length!==0) {
+				data.forEach(function(signupItem) {
+					self.list.push(new Signup(signupItem));
+				});	
+				return;			
+			}else{
+				return;
+			};
 		};
 
 		self.fetchList =function(activityId) {
@@ -427,6 +418,7 @@ $(document).ready(function() {
 		self.currentProfile = ko.observable();
 		// Subscribe Publish_clickedSignupItem from ViewModel3
 		shouter.subscribe(function(id) {
+			self.currentProfile("");
 			self.currentId(id);
 			self.getProfileById();
 		},self,"Publish_clickedSignupItem");

@@ -92,12 +92,12 @@
 					</table>
 					<div class="panel-footer">
 						<div class="row">
-							<div class="col-md-3 col-md-offset-9">
+							<div class="col-md-3 col-md-offset-9" data-bind="visible:list().length!==0">
 								
-							<button data-bind="click:download" type="button" class="btn btn-primary btn-block" ><span class="glyphicon glyphicon-download-alt"></span>
+							<button data-bind="click:download,visible:showExport" type="button" class="btn btn-primary btn-block" ><span class="glyphicon glyphicon-download-alt"></span>
 										  导出
 										</button>
-							<button data-bind="click:saveAs" type="button" class="btn btn-primary btn-block" ><span class="glyphicon glyphicon-download-alt"></span>
+							<button data-bind="visible:showDownload" type="button" class="btn btn-primary btn-block" ><span class="fa fa-spinner fa-spin"></span>
 							  下载
 							</button>
 							</div>
