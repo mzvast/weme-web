@@ -132,6 +132,7 @@ $(document).ready(function() {
 		};
 
 		self.fetchPublishedActivity();//初始化的时候先运行一遍
+		self.fetchPublishedActivity();//初始化的时候先运行一遍
 
 
 	};
@@ -191,6 +192,7 @@ $(document).ready(function() {
 	//报名用户列表
 	var ViewModel3 = function() {
 		var self = this;
+		self.currentDownloadNum = ko.observable();
 		self.showDownload = ko.observable(false);
 		self.showExport = ko.computed(function() {
 			return !self.showDownload();
@@ -259,6 +261,7 @@ $(document).ready(function() {
 		};		
 
 		self.downloadDetailList = function() {
+			self.itemSize(downloadList().length);
 			console.log("正在下载详细信息辣");
 			downloadDetailList.removeAll();
 			console.log("BEFORE downloadDetailList()==="+downloadDetailList());
@@ -269,17 +272,15 @@ $(document).ready(function() {
 			console.log("开始下载辣");
 			downloadList.removeAll();
 			console.log("BEFORE downloadList()==="+downloadList());
-			for (var i = 1; i <= self.pages(); i++) {
-				if (i==self.pages()) {
-					self.downloadPageData(i,true);
-				} else{
-					self.downloadPageData(i,false);
-				};
-			};
+			self.downloadPageData(1);
 			self.showDownload(true);
 		};
 		self.downloadDetailData = function(num) {
+			if (num == downloadList().length) {
+				return self.saveAs();
+			};
 			console.log("num==="+num);
+			self.currentDownloadNum(num+1);
 			$.ajax({
 					  type: "POST",
 					  url: "/api/post/getprofilebyid",
@@ -298,8 +299,9 @@ $(document).ready(function() {
 				       		console.log("got data!");
 				       		console.dir(json);
 				       		downloadDetailList.push(json);
-				       		if (num < downloadList().length-1) {
+				       		if (num < downloadList().length) {
 				       			self.downloadDetailData(num+1);
+				       			return;
 				       		};
 				       		console.log(downloadDetailList());
 							return;
@@ -312,7 +314,7 @@ $(document).ready(function() {
 					})
 		};
 
-		self.downloadPageData = function(pageIndex,isDone) {
+		self.downloadPageData = function(num) {
 			$.ajax({
 					  type: "POST",
 					  url: "/api/post/getactivityattentuser",
@@ -320,30 +322,29 @@ $(document).ready(function() {
 					  data:{
 					  	"token": self.token,
 					  	"activityid":self.id(),
-					  	"page": pageIndex
+					  	"page": num
 					  },
 					})
 			.done(function(json) {
 						var data = json.result
 				       if (data.length==0) {
-				       		console.dir("no more download data");
+				       		console.log("no more download data");
 				       		console.dir(data);
 				       		return;
 				       } 
 				       else{
-				       		console.dir("got download data!");				       		
+				       		console.log("got download data!");				       		
 				       		console.dir(data);
 				       		data.forEach(function(obj) {
 				       			downloadList.push(obj);				       			
 				       		});
+				       		if (num < self.pages) {
+				       			downloadPageData(num+1);
+				       		};
 							console.log("AFTER downloadList()===");
 							console.log(downloadList());
-							if (isDone == true) {
-								 self.downloadDetailList();
-								 return;
-							} else{
-							 	return ;
-							};
+							self.downloadDetailList();
+							return;
 				       };
 					})
 			.fail(function(e) {
@@ -356,7 +357,8 @@ $(document).ready(function() {
 				
 				return;
 			})
-		};
+		};		
+
 
 		self.showModal = function(data) {
 			self.clickedItem(data);

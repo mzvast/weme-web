@@ -92,13 +92,18 @@
 					</table>
 					<div class="panel-footer">
 						<div class="row">
-							<div class="col-md-3 col-md-offset-9" data-bind="visible:list().length!==0">
+							<div class="col-md-3 col-md-offset-3">
+								<span data-bind="text:currentDownloadNum(),visible:showDownload"></span>
+								<span data-bind="visible:showDownload">/</span>
+								<span data-bind="text:itemSize(),visible:showDownload"></span>
+							</div>
+							<div class="col-md-3 col-md-offset-3" data-bind="visible:list().length!==0">
 								
 							<button data-bind="click:download,visible:showExport" type="button" class="btn btn-primary btn-block" ><span class="glyphicon glyphicon-download-alt"></span>
 										  导出
 										</button>
-							<button data-bind="click:saveAs,visible:showDownload" type="button" class="btn btn-primary btn-block" ><span class="fa fa-spinner fa-spin"></span>
-							  下载
+							<button data-bind="visible:showDownload" type="button" class="btn btn-primary btn-block" ><span class="fa fa-spinner fa-spin"></span>
+							  下载中
 							</button>
 							</div>
 							
