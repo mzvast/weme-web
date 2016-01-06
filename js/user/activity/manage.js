@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	var downloadList = ko.observableArray();
+	var downloadDetailList = ko.observableArray();
 	var ActivityLite = function(data) {//不是完整的信息
 		var self = this;
 		self.id=ko.observable(data.id);
@@ -225,35 +226,93 @@ $(document).ready(function() {
 
 		self.saveAs = function() {
 			var ep=new ExcelPlus();
-			ep.createFile("Sheet1")
+			ep.createFile(["名单","详细信息"])
+			.selectSheet("名单")
 			  .write({"content":[["id","姓名","性别","学校"]]});
 			for (var i = 0; i < downloadList().length; i++) {
 				var data = downloadList()[i]
-				ep.write({  "cell":"A"+(i+2),"content":data['id'] })
-				  .write({  "cell":"B"+(i+2),"content":data['name'] })
-				  .write({  "cell":"C"+(i+2),"content":data['gender'] })
-				  .write({  "cell":"D"+(i+2),"content":data['school'] });
+				ep.write({  "cell":"A"+(i+2),"content":data['id']?data['id']:" " })
+				  .write({  "cell":"B"+(i+2),"content":data['name']?data['name']:" " })
+				  .write({  "cell":"C"+(i+2),"content":data['gender']?data['gender']:" " })
+				  .write({  "cell":"D"+(i+2),"content":data['school']?data['school']:" " });
+			};			  
+			console.log(downloadDetailList());
+			ep.selectSheet("详细信息")
+			  .write({"content":[["id","姓名","性别","电话","QQ","生日","家乡","学校","入学时间","学院","学历"]]});
+			for (var i = 0; i < downloadDetailList().length; i++) {
+				console.log("i=="+i);
+				var data = downloadDetailList()[i];
+				ep.write({  "cell":"A"+(i+2),"content":data['id']?data['id']:" " })
+				  .write({  "cell":"B"+(i+2),"content":data['name']?data['name']:" " })
+				  .write({  "cell":"C"+(i+2),"content":data['gender']?data['gender']:" " })
+				  .write({  "cell":"D"+(i+2),"content":data['phone']?data['phone']:" " })
+				  .write({  "cell":"E"+(i+2),"content":data['qq']?data['qq']:" " })
+				  .write({  "cell":"F"+(i+2),"content":data['birthday']?data['birthday']:" " })
+				  .write({  "cell":"G"+(i+2),"content":data['hometown']?data['hometown']:" " })
+				  .write({  "cell":"H"+(i+2),"content":data['school']?data['school']:" " })
+				  .write({  "cell":"I"+(i+2),"content":data['enrollment']?data['enrollment']:" " })
+				  .write({  "cell":"J"+(i+2),"content":data['department']?data['department']:" " })
+				  .write({  "cell":"K"+(i+2),"content":data['degree']?data['degree']:" " });
 			};			  
 			  ep.saveAs("活动_"+self.id()+"_报名表"+".xlsx");
 			  self.showDownload(false);
 		};		
 
+		self.downloadDetailList = function() {
+			console.log("正在下载详细信息辣");
+			downloadDetailList.removeAll();
+			console.log("BEFORE downloadDetailList()==="+downloadDetailList());
+			self.downloadDetailData(0);
+
+		};
 		self.download = function() {
 			console.log("开始下载辣");
 			downloadList.removeAll();
 			console.log("BEFORE downloadList()==="+downloadList());
 			for (var i = 1; i <= self.pages(); i++) {
-				var toSave;
 				if (i==self.pages()) {
-					toSave = true;
+					self.downloadPageData(i,true);
 				} else{
-					toSave = false;
+					self.downloadPageData(i,false);
 				};
-				self.downloadPageData(i,toSave);
 			};
 			self.showDownload(true);
 		};
-		self.downloadPageData = function(pageIndex,toSave) {
+		self.downloadDetailData = function(num) {
+			console.log("num==="+num);
+			$.ajax({
+					  type: "POST",
+					  url: "/api/post/getprofilebyid",
+					  dataType: "json",
+					  data:{
+					  	"token": self.token,
+					  	"id":downloadList()[num]["id"],
+					  },
+					})
+			.done(function(json) {
+				       if (json["state"]!=="successful") {
+				       		console.log("no data");
+				       		return;
+				       } 
+				       else{
+				       		console.log("got data!");
+				       		console.dir(json);
+				       		downloadDetailList.push(json);
+				       		if (num < downloadList().length-1) {
+				       			self.downloadDetailData(num+1);
+				       		};
+				       		console.log(downloadDetailList());
+							return;
+				       };
+					})
+			.fail(function(e) {
+					       console.log(e);
+	                		return;
+
+					})
+		};
+
+		self.downloadPageData = function(pageIndex,isDone) {
 			$.ajax({
 					  type: "POST",
 					  url: "/api/post/getactivityattentuser",
@@ -279,8 +338,9 @@ $(document).ready(function() {
 				       		});
 							console.log("AFTER downloadList()===");
 							console.log(downloadList());
-							if (toSave == true) {
-								return self.saveAs();
+							if (isDone == true) {
+								 self.downloadDetailList();
+								 return;
 							} else{
 							 	return ;
 							};
@@ -435,7 +495,6 @@ $(document).ready(function() {
 					})
 			.done(function(json) {
 				       if (json["state"]!=="successful") {
-				       		console.dir("no data");
 				       		// self.writeList(data);
 				       		console.dir(json);
 				       		return;
