@@ -49,7 +49,8 @@ var BROWSER_SYNC_RELOAD_DELAY = 500;
 	gulp.task('dist',
 		['img-min-dist',
 		'copy-bower-dist',
-		'copy-js-dist']
+		'copy-js-dist',
+		'styles']
 	);
 	
 

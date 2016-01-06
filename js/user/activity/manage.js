@@ -1,4 +1,5 @@
 $(document).ready(function() {
+	var downloadList = ko.observableArray();
 	var ActivityLite = function(data) {//不是完整的信息
 		var self = this;
 		self.id=ko.observable(data.id);
@@ -47,7 +48,7 @@ $(document).ready(function() {
 				return "";
 			}else
 			{
-				return self.phone().slice(0,3)+"****"+self.phone().slice(6,-1);
+				return self.phone().slice(0,3)+"****"+self.phone().slice(7,11);
 			}
 		});
 		self.imgUrl = ko.computed(function() {
@@ -58,6 +59,7 @@ $(document).ready(function() {
 	//我发布的活动列表
 	var ViewModel1 = function() {
 		var self = this;
+		self.showRefresh = ko.observable(true);
 		self.itemSize = ko.observable(0);
 		self.list = ko.observableArray();
 		self.currentPageIndex = ko.observable(1);
@@ -111,6 +113,7 @@ $(document).ready(function() {
 				       } 
 				       else{
 				       		console.dir("got data!");
+				       		self.showRefresh(false);
 				       		self.writeActivityList(data);
 				       		self.selectedItem(self.list()[0]);
 				       		self.itemSize(self.itemSize()||json.pages*10);//set itemSize
@@ -187,6 +190,8 @@ $(document).ready(function() {
 	//报名用户列表
 	var ViewModel3 = function() {
 		var self = this;
+		self.showRefresh = ko.observable(true);
+		self.pages = ko.observable(1);
 		self.itemSize = ko.observable(0);
 		// Publish SignupList itemSize to ViewModel4
 		self.itemSize.subscribe(function(value) {
@@ -212,6 +217,100 @@ $(document).ready(function() {
 			self.currentPageIndex(value);
 			self.fetchList(self.id());
 		},self,"Publish_SignupListPageNum");
+
+		self.saveAs = function() {
+			// in this example we want to build an Excel file with one sheet and write some stuff
+			var ep=new ExcelPlus();
+			// We're going to do several tasks in one line of code:
+			// 1) create an Excel with one sheet called "Sheet1"
+			// 2) write some data from an array to the new-created sheet
+			// 3) create a new sheet called "Sheet2"
+			// 4) write "A1" in cell "A1" of the new-created sheet
+			// 5) write the today date in D1 of the "Sheet1" sheet
+			// 6) save it on the user computer (this last step only works with IE10+ and modern browsers)
+			ep.createFile("Sheet1")
+			.write({"content":[["id","姓名","性别","学校"]]});
+			for (var i = 0; i < downloadList().length; i++) {
+				var data = downloadList()[i]
+				ep.write({  "cell":"A"+(i+2),"content":data['id'] });
+				ep.write({  "cell":"B"+(i+2),"content":data['name'] });
+				ep.write({  "cell":"C"+(i+2),"content":data['gender'] });
+				ep.write({  "cell":"D"+(i+2),"content":data['school'] });
+			};			  
+			  ep.saveAs("test.xlsx");
+		};		
+
+		// self.saveAs = function() {
+		// 	/* bookType can be 'xlsx' or 'xlsm' or 'xlsb' */
+		// 	var Workbook = function() {
+		// 			if(!(this instanceof Workbook)) return new Workbook();
+		// 			this.SheetNames = [];
+		// 			this.Sheets = downloadList();
+		// 		};
+		// 	var workbook = new Workbook();	
+		// 	var wopts = { bookType:'xlsx', bookSST:false, type:'binary' };
+
+		// 	var wbout = XLSX.write(workbook,wopts);
+
+		// 	var s2ab = function(s) {
+		// 	  var buf = new ArrayBuffer(s.length);
+		// 	  var view = new Uint8Array(buf);
+		// 	  for (var i=0; i!=s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+		// 	  return buf;
+		// 	};
+
+		// 	/* the saveAs call downloads a file on the local machine */
+		// 	saveAs(new Blob([s2ab(wbout)],{type:""}), "活动名单_id"+self.id()+".xlsx");
+		// };
+
+		self.download = function() {
+			console.log("开始下载辣");
+			downloadList.removeAll();
+			console.log("BEFORE downloadList()==="+downloadList());
+			for (var i = 1; i <= self.pages(); i++) {
+				self.downloadPageData(i);
+			};
+		};
+		self.downloadPageData = function(pageIndex) {
+			$.ajax({
+					  type: "POST",
+					  url: "/api/post/getactivityattentuser",
+					  dataType: "json",
+					  data:{
+					  	"token": self.token,
+					  	"activityid":self.id(),
+					  	"page": pageIndex
+					  },
+					})
+			.done(function(json) {
+						var data = json.result
+				       if (data.length==0) {
+				       		console.dir("no more download data");
+				       		console.dir(data);
+				       		return;
+				       } 
+				       else{
+				       		console.dir("got download data!");				       		
+				       		console.dir(data);
+				       		data.forEach(function(obj) {
+				       			downloadList.push(obj);				       			
+				       		});
+							console.log("AFTER downloadList()===");
+							console.log(downloadList());
+							return ;
+				       };
+					})
+			.fail(function(e) {
+					  	self.showRefresh(true);
+					       console.log(e);
+	                		return;
+
+					})
+			.always(function() {
+				
+				return;
+			})
+		};
 
 		self.showModal = function(data) {
 			self.clickedItem(data);
@@ -247,9 +346,13 @@ $(document).ready(function() {
 				       } 
 				       else{
 				       		console.dir("got data!");
+				       		self.showRefresh(false);
 				       		self.writeList(data);
 				       		console.dir(data);
+				       		self.pages(json.pages);
+				       		console.dir("pages==="+self.pages());
 				       		self.itemSize(self.itemSize()||json.pages*10);//set itemSize
+				       		console.dir("self.itemSize()==="+self.itemSize());
 							return;
 				       };
 					})
@@ -355,7 +458,6 @@ $(document).ready(function() {
 				       };
 					})
 			.fail(function(e) {
-					  	self.showRefresh(true);
 					       console.log(e);
 	                		return;
 
