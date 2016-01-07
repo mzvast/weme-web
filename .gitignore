@@ -1,5 +1,5 @@
-node_modules
-bower_components
+dist
+src/node_modules
+src/bower_components
 .idea
-public
-img_min
+src/public/img_min

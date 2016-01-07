@@ -1,4 +1,5 @@
-To run the app open your terminal and type:
-   
-    $ nodemon wein.js
+deployment as:
+cd src
+gulp clean-dist
+gulp dist
 

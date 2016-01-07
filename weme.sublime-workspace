@@ -4,16 +4,236 @@
 		"selected_items":
 		[
 			[
-				"css",
-				"css_bt	(main_bt.handlebars)"
+				"paka",
+				"package.json"
 			],
 			[
-				"ac",
-				"activity"
+				"node",
+				"node_modules"
+			],
+			[
+				"dest",
+				"dest('public"
+			],
+			[
+				"bower",
+				"bower_components	(gulpfile.js)"
+			],
+			[
+				"bow",
+				"bower_components	(gulpfile.js)"
+			],
+			[
+				"pub",
+				"public	(gulpfile.js)"
+			],
+			[
+				"cur",
+				"currentDownloadNum"
+			],
+			[
+				"sel",
+				"self"
+			],
+			[
+				"item",
+				"itemSize	(manage.js)"
+			],
+			[
+				"downl",
+				"downloadPageData"
+			],
+			[
+				"dow",
+				"downloadDetailList"
+			],
+			[
+				"len",
+				"length"
 			],
 			[
 				"if",
-				"ife	if … else"
+				"if	if"
+			],
+			[
+				"do",
+				"downloadDetailDataById"
+			],
+			[
+				"down",
+				"downloadDetailList"
+			],
+			[
+				"le",
+				"length"
+			],
+			[
+				"sh",
+				"showDownload"
+			],
+			[
+				"show",
+				"showDownload"
+			],
+			[
+				"v",
+				"vendor"
+			],
+			[
+				"ko",
+				"ko.o	knockoutjs observable"
+			],
+			[
+				"page",
+				"pages"
+			],
+			[
+				"remo",
+				"removeAll"
+			],
+			[
+				"hi",
+				"height: 〔property〕"
+			],
+			[
+				"wi",
+				"width	(head.handlebars)"
+			],
+			[
+				"curr",
+				"currentPage	(publish.js)"
+			],
+			[
+				"css",
+				"css:{'pass':$data"
+			],
+			[
+				"currentPa",
+				"currentPageIndex"
+			],
+			[
+				"Vi",
+				"ViewModel3"
+			],
+			[
+				"Pu",
+				"Publish"
+			],
+			[
+				"fe",
+				"fetchCurrentActivityList"
+			],
+			[
+				"wit",
+				"with:ViewModel2	(manage.handlebars)"
+			],
+			[
+				"su",
+				"subscribable	(manage.js)"
+			],
+			[
+				"with",
+				"with:ViewModel1	(manage.handlebars)"
+			],
+			[
+				"ge",
+				"gender	(manage.js)"
+			],
+			[
+				"cl",
+				"clickedItem"
+			],
+			[
+				"V",
+				"ViewModel5"
+			],
+			[
+				"cu",
+				"currentId"
+			],
+			[
+				"sele",
+				"selectedItem"
+			],
+			[
+				"succ",
+				"successful	(weme.js)"
+			],
+			[
+				"Vie",
+				"ViewModel2"
+			],
+			[
+				"View",
+				"ViewModel3"
+			],
+			[
+				"fo",
+				"foreach:list"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"selec",
+				"selectedActivity"
+			],
+			[
+				"sub",
+				"subscribe"
+			],
+			[
+				"it",
+				"itemSizeOfActivityList"
+			],
+			[
+				"not",
+				"notifySubscribers"
+			],
+			[
+				"val",
+				"value"
+			],
+			[
+				"view",
+				"viewModel2"
+			],
+			[
+				"max",
+				"max-height: 〔property〕"
+			],
+			[
+				"activitPage",
+				"activityPageNumbers"
+			],
+			[
+				"activitP",
+				"activityPageGrid"
+			],
+			[
+				"Ac",
+				"ActivityPageGrid"
+			],
+			[
+				"activityLis",
+				"activityListLastPage"
+			],
+			[
+				"ac",
+				"activityList"
+			],
+			[
+				"bs3-ta",
+				"bs3-table	bs3-table"
+			],
+			[
+				"magi",
+				"margin-top: 〔property〕"
+			],
+			[
+				"sty",
+				"style=〔attribute〕"
 			],
 			[
 				"w",
@@ -24,28 +244,12 @@
 				"margin-bottom: 〔property〕"
 			],
 			[
-				"ko",
-				"ko.o	knockoutjs observable"
-			],
-			[
 				"has",
 				"hasPrevious"
 			],
 			[
-				"fe",
-				"fetchCurrentActivityList"
-			],
-			[
-				"for",
-				"foreach:activityList"
-			],
-			[
 				"fet",
 				"fetchCurrentActivityList	(publish.js)"
-			],
-			[
-				"sh",
-				"showRefresh"
 			],
 			[
 				"c",
@@ -54,10 +258,6 @@
 			[
 				"ye",
 				"yellowgreen"
-			],
-			[
-				"curr",
-				"currentActivity	(app.js)"
 			],
 			[
 				"co",
@@ -72,14 +272,6 @@
 				"lastPage"
 			],
 			[
-				"sel",
-				"self"
-			],
-			[
-				"cu",
-				"setCurrentActivity〔function〕"
-			],
-			[
 				"mar",
 				"margin-bottom: 〔property〕"
 			],
@@ -88,16 +280,8 @@
 				"margin-top: 〔property〕"
 			],
 			[
-				"wi",
-				"width:1em"
-			],
-			[
 				"p",
 				"p	Tag"
-			],
-			[
-				"max",
-				"max-width: 〔property〕"
 			],
 			[
 				"res",
@@ -228,20 +412,12 @@
 				"bs3-row	bs3-row"
 			],
 			[
-				"v",
-				"vendor	(css_bt.handlebars)"
-			],
-			[
 				"sec",
 				"section"
 			],
 			[
 				"d",
 				"dist"
-			],
-			[
-				"bower",
-				"bower_components"
 			],
 			[
 				"boo",
@@ -338,176 +514,16 @@
 			[
 				"class",
 				"class=\"btn"
-			],
-			[
-				"get",
-				"getCount"
-			],
-			[
-				"imp",
-				"importCats〔function〕"
-			],
-			[
-				"cou",
-				"count	(Cat.js)"
-			],
-			[
-				"getN",
-				"getNumber	(CatBook.js)"
-			],
-			[
-				"ini",
-				"init	(Cat.js)"
-			],
-			[
-				"set",
-				"setName	(Cat.js)"
-			],
-			[
-				"myCounter",
-				"myCounterBook"
-			],
-			[
-				"my",
-				"myCounter	(CounterBookSpec.js)"
-			],
-			[
-				"Cou",
-				"CounterBook〔function〕"
-			],
-			[
-				"unde",
-				"undefined"
-			],
-			[
-				"Coun",
-				"Counter	(index.html)"
-			],
-			[
-				"Counter",
-				"CounterBook"
-			],
-			[
-				"m",
-				"my_jq.js"
-			],
-			[
-				"tb",
-				"tb	toBe"
-			],
-			[
-				"thsi",
-				"thisCounter"
-			],
-			[
-				"this",
-				"thisCounter"
-			],
-			[
-				"ind",
-				"index"
-			],
-			[
-				"Cat",
-				"CatBook	(CatBookSpec.js)"
-			],
-			[
-				"CatB",
-				"CatBookSpec.js"
-			],
-			[
-				"src",
-				"script	Tag"
-			],
-			[
-				"e",
-				"exp	expect"
-			],
-			[
-				"in",
-				"index"
-			],
-			[
-				"add",
-				"addressBook"
-			],
-			[
-				"contact",
-				"contact"
-			],
-			[
-				"Ad",
-				"AddressBook"
-			],
-			[
-				"Add",
-				"AddressBook	(AddressBookSpec.js)"
-			],
-			[
-				"con",
-				"contact"
-			],
-			[
-				"sp",
-				"spec/"
-			],
-			[
-				"k",
-				"key"
-			],
-			[
-				"child",
-				"children"
-			],
-			[
-				"chil",
-				"children"
-			],
-			[
-				"do",
-				"doSomething"
-			],
-			[
-				"chi",
-				"children"
-			],
-			[
-				"name",
-				"name〔variable〕"
-			],
-			[
-				"coten",
-				"content"
-			],
-			[
-				"Bu",
-				"BuckysComponent"
-			],
-			[
-				"com",
-				"comment	(example.js)"
-			],
-			[
-				"Re",
-				"React"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "weme.js",
+			"file": "src/gulpfile.js",
 			"settings":
 			{
-				"buffer_size": 10306,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "views/user/activity/manage.handlebars",
-			"settings":
-			{
-				"buffer_size": 537,
+				"buffer_size": 6975,
 				"line_ending": "Windows"
 			}
 		}
@@ -519,8 +535,8 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 150.0,
-		"last_filter": "git push",
+		"height": 392.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -528,7 +544,7 @@
 				"Git: Push"
 			],
 			[
-				"git co",
+				"git com",
 				"Git: Commit"
 			],
 			[
@@ -536,20 +552,52 @@
 				"Git: Add All"
 			],
 			[
-				"git ad",
-				"Git: Add All"
+				"git diff",
+				"Git: Diff All Files"
 			],
 			[
-				"git c",
-				"Git: Commit"
-			],
-			[
-				"git com",
+				"git co",
 				"Git: Commit"
 			],
 			[
 				"git stat",
 				"Git: Status"
+			],
+			[
+				"git dif",
+				"Git: Diff Staged Files"
+			],
+			[
+				"git ad",
+				"Git: Add All"
+			],
+			[
+				"git pull",
+				"Git: Pull"
+			],
+			[
+				"git push ta",
+				"Git: Push Tags"
+			],
+			[
+				"git show",
+				"Git: Show Tags"
+			],
+			[
+				"git tag",
+				"Git: New Tag"
+			],
+			[
+				"git add ",
+				"Git: Add All"
+			],
+			[
+				"REPL No",
+				"SublimeREPL: Node"
+			],
+			[
+				"git c",
+				"Git: Commit"
 			],
 			[
 				"docbl",
@@ -566,10 +614,6 @@
 			[
 				"repl no",
 				"SublimeREPL: Node"
-			],
-			[
-				"git diff",
-				"Git: Diff Current File"
 			],
 			[
 				"git re",
@@ -626,10 +670,6 @@
 			[
 				"coment",
 				"DocBlockr: Decorate line comment"
-			],
-			[
-				"git pull",
-				"Git: Pull"
 			],
 			[
 				"linter",
@@ -702,59 +742,75 @@
 	"expanded_folders":
 	[
 		"/D/WorkSpaces/weme",
-		"/D/WorkSpaces/weme/js/user",
-		"/D/WorkSpaces/weme/js/user/activity",
-		"/D/WorkSpaces/weme/public/dist",
-		"/D/WorkSpaces/weme/public/dist/js",
-		"/D/WorkSpaces/weme/public/dist/js/user",
-		"/D/WorkSpaces/weme/sass",
-		"/D/WorkSpaces/weme/sass/admin",
-		"/D/WorkSpaces/weme/views",
-		"/D/WorkSpaces/weme/views/admin",
-		"/D/WorkSpaces/weme/views/auth",
-		"/D/WorkSpaces/weme/views/layouts",
-		"/D/WorkSpaces/weme/views/partials",
-		"/D/WorkSpaces/weme/views/partials/admin",
-		"/D/WorkSpaces/weme/views/user",
-		"/D/WorkSpaces/weme/views/user/activity"
+		"/D/WorkSpaces/weme/dist/js/auth",
+		"/D/WorkSpaces/weme/dist/js/util",
+		"/D/WorkSpaces/weme/dist/public",
+		"/D/WorkSpaces/weme/src",
+		"/D/WorkSpaces/weme/src/views/partials/admin",
+		"/D/WorkSpaces/weme/src/views/user/activity"
 	],
 	"file_history":
 	[
-		"/D/WorkSpaces/weme/views/admin/eventRegister.handlebars",
-		"/D/WorkSpaces/weme/js/admin/eventRegister.js",
-		"/D/WorkSpaces/weme/js/user/activity/manage.js",
-		"/D/WorkSpaces/weme/views/layouts/main_pure.handlebars",
-		"/D/WorkSpaces/weme/views/partials/user/navbar.handlebars",
-		"/D/WorkSpaces/weme/views/layouts/main_bt.handlebars",
-		"/D/WorkSpaces/weme/views/user/home.handlebars",
-		"/D/WorkSpaces/weme/views/user/community.handlebars",
-		"/D/WorkSpaces/weme/views/partials/css_bt_navbar.handlebars",
-		"/D/WorkSpaces/weme/views/admin/dashboard.handlebars",
-		"/D/WorkSpaces/weme/views/admin/publish.handlebars",
+		"/D/WorkSpaces/weme/dist/weme.js",
+		"/D/WorkSpaces/weme/README.md",
+		"/D/WorkSpaces/weme/.gitignore",
+		"/D/WorkSpaces/weme/dist/js/admin/app.js",
+		"/D/WorkSpaces/weme/src/gulpfile.js",
+		"/D/WorkSpaces/weme/src/views/auth/login.handlebars",
+		"/D/WorkSpaces/weme/src/views/partials/css_bt_navbar.handlebars",
+		"/D/WorkSpaces/weme/src/views/auth/register.handlebars",
+		"/D/WorkSpaces/weme/src/views/partials/head.handlebars",
+		"/D/WorkSpaces/weme/src/views/partials/admin/leftbar.handlebars",
+		"/D/WorkSpaces/weme/src/views/user/activity.handlebars",
+		"/D/WorkSpaces/weme/src/views/user/community.handlebars",
+		"/D/WorkSpaces/weme/src/views/user/home.handlebars",
+		"/D/WorkSpaces/weme/src/views/user/activity/manage.handlebars",
+		"/D/WorkSpaces/weme/src/views/admin/eventRegister.handlebars",
+		"/D/WorkSpaces/weme/src/views/admin/publish.handlebars",
+		"/D/WorkSpaces/weme/gulpfile.js",
 		"/D/WorkSpaces/weme/views/auth/login.handlebars",
-		"/D/WorkSpaces/weme/js/auth/login.js",
-		"/D/WorkSpaces/weme/views/user/activity.handlebars",
+		"/D/WorkSpaces/weme/views/admin/eventRegister.handlebars",
+		"/D/WorkSpaces/weme/views/admin/publish.handlebars",
+		"/D/WorkSpaces/weme/weme.js",
+		"/D/WorkSpaces/weme/views/landing_mix.handlebars",
+		"/D/WorkSpaces/weme/views/landing.handlebars",
+		"/D/WorkSpaces/weme/views/admin/dashboard.handlebars",
 		"/D/WorkSpaces/weme/views/auth/register.handlebars",
+		"/D/WorkSpaces/weme/views/partials/landing_head.handlebars",
+		"/D/WorkSpaces/weme/views/user/activity/manage.handlebars",
+		"/D/WorkSpaces/weme/views/partials/swiper_mix.handlebars",
+		"/D/WorkSpaces/weme/views/partials/head.handlebars",
+		"/D/WorkSpaces/weme/views/partials/js_bt.handlebars",
+		"/D/WorkSpaces/weme/views/partials/jquery.handlebars",
+		"/D/WorkSpaces/weme/views/partials/css_bt_navbar.handlebars",
+		"/D/WorkSpaces/weme/views/partials/css_bt.handlebars",
+		"/D/WorkSpaces/weme/views/partials/css_pure.handlebars",
+		"/D/WorkSpaces/weme/views/partials/swiper_content.handlebars",
+		"/D/WorkSpaces/weme/js/user/activity/manage.js",
+		"/D/WorkSpaces/weme/js/util/md5.js",
+		"/D/WorkSpaces/weme/bower.json",
+		"/D/WorkSpaces/weme/views/partials/user/navbar.handlebars",
+		"/D/WorkSpaces/weme/js/auth/register.js",
+		"/D/WorkSpaces/weme/js/auth/login.js",
+		"/D/WorkSpaces/weme/views/user/home.handlebars",
+		"/D/WorkSpaces/weme/views/user/activity.handlebars",
+		"/D/WorkSpaces/weme/views/user/community.handlebars",
+		"/D/WorkSpaces/weme/js/admin/publish.js",
+		"/D/WorkSpaces/weme/sass/navbar-fixed-top.scss",
+		"/D/WorkSpaces/weme/js/admin/eventRegister.js",
+		"/D/WorkSpaces/weme/views/layouts/main_pure.handlebars",
+		"/D/WorkSpaces/weme/views/layouts/main_bt.handlebars",
 		"/D/WorkSpaces/weme/views/partials/admin/leftbar.handlebars",
 		"/D/WorkSpaces/weme/views/partials/navbar.handlebars",
-		"/D/WorkSpaces/weme/js/admin/publish.js",
 		"/D/WorkSpaces/weme/js/admin/app.js",
-		"/D/WorkSpaces/weme/weme.js",
 		"/D/WorkSpaces/weme/js/admin/ui.js",
 		"/D/WorkSpaces/weme/sass/admin/top-menu.scss",
 		"/D/WorkSpaces/weme/sass/admin/side-menu.scss",
 		"/D/WorkSpaces/weme/views/partials/admin/topbar.handlebars",
-		"/D/WorkSpaces/weme/js/auth/register.js",
-		"/D/WorkSpaces/weme/gulpfile.js",
-		"/D/WorkSpaces/weme/.gitignore",
 		"/D/WorkSpaces/weme/public/js/admin/app.js",
 		"/D/WorkSpaces/weme/public/js/util/dom.js",
 		"/D/WorkSpaces/weme/public/dist/js/auth/md5.js",
-		"/D/WorkSpaces/weme/views/partials/css_bt.handlebars",
-		"/D/WorkSpaces/weme/views/partials/js_bt.handlebars",
-		"/D/WorkSpaces/weme/views/partials/css_pure.handlebars",
 		"/D/WorkSpaces/weme/router.md",
-		"/D/WorkSpaces/weme/views/partials/jquery.handlebars",
 		"/D/WorkSpaces/weme/public/js/auth/login.js",
 		"/D/WorkSpaces/weme/package.json",
 		"/D/WorkSpaces/weme/public/js/auth/md5.js",
@@ -769,9 +825,6 @@
 		"/D/WorkSpaces/weme/public/js/menu.js",
 		"/D/WorkSpaces/weme/views/layouts/main_purecss.handlebars",
 		"/D/WorkSpaces/weme/views/layouts/main_no_bt.handlebars",
-		"/D/WorkSpaces/weme/views/landing.handlebars",
-		"/D/WorkSpaces/weme/views/landing_mix.handlebars",
-		"/D/WorkSpaces/weme/bower.json",
 		"/D/WorkSpaces/weme/.bowerrc",
 		"/D/WorkSpaces/weme/views/admin.handlebars",
 		"/D/WorkSpaces/weme/wein.js",
@@ -786,9 +839,6 @@
 		"/C/Users/mzvast/AppData/Roaming/Sublime Text 3/Packages/User/ColorPicker.sublime-settings",
 		"/C/Users/mzvast/AppData/Roaming/Sublime Text 3/Packages/ColorPicker/ColorPicker.sublime-settings",
 		"/C/Users/mzvast/AppData/Roaming/Sublime Text 3/Packages/Terminal/Default (Windows).sublime-keymap",
-		"/D/WorkSpaces/weme/views/partials/swiper_mix.handlebars",
-		"/D/WorkSpaces/weme/views/partials/swiper_content.handlebars",
-		"/D/WorkSpaces/weme/views/partials/landing_head.handlebars",
 		"/D/WorkSpaces/weme/node_modules/jquery/src/event.js",
 		"/D/WorkSpaces/weme/public/js/admin.js",
 		"/D/WorkSpaces/weme/views/partials/swiper.handlebars",
@@ -828,26 +878,7 @@
 		"/D/WorkSpaces/todomvc/examples/knockoutjs/js/app.js",
 		"/D/WorkSpaces/todomvc/examples/knockoutjs/index.html",
 		"/D/WorkSpaces/todomvc/examples/react/js/app.jsx",
-		"/D/WorkSpaces/todomvc/examples/react/index.html",
-		"/D/WorkSpaces/todomvc/examples/react/js/todoModel.js",
-		"/D/WorkSpaces/todomvc/examples/react/js/todoItem.jsx",
-		"/D/WorkSpaces/todomvc/examples/react/js/utils.js",
-		"/D/WorkSpaces/todomvc/examples/react/node_modules/director/build/director.js",
-		"/D/WorkSpaces/todomvc/examples/react/node_modules/classnames/index.js",
-		"/D/WorkSpaces/todomvc/examples/react/js/footer.jsx",
-		"/D/WorkSpaces/ud989-todo-app/js/views/todo-view.js",
-		"/D/WorkSpaces/ud989-todo-app/index.html",
-		"/D/WorkSpaces/ud989-todo-app/js/models/todo.js",
-		"/D/WorkSpaces/ud989-todo-app/js/collections/todos.js",
-		"/D/WorkSpaces/ud989-todo-app/js/app.js",
-		"/D/WorkSpaces/ud989-todo-app/js/routers/router.js",
-		"/D/WorkSpaces/ud989-todo-app/js/views/app-view.js",
-		"/D/WorkSpaces/ud989-todo-app/bower.json",
-		"/D/WorkSpaces/ud989-cat-clicker-ko-starter/js/app.js",
-		"/D/WorkSpaces/ud989-cat-clicker-ko-starter/index.html",
-		"/D/WorkSpaces/ud989-cat-clicker-ko-starter/.git/COMMIT_EDITMSG.COMMIT_EDITMSG",
-		"/C/Users/mzvast/AppData/Roaming/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
-		"/D/WorkSpaces/frontend-nanodegree-resume/index.html"
+		"/D/WorkSpaces/todomvc/examples/react/index.html"
 	],
 	"find":
 	{
@@ -866,134 +897,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"lay",
-			"admin",
-			"h2",
-			"refresh",
-			"fresh",
-			"fetchCurrentActivityList",
-			"detec",
-			"Things",
-			"active",
-			"detectLastPage",
-			"updateActivityList",
-			"refresh",
-			"updateActivity",
-			"tmpActivities",
-			"15",
-			"fetchCurrentPage",
-			"getActivity",
-			"initialActivities",
-			"getActivity",
-			"span",
-			"没有上传图片",
-			"school",
-			"title",
-			"currentActivity",
-			"id",
-			"BODY",
-			"</div>",
-			"flash",
-			"json_data[\"reason\"]",
-			"public/img_min/",
-			"public/img'",
-			"public/img",
-			"public/img/",
-			"/js/",
-			"public/js/",
-			"public/js",
-			"public/sass",
-			"sass",
-			"req.cookies.isVisited",
-			"活动发布",
-			"font",
-			"data",
-			"\"",
-			"userlist",
-			"this",
-			".",
-			"=",
-			";",
-			"=;",
-			",",
-			"dist",
-			"app.use('/",
-			"301",
-			"router",
-			"auth",
-			"user",
-			"auth",
-			"router",
-			"res",
-			"req",
-			"json",
-			"console.log",
-			"resp",
-			"reqs",
-			"top",
-			"router",
-			":",
-			",",
-			"\"",
-			"Cat",
-			"catList",
-			"Cat",
+			"styles-dist",
+			"copy-ico-to-dist",
+			"../dist/public/img",
+			"styles-dist",
+			"img_min/src",
+			"img-min-dist",
+			"vendor",
+			"/dist",
+			"/dist/vendor/",
+			"js/",
+			"css/",
+			"js/",
+			"css/",
+			"src/public",
+			"src/",
+			"weme.js",
+			"\"/dist/",
+			"dist/vendor",
+			"\"/dist/",
+			"dist/vendor",
+			"/dist/",
+			"/dist/vendor",
+			"/dist/",
 			"content",
-			"margin",
-			"50",
-			"width",
-			"color",
-			"backg",
-			"active",
-			"-u",
-			"u",
-			"class",
-			"if",
-			"/",
-			"wein",
-			"vex-js",
-			"copy-vendor-dist",
-			"copy-bower-dist",
-			"wein",
-			"\\",
-			"babel",
-			" ",
-			"ctrl+shift+b",
-			"\\",
-			"/",
-			"\\",
-			"copy-img",
-			"copy-img-to-min",
-			"'copy-img'",
-			"img-min-loss-png",
-			"img-min-lossless-jpg",
-			"copy-img-to-min",
-			"img/",
-			"img_raw",
-			"public/img_min",
-			"img_min",
-			"img-resize-ico",
-			"img-copy-ico",
-			"img-min-lossless-jpg",
-			"/img/",
-			"img-min-loss-png",
-			"img-min-lossless-jpg",
-			"min",
-			"img_resize/build",
-			"img_resize/src",
-			"img-resize-800",
-			"Imagemin",
-			"img-min-lossless-jpg",
-			"img-copy-ico",
-			"lossless",
-			"img-min-png",
-			"img-min-jpg",
-			"img-min",
-			"img-cp-ico",
-			"copy-img_min-to-dist",
-			"logo.png",
-			"logo.png\n		.pipe(gulp.dest('public/dist/vendor/swiper'));",
-			"gulp.src('node_modules/swiper/dist/**/*.*')\n		.pipe(gulp.dest('public/dist/vendor/swiper'));"
+			"None",
+			"log",
+			"var",
+			"content",
+			"var",
+			"content",
+			"var",
+			"\"\"",
+			"downloadDetailDataById",
+			"downloadPageData",
+			"toSave",
+			"download",
+			"showRefresh",
+			"getactivityattentuser",
+			"点我刷新",
+			"showRefresh",
+			"wbout",
+			"showRe",
+			"btn",
+			"showRefresh",
+			"forea",
+			"downloadList",
+			"self.counter",
+			"remove",
+			"span",
+			"45",
+			"text-ce",
+			"this",
+			"col-md-6",
+			"foreach",
+			"dist/",
+			"\"027706ea56487ce6af2ab2b0e65268fc\"",
+			"027706ea56487ce6af2ab2b0e65268fc",
+			"token",
+			"027706ea56487ce6af2ab2b0e65268fc",
+			"Publish_itemSizeOfActivityList",
+			"Publish_clickedItem",
+			"Publish_clickedSignupItem",
+			"button",
+			"self.currentPage(",
+			"self.currentPage",
+			"VM4",
+			"SignupList",
+			"Publish_SignupListPageNum",
+			"currentActivity",
+			"currentA",
+			"root",
+			"click",
+			"fetchCurrentActivityList ",
+			"self.id",
+			"changePageSize",
+			"Publish_itemSizeOfActivityList",
+			"itemSizeOfList",
+			"Publish_itemSizeOfSignupList",
+			"3",
+			"currentPageNum",
+			"lastPage",
+			"Publish_ActivityListPageNum",
+			"self.currentActivityListPageNum",
+			"self.activityList",
+			"self.List",
+			"self.activityList",
+			"activityList",
+			"self.activityList",
+			"activityList",
+			"selectedActivity",
+			"itemSizeOfActivityList",
+			"selectedActivity",
+			"length",
+			"writeList",
+			"data",
+			"signupList",
+			"currentSignupListPageNum",
+			"signupList",
+			"SignupList",
+			"viewModel",
+			"viewModel2",
+			"viewModel1",
+			"fetchSignupList",
+			"currentSignupListPageNum",
+			"shouter2",
+			"fetchPublishedActivity",
+			"currentActivityListPageNum",
+			"fetchPublishedActivity",
+			"currentActivityListPageNum",
+			"currentSignupListPage",
+			"currentActivity",
+			"currentActivity(",
+			"currentActivity",
+			"currentActivity ",
+			"currentActivity",
+			".currentActivity",
+			"currentActivity",
+			"currentAc",
+			"currentActivityPageNum",
+			"currentActivityPage",
+			"activityList",
+			"currentActivityPage",
+			"root",
+			"1",
+			"VM1",
+			"currentPublishedActivity",
+			"signupUserList",
+			"SignupUser"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1012,24 +1043,24 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "weme.js",
+					"file": "src/gulpfile.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10306,
+						"buffer_size": 6975,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								9478,
-								9478
+								2142,
+								2142
 							]
 						],
 						"settings":
@@ -1038,11 +1069,11 @@
 							"auto_complete": false,
 							"bh_regions":
 							[
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
@@ -1053,6 +1084,11 @@
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
 								"bh_double_quote",
 								"bh_double_quote_center",
 								"bh_double_quote_open",
@@ -1063,31 +1099,26 @@
 								"bh_unmatched_open",
 								"bh_unmatched_close",
 								"bh_unmatched_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
 								"bh_angle",
 								"bh_angle_center",
 								"bh_angle_open",
 								"bh_angle_close",
 								"bh_angle_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
 								"bh_regex",
 								"bh_regex_center",
 								"bh_regex_open",
 								"bh_regex_close",
 								"bh_regex_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
@@ -1099,97 +1130,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 5731.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "views/user/activity/manage.handlebars",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 537,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								401,
-								401
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"auto_complete": false,
-							"bh_regions":
-							[
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content"
-							],
-							"open_with_edit": true,
-							"syntax": "Packages/Handlebars/grammars/Handlebars.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1452.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1287,7 +1228,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 246.0,
+	"side_bar_width": 296.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

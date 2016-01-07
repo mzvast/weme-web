@@ -1,0 +1,213 @@
+{{# section 'head' }}	
+	<title>WeMe|Dashboard</title>
+<link rel="stylesheet" type="text/css" href="/css/admin/side-menu.css">
+<link rel="stylesheet" type="text/css" href="/css/admin/top-menu.css">
+{{> css_bt}}
+<style>
+    .pure-g > div {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .l-box {
+        padding: 1em;
+    }
+
+    .custom-restricted-width {
+    /* To limit the menu width to the content of the menu: */
+    display: inline-block;
+    }
+    .custom-restricted-width{
+        text-align:center;
+    }
+table{
+    /*border: 1px solid black;*/
+    table-layout: fixed;
+    width: auto;
+}
+
+th, td {
+    /*border: 1px solid black;*/
+    overflow: hidden;
+    width: auto;
+}
+.button-success {
+            background: rgb(28, 184, 65); /* this is a green */
+        }
+.button-error {
+    background: rgb(202, 60, 60); /* this is a maroon */
+}
+.selected
+{
+    background-color:#97DDEB;
+}
+.pass
+{
+    color:green;
+}
+</style>
+{{/ section}}
+
+{{> admin/topbar}}
+<div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
+{{> admin/leftbar publish=true}}
+
+    <div id="main">
+		<div class="container" style="margin: 30px auto">
+		    <div class="row" style="margin-top: 30px">
+			    <div class="col-md-4" >
+				<div class="panel panel-default" style="margin-bottom: 0px">
+				<div class="panel-heading text-center"><b>活动列表</b></div>
+					<table class="table" data-bind="with:ViewModel1">
+						    <thead>
+						        <tr>
+						            <td style="width:1em">标题</td>
+						            <td style="width:1em">时间</td>
+						            <td style="width:1em">作者</td>
+						            <td style="width:1em">状态</td>
+						        </tr>
+						    </thead>
+						    <tbody data-bind="foreach:activityList">
+						        <tr  data-bind="click:$parent.setCurrentActivity,css: {'selected':$parent.currentActivity()==$data}">
+						            <td data-bind="text:title"></td>
+						            <td data-bind="text:time"></td>
+						            <td data-bind="text:author"></td>
+						            <td  data-bind="text:state,css:{'pass':$data.state()=="通过"}"></td>
+						        </tr>
+						    </tbody>
+					</table>
+				</div>
+				<nav class="text-center" data-bind="with:ViewModel2">
+				  <ul class="pagination pagination-sm">
+				    <li data-bind="visible:hasPrecious()">
+				      <a href="#" aria-label="Previous" >
+				        <span aria-hidden="true" data-bind="click:previousPage">上一页</span>
+				      </a>
+				    </li>
+				  </ul>
+				  <ul class="pagination pagination-sm" data-bind="foreach:pageNumbers">
+				    <li data-bind="attr:{class:$data==$parent.currentPageIndex()?'active':''}"> 
+				    	<a data-bind="text:$data,click:$parent.goToPage"></a>
+			   		</li>
+			  	  </ul>
+				  <ul class="pagination pagination-sm">
+					<li data-bind="visible:hasNext()">
+				      <a href="#" aria-label="Next" >
+				        <span aria-hidden="true" data-bind="click:nextPage">下一页</span>
+				      </a>
+				    </li>
+				  </ul>
+				</nav>
+			    </div>
+				    <div class="col-md-5 " data-bind="with:ViewModel1">
+					  <div class="panel panel-default" style="margin-bottom: 0px">
+						<div class="panel-heading text-center"><b>详情</b></div>
+					    	<ul class="list-group" data-bind="with:currentActivity()">
+								  <li class="list-group-item" >
+									  	<h2 data-bind="text:title"></h2>
+									  	<h3 data-bind="text:advertise"></h3>
+								  </li>
+							  <li class="list-group-item" ><b>详情:</b><span data-bind="text:detail"></span></li>
+							  <li class="list-group-item" >
+							  		<b>活动id:</b><span data-bind="text:id"></span><br>
+									<b>地点:</b><span data-bind="text:location"></span><br>
+									<b>人数:</b><span data-bind="text:number"></span><br>
+									<b>学校:</b><span data-bind="text:school"></span><br>
+									<b>报名人数:</b><span data-bind="text:signnumber"></span><br>
+									<b>时间:</b><span data-bind="text:time"></span><br>
+									<b>有图片:</b><span data-bind="text:whetherimage"></span>
+							  </li>
+					          <li class="list-group-item" data-bind="visible:$data.whetherimage">
+							   		<img style="width:300px" class="media-object" src="" data-bind="attr: { src: imageurl }" alt="">
+							  </li>	
+							 
+							</ul>
+						</div>
+				    </div>
+				    <div class="col-md-2" data-bind="with:ViewModel1">
+				      <div class="panel panel-default" style="margin-bottom: 0px">
+						<div class="panel-heading text-center"><b>操作</b></div>
+					    	<ul class="list-group" data-bind="with:currentActivity()">
+						    	 <li class="list-group-item" >
+										<b>审核状态:</b><span data-bind="text:state"><br>
+								 </li>
+						    	 <li class="list-group-item text-center" >
+									  	 <div>
+							            	<button class="pure-button button-success" data-bind="click:$parent.setPassActivity">批准</button>
+							            	<button class="pure-button button-error" data-bind="click:$parent.setNoPassActivity">否决</button>
+							            </div>
+					            </li>
+							  <li class="list-group-item" >
+							  <b>发布者:</b><span data-bind="text:author"></span><br>
+								  <b>发布者id:</b><span data-bind="text:authorid"></span><br>
+								  <b>性别:</b><span data-bind="text:gender"></span><br>
+								  <!-- Button trigger modal -->
+										<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" data-bind="click:$parent.showModal">
+										  详情
+										</button>
+							  </li>
+							  <li class="list-group-item" ><b>联系方式:</b><br><span data-bind="text:remark"></span></li>
+							</ul>
+						</div>
+				    </div>
+				    
+			    </div>
+
+
+			</div>
+	
+
+		</div>
+        
+    </div>
+</div>
+
+				<!-- Modal -->
+				<div data-bind="with:ViewModel3" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content" data-bind="with:currentProfile()">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h4 class="modal-title" id="myModalLabel">个人信息</h4>
+				      </div>
+				      <div class="modal-body">
+				        <b>姓名:</b><span data-bind="text:name"></span><br>
+				        <b>性别:</b><span data-bind="text:gender"></span><br>
+				        <b>生日:</b><span data-bind="text:birthday"></span><br>
+				        <b>家乡:</b><span data-bind="text:hometown"></span><br>
+				        <hr>
+				        <b>学校:</b><span data-bind="text:school"></span><br>
+				        <b>学历:</b><span data-bind="text:degree"></span><br>
+				        <b>入学时间:</b><span data-bind="text:enrollment"></span><br>
+				        <b>学院:</b><span data-bind="text:department"></span><br>
+				        <hr>
+				        <b>爱好:</b><span data-bind="text:hobby"></span><br>
+				        <b>访客数量:</b><span data-bind="text:lookcount"></span><br>
+				        <b>喜好:</b><span data-bind="text:preference"></span><br>
+				        <hr>
+				        <b>用户名:</b><span data-bind="text:username"></span><br>
+				        <b>喂米id:</b><span data-bind="text:id"></span><br>
+				        <b>QQ:</b><span data-bind="text:qq"></span><br>
+				        <b>微信:</b><span data-bind="text:wechat"></span><br>
+				        <b>手机:</b><span data-bind="text:phone"></span><br>
+				        
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+{{>js_bt}}
+{{# section 'jquery' }}
+	<script type="text/javascript" src="/bower_components/knockout/dist/knockout.js"></script>
+	<script type="text/javascript" src="/js/admin/ui.js"></script>
+	<script type="text/javascript" src="/js/util/dom.js"></script>
+	<script type="text/javascript" src="/js/admin/publish.js"></script>
+	
+{{/ section}}

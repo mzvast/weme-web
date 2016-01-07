@@ -1,0 +1,195 @@
+{{# section 'head' }}	
+
+	<title>WeMe|我的活动</title>
+
+{{/ section}}
+
+
+{{> user/navbar activity=true}}
+<div class="container">
+	<div class="row" style="margin-top: 30px;">
+		<div class="col-md-2">
+				<div class="list-group">
+				  <button type="button" class="list-group-item active">发布的活动</button>
+				  <button type="button" class="list-group-item disabled">喜欢的活动</button>
+				  <button type="button" class="list-group-item disabled">参加的活动</button>
+				</div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-default" data-bind="with:ViewModel1">
+				  <div class="panel-heading text-center">我发布的活动</div>
+				  <button  class="btn btn-primary btn-block" data-bind="click:fetchPublishedActivity,visible:showRefresh">点我刷新！</button>
+				<div class="list-group" data-bind="foreach:list">
+				  <a href="#" class="list-group-item" data-bind="click:$parent.getSignupList,attr:{class:($parent.selectedItem()==$data)?'list-group-item active':'list-group-item'}">
+				    <h4 class="list-group-item-heading" data-bind="text:title"></h4>
+				    <p class="list-group-item-text" >
+				    <span data-bind="text:time"></span>
+				    【<span data-bind="text:status"></span>】
+				    </p>
+				  </a>				  
+				</div>
+			</div>
+			<nav class="text-center" data-bind="with:ViewModel2">
+				  <ul class="pagination pagination-sm">
+				    <li data-bind="visible:hasPrecious()">
+				      <a href="#" aria-label="Previous" >
+				        <span aria-hidden="true" data-bind="click:previousPage">上一页</span>
+				      </a>
+				    </li>
+				  </ul>
+				  <ul class="pagination pagination-sm" data-bind="foreach:pageNumbers">
+				    <li data-bind="attr:{class:$data==$parent.currentPageIndex()?'active':''}"> 
+				    	<a data-bind="text:$data,click:$parent.goToPage"></a>
+			   		</li>
+			  	  </ul>
+				  <ul class="pagination pagination-sm">
+					<li data-bind="visible:hasNext()">
+				      <a href="#" aria-label="Next" >
+				        <span aria-hidden="true" data-bind="click:nextPage">下一页</span>
+				      </a>
+				    </li>
+				  </ul>
+			</nav>
+		</div>		
+		<div class="col-md-5">
+				<div class="panel panel-default" style="margin-bottom: 0px" data-bind="with:ViewModel3">
+				  <!-- Default panel contents -->
+				  <div class="panel-heading text-center">报名用户
+				  </div>
+				  <button  class="btn btn-primary btn-block" data-bind="click:fetchList,visible:showRefresh">点我刷新！</button>
+					<div class="list-group" data-bind="visible:list().length==0">
+						<a class="list-group-item text-center">无人报名</a>
+					</div>
+
+					<table class="table table-hover" data-bind="visible:list().length!==0">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>姓名</th>
+								<th>头像</th>
+								<th>学校</th>
+								<th>性别</th>
+								<th>状态</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody data-bind="foreach:list">
+							<tr>
+								<td data-bind="text:id"></td>
+								<td data-bind="text:name"></td>
+								<td><img style="width:40px;border-radius: 50px 50px 50px 50px;" data-bind="attr:{src:imgUrlSmall()}"></td>
+								<td data-bind="text:school"></td>
+								<td data-bind="text:gender"></td>
+								<td data-bind="text:flagStatus"></td>
+								<td>
+									<!-- Button trigger modal -->
+									<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" data-bind="click:$parent.showModal">
+									  详情
+									</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="panel-footer">
+						<div class="row">
+							<div class="col-md-3 col-md-offset-3">
+								<span data-bind="text:currentDownloadNum(),visible:showDownload"></span>
+								<span data-bind="visible:showDownload">/</span>
+								<span data-bind="text:itemSize(),visible:showDownload"></span>
+							</div>
+							<div class="col-md-3 col-md-offset-3" data-bind="visible:list().length!==0">
+								
+							<button data-bind="click:download,visible:showExport" type="button" class="btn btn-primary btn-block" ><span class="glyphicon glyphicon-download-alt"></span>
+										  导出
+										</button>
+							<button data-bind="visible:showDownload" type="button" class="btn btn-primary btn-block" ><span class="fa fa-spinner fa-spin"></span>
+							  下载中
+							</button>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<nav class="text-center" data-bind="with:ViewModel4">
+				  <ul class="pagination pagination-sm">
+				    <li data-bind="visible:hasPrecious()">
+				      <a href="#" aria-label="Previous" >
+				        <span aria-hidden="true" data-bind="click:previousPage">上一页</span>
+				      </a>
+				    </li>
+				  </ul>
+				  <ul class="pagination pagination-sm" data-bind="foreach:pageNumbers">
+				    <li data-bind="attr:{class:$data==$parent.currentPageIndex()?'active':''}"> 
+				    	<a data-bind="text:$data,click:$parent.goToPage"></a>
+			   		</li>
+			  	  </ul>
+				  <ul class="pagination pagination-sm">
+					<li data-bind="visible:hasNext()">
+				      <a href="#" aria-label="Next" >
+				        <span aria-hidden="true" data-bind="click:nextPage">下一页</span>
+				      </a>
+				    </li>
+				  </ul>
+				</nav>
+
+		</div>		
+	</div>
+	
+</div>
+				<!-- Modal -->
+				<div data-bind="with:ViewModel5" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content" data-bind="with:currentProfile()">
+				      <div class="modal-header text-center">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h3 class="modal-title" id="myModalLabel" >个人信息</h3>
+				      </div>
+				      <div class="modal-body">
+				      	<div class="row">
+				      		<div class="col-md-4 col-md-offset-1">
+						        <b>姓名:</b><span data-bind="text:name"></span><br>
+						        <b>性别:</b><span data-bind="text:gender"></span><br>
+						        <b>生日:</b><span data-bind="text:birthday"></span><br>
+						        <b>家乡:</b><span data-bind="text:hometown"></span><br>
+						        <hr>
+						        <b>爱好:</b><span data-bind="text:hobby"></span><br>
+						        <b>访客数量:</b><span data-bind="text:lookcount"></span><br>
+						        <b>喜好:</b><span data-bind="text:preference"></span><br>
+				      		</div>
+				      		<div class="col-md-5 col-md-offset-1">
+				      			<img style="width:230px;border-radius: 50px 50px 50px 50px;" data-bind="attr:{src:imgUrl()}">
+				      		</div>
+				      	</div>
+				        <hr>
+				      	<div class="row">
+				      		<div class="col-md-4 col-md-offset-1">
+						        <b>唯觅id:</b><span data-bind="text:id"></span><br>
+						        <b>用户名:</b><span data-bind="text:username"></span><br>
+						        <b>QQ:</b><span data-bind="text:qq"></span><br>
+						        <b>微信:</b><span data-bind="text:wechat"></span><br>
+						        <b>手机:</b><span data-bind="text:phoneDisplay"></span><br>
+				      		</div>
+				      		<div class="col-md-3 col-md-offset-2">
+						        <b>学校:</b><span data-bind="text:school"></span><br>
+						        <b>学历:</b><span data-bind="text:degree"></span><br>
+						        <b>入学时间:</b><span data-bind="text:enrollment"></span><br>
+						        <b>学院:</b><span data-bind="text:department"></span><br>
+				      		</div>
+				      	</div>
+				        
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+				      </div>
+				    </div>
+				  </div>
+				</div>
+
+{{# section 'jquery' }}
+	<script type="text/javascript" src="/bower_components/knockout/dist/knockout.js"></script>
+	<script type="text/javascript" src="/bower_components/ExcelPlus/2.2/sheetjs.all.min.js"></script>
+	<script type="text/javascript" src="/bower_components/ExcelPlus/2.2/excelplus-2.2.min.js"></script>
+	<script type="text/javascript" src="/js/util/dom.js"></script>
+	<script type="text/javascript" src="/js/user/activity/manage.js"></script>
+	
+{{/ section}}
