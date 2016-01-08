@@ -1,4 +1,8 @@
 $(document).ready(function() {
+	// 多选框全选
+// 	$("#checkAll").click(function(){
+//     	$('input:checkbox').prop('checked', this.checked);
+// });
 	var downloadList = ko.observableArray();
 	var downloadDetailList = ko.observableArray();
 	var ActivityLite = function(data) {//不是完整的信息
@@ -12,6 +16,7 @@ $(document).ready(function() {
 	};
 	var Signup = function(data) {
 		var self = this;
+		self.isSelected = ko.observable(false);
 		self.id = ko.observable(data.id);
 		self.name = ko.observable(data.name);
 		self.school = ko.observable(data.school);
@@ -132,8 +137,6 @@ $(document).ready(function() {
 		};
 
 		self.fetchPublishedActivity();//初始化的时候先运行一遍
-		self.fetchPublishedActivity();//初始化的时候先运行一遍
-
 
 	};
 	//发布的活动的pignation
@@ -192,6 +195,78 @@ $(document).ready(function() {
 	//报名用户列表
 	var ViewModel3 = function() {
 		var self = this;
+		self.checkAll = function() {
+			self.list().forEach(function(item) {
+				item.isSelected(!item.isSelected());
+			});
+			self.getSignupSelected();
+		};
+		self.getSignupSelected = function() {
+			self.list().forEach(function(item) {
+				console.log("id:"+item.id());
+				console.log("isSelected:"+item.isSelected());
+			});
+		};	
+		self.checkedList = ko.observableArray();	
+		self.makeCheckedList = function() {
+			self.checkedList([]);
+			self.list().forEach(function(obj) {
+				if (obj.isSelected()==true) {
+					self.checkedList.push(obj.id());					
+				}
+			});
+		};
+
+		self.setPassUser=function(data) {
+			self.makeCheckedList();
+		console.log("正在设置通过用户!");
+			$.ajax({
+					  type: "POST",
+					  url: "/api/post/setpassuser",
+					  dataType: "json",
+					  data:{
+					  	"token": self.token,
+					  	"activityid":data.id(),
+					  	"userlist":self.checkedList()
+					  },
+					  success: function(json) {
+					       console.log(json.result);
+					       self.fetchList(self.id());
+					    },
+					  error: function(e) {
+					       console.log(e);
+	                		return;
+	    				}
+					});
+		};		
+
+		self.setNoPassUser=function(data) {
+			self.makeCheckedList();
+		console.log("正在设置不通过用户!");
+			$.ajax({
+					  type: "POST",
+					  url: "/api/post/deletepassuser",
+					  dataType: "json",
+					  data:{
+					  	"token": self.token,
+					  	"activityid":data.id(),
+					  	"userlist":self.checkedList()
+					  },
+					  success: function(json) {
+					       console.log(json.result);
+					       self.fetchList(self.id());
+					    },
+					  error: function(e) {
+					       console.log(e);
+	                		return;
+	    				}
+					});
+		};	
+
+		self.displayCheckList = function() {
+			self.makeCheckedList();
+			console.log('checked these people==>',self.checkedList());
+		};
 		self.currentDownloadNum = ko.observable();
 		self.showDownload = ko.observable(false);
 		self.showExport = ko.computed(function() {
@@ -255,7 +330,7 @@ $(document).ready(function() {
 				  .write({  "cell":"I"+(i+2),"content":data['enrollment']?data['enrollment']:" " })
 				  .write({  "cell":"J"+(i+2),"content":data['department']?data['department']:" " })
 				  .write({  "cell":"K"+(i+2),"content":data['degree']?data['degree']:" " });
-			}		  
+			}			  
 			  ep.saveAs("活动_"+self.id()+"_报名表"+".xlsx");
 			  self.showDownload(false);
 		};		
@@ -413,7 +488,6 @@ $(document).ready(function() {
 					  	self.showRefresh(true);
 					       console.log(e);
 	                		return;
-
 					});
 		};
 

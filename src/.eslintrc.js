@@ -18,7 +18,7 @@ module.exports = {
         ],
         "no-mixed-spaces-and-tabs": [0, "smart-tabs"],
         "no-console": 0,
-        "no-redeclare": 1,
+        "no-redeclare": 0,
         "no-extra-semi": 1
     },
     "globals": {
