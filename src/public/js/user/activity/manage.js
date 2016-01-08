@@ -102,10 +102,10 @@ $(document).ready(function() {
 					  data:{
 					  	"token": self.token,
 					  	"page": self.currentPageIndex()
-					  },
+					  }
 					})
 			.done(function(json) {
-						var data = json.result
+						var data = json.result;
 				       console.dir(data);			       
 				       if (data.length==0) {
 				       		console.dir("no more data");
@@ -121,14 +121,14 @@ $(document).ready(function() {
 				       		console.dir("self.itemSize()===="+self.itemSize());
 				       		console.dir(data);
 							return;
-				       };
+				       }
 					})
 			.fail(function(e) {
 					  	self.showRefresh(true);
 					       console.log(e);
 	                		return;
 
-					})
+					});
 		};
 
 		self.fetchPublishedActivity();//初始化的时候先运行一遍
@@ -175,7 +175,7 @@ $(document).ready(function() {
 			self.pageNumbers.removeAll();
 			for (var i = 1; i <= lastPageIndex; i++) {
 				self.pageNumbers.push(i);
-			};
+			}
 		};
 
 		self.nextPage = function() {
@@ -232,12 +232,12 @@ $(document).ready(function() {
 			.selectSheet("名单")
 			  .write({"content":[["id","姓名","性别","学校"]]});
 			for (var i = 0; i < downloadList().length; i++) {
-				var data = downloadList()[i]
+				var data = downloadList()[i];
 				ep.write({  "cell":"A"+(i+2),"content":data['id']?data['id']:" " })
 				  .write({  "cell":"B"+(i+2),"content":data['name']?data['name']:" " })
 				  .write({  "cell":"C"+(i+2),"content":data['gender']?data['gender']:" " })
 				  .write({  "cell":"D"+(i+2),"content":data['school']?data['school']:" " });
-			};			  
+			}		  
 			console.log(downloadDetailList());
 			ep.selectSheet("详细信息")
 			  .write({"content":[["id","姓名","性别","电话","QQ","生日","家乡","学校","入学时间","学院","学历"]]});
@@ -255,7 +255,7 @@ $(document).ready(function() {
 				  .write({  "cell":"I"+(i+2),"content":data['enrollment']?data['enrollment']:" " })
 				  .write({  "cell":"J"+(i+2),"content":data['department']?data['department']:" " })
 				  .write({  "cell":"K"+(i+2),"content":data['degree']?data['degree']:" " });
-			};			  
+			}		  
 			  ep.saveAs("活动_"+self.id()+"_报名表"+".xlsx");
 			  self.showDownload(false);
 		};		
@@ -278,7 +278,7 @@ $(document).ready(function() {
 		self.downloadDetailData = function(num) {
 			if (num == downloadList().length) {
 				return self.saveAs();
-			};
+			}
 			console.log("num==="+num);
 			self.currentDownloadNum(num+1);
 			$.ajax({
@@ -287,8 +287,8 @@ $(document).ready(function() {
 					  dataType: "json",
 					  data:{
 					  	"token": self.token,
-					  	"id":downloadList()[num]["id"],
-					  },
+					  	"id":downloadList()[num]["id"]
+					  }
 					})
 			.done(function(json) {
 				       if (json["state"]!=="successful") {
@@ -302,16 +302,16 @@ $(document).ready(function() {
 				       		if (num < downloadList().length) {
 				       			self.downloadDetailData(num+1);
 				       			return;
-				       		};
+				       		}
 				       		console.log(downloadDetailList());
 							return;
-				       };
+				       }
 					})
 			.fail(function(e) {
 					       console.log(e);
 	                		return;
 
-					})
+					});
 		};
 
 		self.downloadPageData = function(num) {
@@ -323,10 +323,10 @@ $(document).ready(function() {
 					  	"token": self.token,
 					  	"activityid":self.id(),
 					  	"page": num
-					  },
+					  }
 					})
 			.done(function(json) {
-						var data = json.result
+						var data = json.result;
 				       if (data.length==0) {
 				       		console.log("no more download data");
 				       		console.dir(data);
@@ -339,13 +339,13 @@ $(document).ready(function() {
 				       			downloadList.push(obj);				       			
 				       		});
 				       		if (num < self.pages) {
-				       			downloadPageData(num+1);
-				       		};
+				       			self.downloadPageData(num+1);
+				       		}
 							console.log("AFTER downloadList()===");
 							console.log(downloadList());
 							self.downloadDetailList();
 							return;
-				       };
+				       }
 					})
 			.fail(function(e) {
 					  	self.showRefresh(true);
@@ -356,7 +356,7 @@ $(document).ready(function() {
 			.always(function() {
 				
 				return;
-			})
+			});
 		};		
 
 
@@ -373,7 +373,7 @@ $(document).ready(function() {
 				return;			
 			}else{
 				return;
-			};
+			}
 		};
 
 		self.fetchList =function(activityId) {
@@ -386,10 +386,10 @@ $(document).ready(function() {
 					  	"token": self.token,
 					  	"activityid":activityId,
 					  	"page": self.currentPageIndex()
-					  },
+					  }
 					})
 			.done(function(json) {
-						var data = json.result
+						var data = json.result;
 				       console.dir(data);			       
 				       if (data.length==0) {
 				       		console.dir("no more data");
@@ -407,14 +407,14 @@ $(document).ready(function() {
 				       		self.itemSize(self.itemSize()||json.pages*10);//set itemSize
 				       		console.dir("self.itemSize()==="+self.itemSize());
 							return;
-				       };
+				       }
 					})
 			.fail(function(e) {
 					  	self.showRefresh(true);
 					       console.log(e);
 	                		return;
 
-					})
+					});
 		};
 
 		self.fetchList(self.id());
@@ -459,7 +459,7 @@ $(document).ready(function() {
 			self.pageNumbers.removeAll();
 			for (var i = 1; i <= lastPageIndex; i++) {
 				self.pageNumbers.push(i);
-			};
+			}
 		};
 
 		self.nextPage = function() {
@@ -492,8 +492,8 @@ $(document).ready(function() {
 					  dataType: "json",
 					  data:{
 					  	"token": self.token,
-					  	"id":self.currentId(),
-					  },
+					  	"id":self.currentId()
+					  }
 					})
 			.done(function(json) {
 				       if (json["state"]!=="successful") {
@@ -508,13 +508,13 @@ $(document).ready(function() {
 				       		self.currentProfile(new Profile(json));
 				       		console.dir(self.currentProfile());
 							return;
-				       };
+				       }
 					})
 			.fail(function(e) {
 					       console.log(e);
 	                		return;
 
-					})
+					});
 		};
 	};
 
