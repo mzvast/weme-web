@@ -247,6 +247,47 @@ app.post('/api/:method/:path',function(request,response) {
 
 });
 
+app.get('/api-img/:path',function(request,response) {
+	console.log('========api======='+new Date());
+	// console.log('method: '+request.params.method);
+	// console.log('body: '+ request.body.token);
+	// console.log('path: /'+request.params.path);
+	// var postData = querystring.stringify({
+	// 	  'token': '884d20eb7ceb8e83f8ab7cb89fa238c0'
+	// 	});
+	var data='';
+	var options = {
+		hostname: '218.244.147.240',
+		port: 80,
+		path: '/picture/activitylifeimages/'+request.params.path,
+		method: "GET",
+		headers: {
+			'Content-Type': 'image/jpg'
+		}};
+		// console.log(options);
+	var req = http.request(options, function(res) {
+		// console.log('STATUS: ' + res.statusCode);
+		// console.log('HEADERS: ' + JSON.stringify(res.headers));
+		res.setEncoding('utf8');
+		res.on('data', function (chunk) {
+			// console.log('BODY: ' + chunk);
+			data+=chunk.replace('BODY:','');//多段数据合成，去除穿插的BODY:字符
+		});
+		res.on('end', function() {
+			// console.log('No more data in response.');
+				response.send(data);//send data back to front end	
+				console.log('========api-img success=======');
+			});
+		});
+		req.on('error', function(e) {
+			console.log('problem with request: ' + e.message);
+			console.log('========api-img error=======');
+		});
+
+		req.end();
+
+});
+
 app.get('/1', function(req, res) {
 	res.render('landing_mix',{layout:'main_bt'});
 });

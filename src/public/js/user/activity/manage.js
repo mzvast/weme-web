@@ -76,7 +76,7 @@ $(document).ready(function() {
 		ko.postbox.subscribe("Publish_ActivityListPageNum",function(value) {
 			self.currentPageIndex(value);
 			self.fetchPublishedActivity();
-			console.log("self.currentPageIndex()="+self.currentPageIndex());
+			//console.log("self.currentPageIndex()="+self.currentPageIndex());
 		},self);
 
 		self.getSignupList =function(data) {
@@ -92,7 +92,7 @@ $(document).ready(function() {
 
 
 		self.fetchPublishedActivity =function() {
-			console.log("正在获取已发布活动信息! page:"+self.currentPageIndex());
+			//console.log("正在获取已发布活动信息! page:"+self.currentPageIndex());
 			$.ajax({
 					  type: "POST",
 					  url: "/api/post/getpublishactivity",
@@ -104,26 +104,26 @@ $(document).ready(function() {
 					})
 			.done(function(json) {
 						var data = json.result;
-				       console.dir(data);			       
+				       //console.dir(data);			       
 				       if (data.length==0) {
-				       		console.dir("no more data");
-				       		console.dir(data);
+				       		//console.dir("no more data");
+				       		//console.dir(data);
 				       		return;
 				       } 
 				       else{
-				       		console.dir("got data!");
+				       		//console.dir("got data!");
 				       		self.showRefresh(false);
 				       		self.writeActivityList(data);
 				       		self.selectedItem(self.list()[0]);
 				       		self.itemSize(self.itemSize()||json.pages*10);//set itemSize
-				       		console.dir("self.itemSize()===="+self.itemSize());
-				       		console.dir(data);
+				       		//console.dir("self.itemSize()===="+self.itemSize());
+				       		//console.dir(data);
 							return;
 				       }
 					})
 			.fail(function(e) {
 					  	self.showRefresh(true);
-					       console.log(e);
+					       //console.log(e);
 	                		return;
 
 					});
@@ -146,13 +146,13 @@ $(document).ready(function() {
 		ko.postbox.subscribe("Publish_itemSizeOfActivityList",function(value) {
 			self.itemSize(value);
 			self.makePageNumbers(self.lastPageIndex());
-			console.log("VM2 self.lastPageIndex()="+self.lastPageIndex());
-			console.log("VM2 self.pageNumbers()="+self.pageNumbers());
+			//console.log("VM2 self.lastPageIndex()="+self.lastPageIndex());
+			//console.log("VM2 self.pageNumbers()="+self.pageNumbers());
 		},self);
 
 		self.hasNext=ko.computed(function() {
-			console.log("VM2 self.currentPageIndex()="+self.currentPageIndex());
-			console.log("VM2 self.lastPageIndex()="+self.lastPageIndex());
+			//console.log("VM2 self.currentPageIndex()="+self.currentPageIndex());
+			//console.log("VM2 self.lastPageIndex()="+self.lastPageIndex());
 			return self.currentPageIndex()!==self.lastPageIndex();
 		});
 
@@ -173,12 +173,12 @@ $(document).ready(function() {
 
 		self.nextPage = function() {
 			self.currentPageIndex(self.currentPageIndex()+1);
-			console.log("self.currentPageIndex()="+self.currentPageIndex());
+			//console.log("self.currentPageIndex()="+self.currentPageIndex());
 		};
 
 		self.previousPage = function() {
 			self.currentPageIndex(self.currentPageIndex()-1);
-			console.log("self.currentPageIndex()="+self.currentPageIndex());
+			//console.log("self.currentPageIndex()="+self.currentPageIndex());
 		};
 
 	};
@@ -193,8 +193,8 @@ $(document).ready(function() {
 		};
 		self.getSignupSelected = function() {
 			self.list().forEach(function(item) {
-				console.log("id:"+item.id());
-				console.log("isSelected:"+item.isSelected());
+				//console.log("id:"+item.id());
+				//console.log("isSelected:"+item.isSelected());
 			});
 		};	
 		self.checkedList = ko.observableArray();	
@@ -209,7 +209,7 @@ $(document).ready(function() {
 
 		self.setPassUser=function(data) {
 			self.makeCheckedList();
-		console.log("正在设置通过用户!");
+		//console.log("正在设置通过用户!");
 			$.ajax({
 					  type: "POST",
 					  url: "/api/post/setpassuser",
@@ -220,11 +220,11 @@ $(document).ready(function() {
 					  	"userlist":self.checkedList()
 					  },
 					  success: function(json) {
-					       console.log(json.result);
+					       //console.log(json.result);
 					       self.fetchList(self.id());
 					    },
 					  error: function(e) {
-					       console.log(e);
+					       //console.log(e);
 	                		return;
 	    				}
 					});
@@ -232,7 +232,7 @@ $(document).ready(function() {
 
 		self.setNoPassUser=function(data) {
 			self.makeCheckedList();
-		console.log("正在设置不通过用户!");
+		//console.log("正在设置不通过用户!");
 			$.ajax({
 					  type: "POST",
 					  url: "/api/post/deletepassuser",
@@ -243,11 +243,11 @@ $(document).ready(function() {
 					  	"userlist":self.checkedList()
 					  },
 					  success: function(json) {
-					       console.log(json.result);
+					       //console.log(json.result);
 					       self.fetchList(self.id());
 					    },
 					  error: function(e) {
-					       console.log(e);
+					       //console.log(e);
 	                		return;
 	    				}
 					});
@@ -255,7 +255,7 @@ $(document).ready(function() {
 
 		self.displayCheckList = function() {
 			self.makeCheckedList();
-			console.log('checked these people==>',self.checkedList());
+			//console.log('checked these people==>',self.checkedList());
 		};
 		self.currentDownloadNum = ko.observable();
 		self.showDownload = ko.observable(false);
@@ -296,11 +296,11 @@ $(document).ready(function() {
 				  .write({  "cell":"C"+(i+2),"content":data['gender']?data['gender']:" " })
 				  .write({  "cell":"D"+(i+2),"content":data['school']?data['school']:" " });
 			}		  
-			console.log(downloadDetailList());
+			//console.log(downloadDetailList());
 			ep.selectSheet("详细信息")
 			  .write({"content":[["id","姓名","性别","电话","QQ","生日","家乡","学校","入学时间","学院","学历"]]});
 			for (var i = 0; i < downloadDetailList().length; i++) {
-				console.log("i=="+i);
+				//console.log("i=="+i);
 				var data = downloadDetailList()[i];
 				ep.write({  "cell":"A"+(i+2),"content":data['id']?data['id']:" " })
 				  .write({  "cell":"B"+(i+2),"content":data['name']?data['name']:" " })
@@ -320,16 +320,16 @@ $(document).ready(function() {
 
 		self.downloadDetailList = function() {
 			self.itemSize(downloadList().length);
-			console.log("正在下载详细信息辣");
+			//console.log("正在下载详细信息辣");
 			downloadDetailList.removeAll();
-			console.log("BEFORE downloadDetailList()==="+downloadDetailList());
+			//console.log("BEFORE downloadDetailList()==="+downloadDetailList());
 			self.downloadDetailData(0);
 
 		};
 		self.download = function() {
-			console.log("开始下载辣");
+			//console.log("开始下载辣");
 			downloadList.removeAll();
-			console.log("BEFORE downloadList()==="+downloadList());
+			//console.log("BEFORE downloadList()==="+downloadList());
 			self.downloadPageData(1);
 			self.showDownload(true);
 		};
@@ -337,7 +337,7 @@ $(document).ready(function() {
 			if (num == downloadList().length) {
 				return self.saveAs();
 			}
-			console.log("num==="+num);
+			//console.log("num==="+num);
 			self.currentDownloadNum(num+1);
 			$.ajax({
 					  type: "POST",
@@ -350,23 +350,23 @@ $(document).ready(function() {
 					})
 			.done(function(json) {
 				       if (json["state"]!=="successful") {
-				       		console.log("no data");
+				       		//console.log("no data");
 				       		return;
 				       } 
 				       else{
-				       		console.log("got data!");
-				       		console.dir(json);
+				       		//console.log("got data!");
+				       		//console.dir(json);
 				       		downloadDetailList.push(json);
 				       		if (num < downloadList().length) {
 				       			self.downloadDetailData(num+1);
 				       			return;
 				       		}
-				       		console.log(downloadDetailList());
+				       		//console.log(downloadDetailList());
 							return;
 				       }
 					})
 			.fail(function(e) {
-					       console.log(e);
+					       //console.log(e);
 	                		return;
 
 					});
@@ -386,28 +386,28 @@ $(document).ready(function() {
 			.done(function(json) {
 						var data = json.result;
 				       if (data.length==0) {
-				       		console.log("no more download data");
-				       		console.dir(data);
+				       		//console.log("no more download data");
+				       		//console.dir(data);
 				       		return;
 				       } 
 				       else{
-				       		console.log("got download data!");				       		
-				       		console.dir(data);
+				       		//console.log("got download data!");				       		
+				       		//console.dir(data);
 				       		data.forEach(function(obj) {
 				       			downloadList.push(obj);				       			
 				       		});
 				       		if (num < self.pages) {
 				       			self.downloadPageData(num+1);
 				       		}
-							console.log("AFTER downloadList()===");
-							console.log(downloadList());
+							//console.log("AFTER downloadList()===");
+							//console.log(downloadList());
 							self.downloadDetailList();
 							return;
 				       }
 					})
 			.fail(function(e) {
 					  	self.showRefresh(true);
-					       console.log(e);
+					       //console.log(e);
 	                		return;
 
 					})
@@ -420,7 +420,7 @@ $(document).ready(function() {
 
 		self.showModal = function(data) {
 			self.clickedItem(data);
-			console.log("cliked详情!");
+			//console.log("cliked详情!");
 		};
 		self.writeList=function(data) {
 			self.list([]);
@@ -435,7 +435,7 @@ $(document).ready(function() {
 		};
 
 		self.fetchList =function(activityId) {
-			console.log("正在获取报名信息! page:"+self.currentPageIndex());
+			//console.log("正在获取报名信息! page:"+self.currentPageIndex());
 			$.ajax({
 					  type: "POST",
 					  url: "/api/post/getactivityattentuser",
@@ -448,28 +448,28 @@ $(document).ready(function() {
 					})
 			.done(function(json) {
 						var data = json.result;
-				       console.dir(data);			       
+				       //console.dir(data);			       
 				       if (data.length==0) {
-				       		console.dir("no more data");
+				       		//console.dir("no more data");
 				       		self.writeList(data);
-				       		console.dir(data);
+				       		//console.dir(data);
 				       		return;
 				       } 
 				       else{
-				       		console.dir("got data!");
+				       		//console.dir("got data!");
 				       		self.showRefresh(false);
 				       		self.writeList(data);
-				       		console.dir(data);
+				       		//console.dir(data);
 				       		self.pages(json.pages);
-				       		console.dir("pages==="+self.pages());
+				       		//console.dir("pages==="+self.pages());
 				       		self.itemSize(self.itemSize()||json.pages*10);//set itemSize
-				       		console.dir("self.itemSize()==="+self.itemSize());
+				       		//console.dir("self.itemSize()==="+self.itemSize());
 							return;
 				       }
 					})
 			.fail(function(e) {
 					  	self.showRefresh(true);
-					       console.log(e);
+					       //console.log(e);
 	                		return;
 					});
 		};
@@ -491,13 +491,13 @@ $(document).ready(function() {
 		ko.postbox.subscribe("Publish_itemSizeOfSignupList",function(value) {
 			self.itemSize(value);
 			self.makePageNumbers(self.lastPageIndex());
-			console.log("VM4 self.lastPageIndex()="+self.lastPageIndex());
-			console.log("VM4 self.pageNumbers()="+self.pageNumbers());
+			//console.log("VM4 self.lastPageIndex()="+self.lastPageIndex());
+			//console.log("VM4 self.pageNumbers()="+self.pageNumbers());
 		},self);
 
 		self.hasNext=ko.computed(function() {
-			console.log("VM4 self.currentPageIndex()="+self.currentPageIndex());
-			console.log("VM4 self.lastPageIndex()="+self.lastPageIndex());
+			//console.log("VM4 self.currentPageIndex()="+self.currentPageIndex());
+			//console.log("VM4 self.lastPageIndex()="+self.lastPageIndex());
 			return self.currentPageIndex()!==self.lastPageIndex();
 		});
 
@@ -518,57 +518,99 @@ $(document).ready(function() {
 
 		self.nextPage = function() {
 			self.currentPageIndex(self.currentPageIndex()+1);
-			console.log("self.currentPageIndex()="+self.currentPageIndex());
+			//console.log("self.currentPageIndex()="+self.currentPageIndex());
 		};
 
 		self.previousPage = function() {
 			self.currentPageIndex(self.currentPageIndex()-1);
-			console.log("self.currentPageIndex()="+self.currentPageIndex());
+			//console.log("self.currentPageIndex()="+self.currentPageIndex());
 		};
 
 	};
 	var ViewModel5 = function() {
 		var self = this;
 		self.token = getCookie("token");
-		self.currentId = ko.observable();
+		self.showProfile = ko.observable(false);
+		self.showPicture = ko.observable(false);
+		self.imgUrls = ko.observableArray();
+		self.currentSignupId = ko.observable();
+		self.currentActivity = ko.observable().subscribeTo("Publish_selectedActivity");
 		self.currentProfile = ko.observable();
 		// Subscribe Publish_clickedSignupItem from ViewModel3
 		ko.postbox.subscribe("Publish_clickedSignupItem",function(data) {
 			self.currentProfile("");
-			self.currentId(data.id());
+			self.currentSignupId(data.id());
+			self.displayProfile();
 			self.getProfileById();
+			//console.log("showPicture=="+self.showPicture());
 		},self);
+		self.displayPicture = function() {
+			self.showProfile(false);
+			self.showPicture(true);
+			self.makePicture();
+		};
+		self.displayProfile =function() {
+			self.showProfile(true);
+			self.showPicture(false);
+		};
 		self.getProfileById = function()  {
-			console.log("正在获取个人信息!");
+			//console.log("正在获取个人信息!");
 			$.ajax({
 					  type: "POST",
 					  url: "/api/post/getprofilebyid",
 					  dataType: "json",
 					  data:{
 					  	"token": self.token,
-					  	"id":self.currentId()
+					  	"id":self.currentSignupId()
 					  }
 					})
 			.done(function(json) {
 				       if (json["state"]!=="successful") {
 				       		// self.writeList(data);
-				       		console.dir(json);
+				       		//console.dir(json);
 				       		return;
 				       } 
 				       else{
-				       		console.dir("got data!");
+				       		//console.dir("got data!");
 				       		// self.writeList(data);
-				       		console.dir(json);
+				       		//console.dir(json);
 				       		self.currentProfile(new Profile(json));
-				       		console.dir(self.currentProfile());
+				       		//console.dir(self.currentProfile());
 							return;
 				       }
 					})
 			.fail(function(e) {
-					       console.log(e);
+					       //console.log(e);
 	                		return;
 
 					});
+		};
+
+		//用于测试照片存在与否
+		self.testImageExist = function() {
+			//console.log("url=="+"/api-img/"+26+"-"+37+"-"+1);
+				  $.ajax({
+				    type: "GET",
+				    url: "/api-img/"+26+"-"+37+"-"+1,
+				    success: function(img) {
+				    	//console.log("IMAGE is avaliable!");
+				    },
+				    error: function(error, txtStatus) {
+				      //console.log(txtStatus);
+				      //console.log('error');
+				    }
+				  });
+		};
+		//粗糙实现，因为没有办法判断有几张以及是否存在照片
+		self.makePicture = function() {
+			self.imgUrls.removeAll();
+			//console.log("正在获取生活照!");
+			for (var i = 1; i <= 9; i++) {
+			var url = "//218.244.147.240:80/picture/activitylifeimages/"+self.currentActivity().id()+"-"+self.currentSignupId()+"-"+i;
+			// var url = "//218.244.147.240:80/picture/activitylifeimages/"+26+"-"+37+"-"+i;
+				self.imgUrls.push(url);
+			}
+			//console.dir(self.imgUrls());
 		};
 	};
 

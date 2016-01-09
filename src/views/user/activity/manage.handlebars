@@ -150,9 +150,10 @@
 				    <div class="modal-content" data-bind="with:currentProfile()">
 				      <div class="modal-header text-center">
 				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				        <h3 class="modal-title" id="myModalLabel" >个人信息</h3>
+				        <h3 class="modal-title" id="myModalLabel" data-bind="visible:$parent.showProfile">个人信息</h3>
+				        <h3 class="modal-title" id="myModalLabel" data-bind="visible:$parent.showPicture">生活照</h3>
 				      </div>
-				      <div class="modal-body">
+				      <div class="modal-body" data-bind="visible:$parent.showProfile">
 				      	<div class="row">
 				      		<div class="col-md-4 col-md-offset-1">
 						        <b>姓名:</b><span data-bind="text:name"></span><br>
@@ -186,7 +187,59 @@
 				      	</div>
 				        
 				      </div>
+				      <div class="modal-body" data-bind="visible:$parent.showPicture">
+				      <div class="row">
+				      		{{!-- <div class="col-md-10 col-md-offset-1" data-bind="foreach:$parent.imgUrls">
+								<img class="img-responsive img-thumbnail" data-bind="attr:{src:$data}">
+				      		</div> --}}
+				      		<div id="carousel" class="carousel slide" data-ride="carousel">
+									  <!-- Indicators -->
+									  <ol class="carousel-indicators" data-bind="foreach:$parent.imgUrls">
+										 <!-- ko if:$index()===0 -->								  
+									    <li data-target="#carousel" data-bind="attr:{'data-slide-to':$index()}" class="active"></li>
+									       <!-- /ko  -->
+										 <!-- ko if:$index()!==0 -->								  <li data-target="#carousel" data-bind="attr:{'data-slide-to':$index()}" ></li>
+									       <!-- /ko  -->
+
+									  </ol>
+
+									  <!-- Wrapper for slides -->
+									  <div class="carousel-inner" role="listbox" >
+									 <!-- ko foreach: $parent.imgUrls -->
+										 <!-- ko if:$index()===0 -->
+									    <div class="item active">
+									      <img data-bind="attr:{src:$data}"  alt="没有图片了">
+									      <div class="carousel-caption">
+									      </div>
+									    </div>
+									       <!-- /ko  -->
+									       <!-- ko if:$index()!==0 -->
+									    <div class="item">
+									      <img data-bind="attr:{src:$data}"  alt="没有图片了">
+									      <div class="carousel-caption">
+									      </div>
+									    </div>
+									       <!-- /ko  -->
+								       <!-- /ko  -->
+									    
+									  </div>
+
+									  <!-- Controls -->
+									  <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+									    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+									    <span class="sr-only">上一页</span>
+									  </a>
+									  <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+									    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+									    <span class="sr-only">下一页</span>
+									  </a>
+									</div>
+				      </div>
+				      
+				      </div>
 				      <div class="modal-footer">
+				        <button type="button" class="btn btn-info" data-bind="click:$parent.displayPicture,visible:$parent.showProfile">生活照</button> 
+				        <button type="button" class="btn btn-success" data-bind="click:$parent.displayProfile,visible:$parent.showPicture">个人信息</button>
 				        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 				      </div>
 				    </div>
