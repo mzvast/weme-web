@@ -61,30 +61,23 @@ $(document).ready(function() {
 			return "//218.244.147.240:80/avatar/"+self.id();
 		});
 	};
-	var shouter = new ko.subscribable();
 	//我发布的活动列表
 	var ViewModel1 = function() {
 		var self = this;
 		self.showRefresh = ko.observable(true);
-		self.itemSize = ko.observable(0);
 		self.list = ko.observableArray();
 		self.currentPageIndex = ko.observable(1);
 		self.token = getCookie("token");
 		// Publish ActivityList itemSize to ViewModel2
-		self.itemSize.subscribe(function(value) {
-			shouter.notifySubscribers(value,"Publish_itemSizeOfActivityList");
-		});
-		self.selectedItem = ko.observable();
+		self.itemSize = ko.observable(0).publishOn("Publish_itemSizeOfActivityList");
 		// Publish selectedActivityItem to ViewModel3 
-		self.selectedItem.subscribe(function(data) {
-			shouter.notifySubscribers(data,"Publish_selectedActivity");
-		});
+		self.selectedItem = ko.observable().publishOn("Publish_selectedActivity");
 		// Subscribe currentPageIndex change from ViewModel2 
-		shouter.subscribe(function(value) {
+		ko.postbox.subscribe("Publish_ActivityListPageNum",function(value) {
 			self.currentPageIndex(value);
 			self.fetchPublishedActivity();
 			console.log("self.currentPageIndex()="+self.currentPageIndex());
-		},self,"Publish_ActivityListPageNum");
+		},self);
 
 		self.getSignupList =function(data) {
 			self.selectedItem(data);
@@ -144,21 +137,18 @@ $(document).ready(function() {
 		var self = this;
 		self.itemSize = ko.observable();
 		self.pageNumbers = ko.observableArray([1]);
-		self.currentPageIndex = ko.observable(1);
 		self.lastPageIndex = ko.computed(function() {
 			return Math.ceil(self.itemSize()/10);
 		});
 		// Publish currentPageIndex to ViewModel1
-		self.currentPageIndex.subscribe(function(value) {
-			shouter.notifySubscribers(value,"Publish_ActivityListPageNum");
-		});
+		self.currentPageIndex = ko.observable(1).publishOn("Publish_ActivityListPageNum");
 		// Subscribe ActivityList itemSize
-		shouter.subscribe(function(value) {
+		ko.postbox.subscribe("Publish_itemSizeOfActivityList",function(value) {
 			self.itemSize(value);
 			self.makePageNumbers(self.lastPageIndex());
 			console.log("VM2 self.lastPageIndex()="+self.lastPageIndex());
 			console.log("VM2 self.pageNumbers()="+self.pageNumbers());
-		},self,"Publish_itemSizeOfActivityList");
+		},self);
 
 		self.hasNext=ko.computed(function() {
 			console.log("VM2 self.currentPageIndex()="+self.currentPageIndex());
@@ -274,32 +264,25 @@ $(document).ready(function() {
 		});
 		self.showRefresh = ko.observable(false);
 		self.pages = ko.observable(1);
-		self.itemSize = ko.observable(0);
 		// Publish SignupList itemSize to ViewModel4
-		self.itemSize.subscribe(function(value) {
-			shouter.notifySubscribers(value,"Publish_itemSizeOfSignupList");
-		});
+		self.itemSize = ko.observable(0).publishOn("Publish_itemSizeOfSignupList");
 		self.token = getCookie("token");
 		self.list = ko.observableArray();
 		self.id = ko.observable();
-		self.clickedItem = ko.observable();
 		// Publish_clickedSignupItem to ViewModel5
-		self.clickedItem.subscribe(function(data) {
-			shouter.notifySubscribers(data.id(),"Publish_clickedSignupItem");
-			console.log("cliked publish data.id()= "+data.id());
-		});
+		self.clickedItem = ko.observable().publishOn("Publish_clickedSignupItem");
 		self.currentPageIndex = ko.observable(1);
 		// Subscribe selectedActivityItem from ViewModel1
-		shouter.subscribe(function(data) {
+		ko.postbox.subscribe("Publish_selectedActivity",function(data) {
 			self.id(data.id());
 			self.fetchList(self.id());
 			self.showDownload(false);
-		},self,"Publish_selectedActivity");		
+		},self);		
 		// Subscribe currentPageIndex from ViewModel4
-		shouter.subscribe(function(value) {
+		ko.postbox.subscribe("Publish_SignupListPageNum",function(value) {
 			self.currentPageIndex(value);
 			self.fetchList(self.id());
-		},self,"Publish_SignupListPageNum");
+		},self);
 
 		self.saveAs = function() {
 			var ep=new ExcelPlus();
@@ -499,21 +482,18 @@ $(document).ready(function() {
 		var self = this;
 		self.itemSize = ko.observable();
 		self.pageNumbers = ko.observableArray([1]);
-		self.currentPageIndex = ko.observable(1);
 		self.lastPageIndex = ko.computed(function() {
 			return Math.ceil(self.itemSize()/10);
 		});
 		// Publish SignupList currentPageIndex to ViewModel3
-		self.currentPageIndex.subscribe(function(value) {
-			shouter.notifySubscribers(value,"Publish_SignupListPageNum");
-		});
+		self.currentPageIndex = ko.observable(1).publishOn("Publish_SignupListPageNum");
 		// Subscribe SignupList itemSize from ViewModel3
-		shouter.subscribe(function(value) {
+		ko.postbox.subscribe("Publish_itemSizeOfSignupList",function(value) {
 			self.itemSize(value);
 			self.makePageNumbers(self.lastPageIndex());
 			console.log("VM4 self.lastPageIndex()="+self.lastPageIndex());
 			console.log("VM4 self.pageNumbers()="+self.pageNumbers());
-		},self,"Publish_itemSizeOfSignupList");
+		},self);
 
 		self.hasNext=ko.computed(function() {
 			console.log("VM4 self.currentPageIndex()="+self.currentPageIndex());
@@ -553,11 +533,11 @@ $(document).ready(function() {
 		self.currentId = ko.observable();
 		self.currentProfile = ko.observable();
 		// Subscribe Publish_clickedSignupItem from ViewModel3
-		shouter.subscribe(function(id) {
+		ko.postbox.subscribe("Publish_clickedSignupItem",function(data) {
 			self.currentProfile("");
-			self.currentId(id);
+			self.currentId(data.id());
 			self.getProfileById();
-		},self,"Publish_clickedSignupItem");
+		},self);
 		self.getProfileById = function()  {
 			console.log("正在获取个人信息!");
 			$.ajax({

@@ -247,10 +247,10 @@ app.post('/api/:method/:path',function(request,response) {
 
 });
 
-app.get('/', function(req, res) {
+app.get('/1', function(req, res) {
 	res.render('landing_mix',{layout:'main_bt'});
 });
-app.get('/1', function(req, res) {
+app.get('/', function(req, res) {
 	// res.redirect(301,'/auth/login');//调试方便，临时重定向
 	res.render('landing',{layout:'main_bt'});
 });

@@ -3,3 +3,5 @@ src/node_modules
 src/bower_components
 .idea
 src/public/img_min
+*.sublime-project
+*.sublime-workspace

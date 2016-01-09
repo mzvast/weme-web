@@ -4,6 +4,90 @@
 		"selected_items":
 		[
 			[
+				"clicked",
+				"clickedDetail"
+			],
+			[
+				"Publi",
+				"Publis_clicked_detail"
+			],
+			[
+				"if",
+				"if	if"
+			],
+			[
+				"attr",
+				"attr:{src:imgUrl"
+			],
+			[
+				"with",
+				"with:ViewModel5"
+			],
+			[
+				"ko",
+				"ko.o	knockoutjs observable"
+			],
+			[
+				"sel",
+				"self"
+			],
+			[
+				"Activity",
+				"ActivityLifeImg"
+			],
+			[
+				"img",
+				"imgurls"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"fech",
+				"fetchList"
+			],
+			[
+				"fil",
+				"filterByIsSelected"
+			],
+			[
+				"f",
+				"f	Anonymous Function"
+			],
+			[
+				"all",
+				"allIsSelected	(manage.js)"
+			],
+			[
+				"chec",
+				"checked	(manage.js)"
+			],
+			[
+				"chekc",
+				"checkAll	(manage.handlebars)"
+			],
+			[
+				"lne",
+				"length!==0	(manage.handlebars)"
+			],
+			[
+				"check",
+				"checkList"
+			],
+			[
+				"ch",
+				"checkbox	(manage.handlebars)"
+			],
+			[
+				"fix",
+				"fixed"
+			],
+			[
+				"bro",
+				"browser	(.eslintrc.js)"
+			],
+			[
 				"paka",
 				"package.json"
 			],
@@ -32,10 +116,6 @@
 				"currentDownloadNum"
 			],
 			[
-				"sel",
-				"self"
-			],
-			[
 				"item",
 				"itemSize	(manage.js)"
 			],
@@ -50,10 +130,6 @@
 			[
 				"len",
 				"length"
-			],
-			[
-				"if",
-				"if	if"
 			],
 			[
 				"do",
@@ -78,10 +154,6 @@
 			[
 				"v",
 				"vendor"
-			],
-			[
-				"ko",
-				"ko.o	knockoutjs observable"
 			],
 			[
 				"page",
@@ -132,10 +204,6 @@
 				"subscribable	(manage.js)"
 			],
 			[
-				"with",
-				"with:ViewModel1	(manage.handlebars)"
-			],
-			[
 				"ge",
 				"gender	(manage.js)"
 			],
@@ -170,10 +238,6 @@
 			[
 				"fo",
 				"foreach:list"
-			],
-			[
-				"for",
-				"for	for (…) {…}"
 			],
 			[
 				"selec",
@@ -450,83 +514,11 @@
 			[
 				"pro",
 				"props	React: this.props"
-			],
-			[
-				"C",
-				"Comment"
-			],
-			[
-				"Com",
-				"Comment〔class〕"
-			],
-			[
-				"b",
-				"build"
-			],
-			[
-				"sr",
-				"src=〔attribute〕"
-			],
-			[
-				"tog",
-				"toggle"
-			],
-			[
-				"cat",
-				"catList"
-			],
-			[
-				"nick",
-				"nicknames"
-			],
-			[
-				"img",
-				"imgAttribution"
-			],
-			[
-				"f",
-				"f	Anonymous Function"
-			],
-			[
-				"fun",
-				"fun	Function"
-			],
-			[
-				"click",
-				"clickCount"
-			],
-			[
-				"dat",
-				"dateSubmitted"
-			],
-			[
-				"to",
-				"toString〔function〕"
-			],
-			[
-				"fn",
-				"fn_upVote"
-			],
-			[
-				"updat",
-				"updateVoteHTML〔function〕"
-			],
-			[
-				"class",
-				"class=\"btn"
 			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "src/gulpfile.js",
-			"settings":
-			{
-				"buffer_size": 6975,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -536,15 +528,19 @@
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "",
+		"last_filter": "git re",
 		"selected_items":
 		[
+			[
+				"git re",
+				"Git: Reset (hard) HEAD"
+			],
 			[
 				"git push",
 				"Git: Push"
 			],
 			[
-				"git com",
+				"git co",
 				"Git: Commit"
 			],
 			[
@@ -552,16 +548,36 @@
 				"Git: Add All"
 			],
 			[
-				"git diff",
-				"Git: Diff All Files"
-			],
-			[
-				"git co",
+				"git ",
 				"Git: Commit"
 			],
 			[
 				"git stat",
 				"Git: Status"
+			],
+			[
+				"git res",
+				"Git: Reset (hard) HEAD"
+			],
+			[
+				"git rese",
+				"Git: Reset (hard) HEAD"
+			],
+			[
+				"git statu",
+				"Git: Status"
+			],
+			[
+				"git c",
+				"Git: Commit"
+			],
+			[
+				"git com",
+				"Git: Commit"
+			],
+			[
+				"git diff",
+				"Git: Diff All Files"
 			],
 			[
 				"git dif",
@@ -596,10 +612,6 @@
 				"SublimeREPL: Node"
 			],
 			[
-				"git c",
-				"Git: Commit"
-			],
-			[
 				"docbl",
 				"DocBlockr: Decorate line comment"
 			],
@@ -614,10 +626,6 @@
 			[
 				"repl no",
 				"SublimeREPL: Node"
-			],
-			[
-				"git re",
-				"Git: Reset (unstage) All"
 			],
 			[
 				"repl nod",
@@ -692,16 +700,8 @@
 				"Snippet: React: wrap in a component"
 			],
 			[
-				"git ",
-				"Git: Push"
-			],
-			[
 				"git log ",
 				"Git: Log All"
-			],
-			[
-				"git rese",
-				"Git: Reset (hard) HEAD"
 			],
 			[
 				"git",
@@ -710,10 +710,6 @@
 			[
 				"git sta",
 				"Git: Status"
-			],
-			[
-				"git res",
-				"GitGutter: Compare Against Origin"
 			],
 			[
 				"\\",
@@ -742,29 +738,52 @@
 	"expanded_folders":
 	[
 		"/D/WorkSpaces/weme",
-		"/D/WorkSpaces/weme/dist/js/auth",
-		"/D/WorkSpaces/weme/dist/js/util",
-		"/D/WorkSpaces/weme/dist/public",
 		"/D/WorkSpaces/weme/src",
-		"/D/WorkSpaces/weme/src/views/partials/admin",
+		"/D/WorkSpaces/weme/src/public",
+		"/D/WorkSpaces/weme/src/public/js",
+		"/D/WorkSpaces/weme/src/public/js/admin",
+		"/D/WorkSpaces/weme/src/public/js/user",
+		"/D/WorkSpaces/weme/src/public/js/user/activity",
+		"/D/WorkSpaces/weme/src/views",
+		"/D/WorkSpaces/weme/src/views/user",
 		"/D/WorkSpaces/weme/src/views/user/activity"
 	],
 	"file_history":
 	[
+		"/D/WorkSpaces/weme/src/views/user/activity/manage.handlebars",
+		"/D/WorkSpaces/weme/src/public/js/user/activity/manage.js",
+		"/D/WorkSpaces/weme/src/public/js/admin/publish.js",
+		"/D/WorkSpaces/weme/src/.eslintrc.js",
+		"/D/WorkSpaces/weme/src/weme.js",
+		"/D/WorkSpaces/weme/src/.eslintignore",
+		"/D/WorkSpaces/weme/src/public/js/user/.eslintrc.js",
+		"/D/WorkSpaces/weme/src/gulpfile.js",
+		"/D/WorkSpaces/weme/src/public/js/.eslintrc.js",
+		"/D/WorkSpaces/weme/src/public/js/admin/app.js",
+		"/D/WorkSpaces/weme/src/public/js/auth/.eslintrc.js",
+		"/C/Users/mzvast/AppData/Roaming/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/D/WorkSpaces/weme/src/public/js/.eslintignore",
+		"/D/WorkSpaces/weme/src/package.json",
+		"/D/WorkSpaces/weme/src/public/js/landing_head_button.js",
+		"/D/WorkSpaces/weme/src/.eslintrc.json",
+		"/D/WorkSpaces/weme/src/views/user/home.handlebars",
+		"/D/WorkSpaces/weme/src/public/js/user/home.js",
+		"/D/WorkSpaces/weme/src/public/js/util/.eslintrc.js",
+		"/D/WorkSpaces/weme/src/public/js/menu.js",
+		"/D/WorkSpaces/weme/src/public/js/util/.eslintignore",
+		"/D/WorkSpaces/weme/src/public/js/admin/eventRegister.js",
+		"/D/WorkSpaces/weme/src/views/user/home/editProfile.handlebars",
+		"/D/WorkSpaces/weme/src/views/user/community.handlebars",
 		"/D/WorkSpaces/weme/dist/weme.js",
 		"/D/WorkSpaces/weme/README.md",
 		"/D/WorkSpaces/weme/.gitignore",
 		"/D/WorkSpaces/weme/dist/js/admin/app.js",
-		"/D/WorkSpaces/weme/src/gulpfile.js",
 		"/D/WorkSpaces/weme/src/views/auth/login.handlebars",
 		"/D/WorkSpaces/weme/src/views/partials/css_bt_navbar.handlebars",
 		"/D/WorkSpaces/weme/src/views/auth/register.handlebars",
 		"/D/WorkSpaces/weme/src/views/partials/head.handlebars",
 		"/D/WorkSpaces/weme/src/views/partials/admin/leftbar.handlebars",
 		"/D/WorkSpaces/weme/src/views/user/activity.handlebars",
-		"/D/WorkSpaces/weme/src/views/user/community.handlebars",
-		"/D/WorkSpaces/weme/src/views/user/home.handlebars",
-		"/D/WorkSpaces/weme/src/views/user/activity/manage.handlebars",
 		"/D/WorkSpaces/weme/src/views/admin/eventRegister.handlebars",
 		"/D/WorkSpaces/weme/src/views/admin/publish.handlebars",
 		"/D/WorkSpaces/weme/gulpfile.js",
@@ -858,31 +877,11 @@
 		"/D/WorkSpaces/react-tutorial/server.py",
 		"/D/WorkSpaces/react-0.14.3/src/helloworld.js",
 		"/D/WorkSpaces/react-0.14.3/helloworld.html",
-		"/D/WorkSpaces/react-0.14.3/How2Run.md",
-		"/D/WorkSpaces/react-0.14.3/package.json",
-		"/D/WorkSpaces/react-0.14.3/build/helloworld.js",
-		"/D/WorkSpaces/react-0.14.3/.gitignore",
-		"/D/WorkSpaces/react-0.14.3/src/helloworld.html",
-		"/D/WorkSpaces/react-0.14.3/.git/COMMIT_EDITMSG",
-		"/D/WorkSpaces/ReactJS/react-0.14.3/helloworld.html",
-		"/D/WorkSpaces/ReactJS/my_reactjs_repo/webpack.config.js",
-		"/D/WorkSpaces/ReactJS/my_reactjs_repo/src/client/index.html",
-		"/D/WorkSpaces/ReactJS/my_reactjs_repo/package.json",
-		"/D/WorkSpaces/ReactJS/my_reactjs_repo/src/client/app/index.jsx",
-		"/D/WorkSpaces/ReactJS/react-0.14.3/examples/basic/index.html",
-		"/D/WorkSpaces/MyApp/build/content/index.jade",
-		"/D/WorkSpaces/MyApp/package.json",
-		"/D/WorkSpaces/MyApp/tools/start.js",
-		"/D/WorkSpaces/todomvc/examples/angular2/services/store.js",
-		"/D/WorkSpaces/todomvc/examples/backbone/index.html",
-		"/D/WorkSpaces/todomvc/examples/knockoutjs/js/app.js",
-		"/D/WorkSpaces/todomvc/examples/knockoutjs/index.html",
-		"/D/WorkSpaces/todomvc/examples/react/js/app.jsx",
-		"/D/WorkSpaces/todomvc/examples/react/index.html"
+		"/D/WorkSpaces/react-0.14.3/How2Run.md"
 	],
 	"find":
 	{
-		"height": 38.0
+		"height": 36.0
 	},
 	"find_in_files":
 	{
@@ -897,6 +896,44 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"activated",
+			"Publish_clickedSignupItem",
+			"Publish_clickedSignupItemPicture",
+			"Publish_selectedActivity",
+			"clickedItemDetail",
+			"clickedItemPicture",
+			"getProfileById",
+			"5",
+			"clickedItem",
+			"self.clickedItem",
+			"clickedItem",
+			"<th",
+			"clickedItem",
+			"6b0200e948fb45cab5e0c3d410df1fd3",
+			"self.token ",
+			"token",
+			"push",
+			"self.list",
+			"i",
+			"I",
+			"i",
+			"data",
+			"self.token = getCookie(\"token\");",
+			"data:{\n				  	\"token\": self.token\n				  },",
+			"},",
+			"i",
+			"ctrl",
+			"};",
+			"downloadPageData",
+			"6",
+			"console",
+			"    ",
+			"   ",
+			"  ",
+			"\"",
+			"'))\n",
+			"		   ",
+			"\"",
 			"styles-dist",
 			"copy-ico-to-dist",
 			"../dist/public/img",
@@ -986,45 +1023,7 @@
 			"activityList",
 			"self.activityList",
 			"activityList",
-			"selectedActivity",
-			"itemSizeOfActivityList",
-			"selectedActivity",
-			"length",
-			"writeList",
-			"data",
-			"signupList",
-			"currentSignupListPageNum",
-			"signupList",
-			"SignupList",
-			"viewModel",
-			"viewModel2",
-			"viewModel1",
-			"fetchSignupList",
-			"currentSignupListPageNum",
-			"shouter2",
-			"fetchPublishedActivity",
-			"currentActivityListPageNum",
-			"fetchPublishedActivity",
-			"currentActivityListPageNum",
-			"currentSignupListPage",
-			"currentActivity",
-			"currentActivity(",
-			"currentActivity",
-			"currentActivity ",
-			"currentActivity",
-			".currentActivity",
-			"currentActivity",
-			"currentAc",
-			"currentActivityPageNum",
-			"currentActivityPage",
-			"activityList",
-			"currentActivityPage",
-			"root",
-			"1",
-			"VM1",
-			"currentPublishedActivity",
-			"signupUserList",
-			"SignupUser"
+			"selectedActivity"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1043,105 +1042,14 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "src/gulpfile.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 6975,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2142,
-								2142
-							]
-						],
-						"settings":
-						{
-							"BracketHighlighterBusy": false,
-							"auto_complete": false,
-							"bh_regions":
-							[
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content"
-							],
-							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai (SL).tmTheme",
-							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1452.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 30.0
+		"height": 28.0
 	},
 	"input":
 	{
@@ -1182,7 +1090,7 @@
 	"project": "weme.sublime-project",
 	"replace":
 	{
-		"height": 56.0
+		"height": 52.0
 	},
 	"save_all_on_build": true,
 	"select_file":
