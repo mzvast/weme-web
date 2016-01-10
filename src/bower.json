@@ -24,6 +24,7 @@
     "pure": "~0.6.0",
     "ExcelPlus": "https://github.com/Aymkdn/ExcelPlus.git",
     "font-awesome": "fontawesome#~4.5.0",
-    "knockout-postbox": "~0.5.2"
+    "knockout-postbox": "~0.5.2",
+    "imagesloaded": "~4.0.0"
   }
 }

@@ -1,15 +1,154 @@
 {{# section 'head' }}
-	<title>WeMe|主页</title>
-
+	<title>{{session.username}}|WeMe|主页</title>
+<style>
+	body {
+  padding-top: 40px; }
+  .bg {
+  background: url('//placekitten.com/1200/300') no-repeat center center;
+  position: fixed;
+  width: 100%;
+  height: 250px; /*same height as jumbotron */
+  top:0;
+  left:0;
+  z-index: -1;
+}
+.jumbotron {
+  height: 250px;
+  color: white;
+  text-shadow: #444 0 1px 1px;
+  background:transparent;
+	margin-bottom: 0; 
+}
+.container {
+	width: 90vw;
+    padding-right: 14px;
+    padding-left: 14px;
+    margin:0 auto;
+}
+</style>
 {{/ section}}
 
 
 {{> user/navbar home=true}}
+<div class="bg"></div>
+	<div class="jumbotron">
+	<div class="row">
+		<div class="col-md-12" data-bind="with:ViewModel1">
+		  	<div class="col-md-5 col-md-offset-1" data-bind="with:currentProfile()">
+  				<img style="width:200px;border-radius: 20px 20px 20px 20px;" data-bind="attr:{src:imgUrl()}">
+  			</div>
+		</div>
+	</div>
+	</div>	
 <div class="container">
 	<div class="row">
-		<div class="col-md-4 col-md-offset-4">
+		<div class="col-md-3 " data-bind="with:ViewModel1">
+		<div data-bind="with:currentProfile()" class="text-center" style="margin-top: 0;margin-bottom: 10px;font-size: 24px;">
+	      <span   data-bind="text:username"></span> 
+	      <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal" >编辑</button> 		
+		</div>
+
+			<div class="panel panel-default" >
+			  <div class="panel-heading">
+			    <h3 class="panel-title">基本信息</h3>
+			  </div>
+			  <div class="panel-body" >
+				<div class="row">
+				  		<div class="col-md-12" data-bind="with:currentProfile()">
+					        <b>姓名:</b><span data-bind="text:name"></span><br>
+					        <b>性别:</b><span data-bind="text:gender"></span><br>
+					        <b>生日:</b><span data-bind="text:birthday"></span><br>
+					        <b>家乡:</b><span data-bind="text:hometown"></span><br>
+					        <b>唯觅id:</b><span data-bind="text:id"></span>
+				  		</div> 
+				</div>	
+			  </div>
+			</div>
+			<div class="panel panel-default" >
+			  <div class="panel-heading">
+			    <h3 class="panel-title">教育信息</h3>
+			  </div>
+			  <div class="panel-body" >
+				<div class="row">
+				  		<div class="col-md-12" data-bind="with:currentProfile()">
+					        <b>学校:</b><span data-bind="text:school"></span><br>
+					        <b>学历:</b><span data-bind="text:degree"></span><br>
+					        <b>入学时间:</b><span data-bind="text:enrollment"></span><br>
+					        <b>学院:</b><span data-bind="text:department"></span><br>
+				  		</div>  		
+				</div>	
+			  </div>
+			</div>			
+
+			<div class="panel panel-default" >
+			  <div class="panel-heading">
+			    <h3 class="panel-title">联系方式</h3>
+			  </div>
+			  <div class="panel-body" >
+				<div class="row">
+				  		<div class="col-md-12" data-bind="with:currentProfile()">
+					       <b>QQ:</b><span data-bind="text:qq"></span><br>
+					        <b>微信:</b><span data-bind="text:wechat"></span><br>
+					        <b>手机:</b><span data-bind="text:phoneDisplay"></span><br>
+				  		</div>  		
+				</div>	
+			  </div>
+			</div>			
+			<div class="panel panel-default" >
+			  <div class="panel-heading">
+			    <h3 class="panel-title">个性展示</h3>
+			  </div>
+			  <div class="panel-body" >
+				<div class="row">
+				  		<div class="col-md-12" data-bind="with:currentProfile()">
+					        <b>爱好:</b><span data-bind="text:hobby"></span><br>
+					        <b>喜好:</b><span data-bind="text:preference"></span><br>
+				  		</div>  		
+				</div>	
+			  </div>
+			</div>
+		</div>
+		<div class="col-md-6 ">
 				<h1>正在添加内容……</h1>
 			
+		</div>
+		<div class="col-md-3">
+			<div class="panel panel-default" >
+			  <div class="panel-heading">
+			    <h3 class="panel-title">推荐关注</h3>
+			  </div>
+			  <div class="panel-body" >
+				<div class="row">
+				  		<div class="col-md-12" >
+					        <b>#快播</b><span ></span><br>
+				  		</div>  		
+				</div>	
+			  </div>
+			</div>				
+			<div class="panel panel-default" >
+			  <div class="panel-heading">
+			    <h3 class="panel-title">热门</h3>
+			  </div>
+			  <div class="panel-body" >
+				<div class="row">
+				  		<div class="col-md-12" >
+					        <b>#乐视</b><span ></span><br>
+				  		</div>  		
+				</div>	
+			  </div>
+			</div>
+			<div class="panel panel-default" data-bind="with:ViewModel1">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">访客</h3>
+			  </div>
+			  <div class="panel-body" data-bind="with:currentProfile()">
+				<div class="row">
+				  		<div class="col-md-12" >
+					        <b>访客数量:</b><span data-bind="text:lookcount"></span><br>
+				  		</div>  		
+				</div>	
+			  </div>
+			</div>			
 		</div>
 	</div>
 	
@@ -17,5 +156,97 @@
 
 {{# section 'jquery' }}
 	<script type="text/javascript" src="/bower_components/knockout/dist/knockout.js"></script>
-	
+	<script type="text/javascript" src="/bower_components/knockout-postbox/build/knockout-postbox.min.js"></script>
+	<script type="text/javascript" src="/js/util/dom.js"></script>
+	<script type="text/javascript" src="/js/models/koModel.js"></script>
+	<script type="text/javascript" src="/js/user/home/home.js"></script>
 {{/ section}}
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" data-bind="with:ViewModel1">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">编辑个人信息</h4>
+      </div>
+      <div class="modal-body" data-bind="with:currentProfile()">
+      <div class="row">
+  		<div class="col-md-4 col-md-offset-1">
+	        <label for="name"><b>姓名:</b></label>
+	        <input id="name" class="form-control" data-bind="textInput:name">
+  			
+	        <label for="gender"><b>性别:</b></label>
+	        <select id="gender"  class="form-control" data-bind="textInput:gender,options:$parent.avaliableSex"></select>
+
+	        <label for="birthday"><b>生日:</b></label>
+	        <input id="birthday" type="date" class="form-control" data-bind="textInput:birthday">
+
+	        <label for="hometown" ><b>家乡:</b></label>
+	        <input id="hometown"  class="form-control" data-bind="textInput:hometown">
+
+
+
+  		</div>
+  		<div class="col-md-5 col-md-offset-1">
+  			<img style="width:230px;border-radius: 50px 50px 50px 50px;" data-bind="attr:{src:imgUrl()}">
+  			
+	        <label for="imgUrl" ><b>上传头像</b></label>
+  			<input type="file" id="imgUrl" >
+  		</div>
+  	</div>
+    <hr>
+    <div class="row">
+    	<div class="col-md-9 col-md-offset-1">
+	        <label for="hobby" ><b>爱好:</b></label>
+	        <textarea id="hobby" type="text"  class="form-control" data-bind="textInput:hobby"></textarea> 
+    		
+    	</div>
+	</div>
+    	<div class="row">
+    	<div class="col-md-9 col-md-offset-1">
+	        <label for="preference" ><b>喜好:</b></label>
+	        <textarea id="preference"  class="form-control" data-bind="textInput:preference"></textarea>
+    		
+    	</div>
+    </div>
+    <hr>
+  	<div class="row">
+  		<div class="col-md-4 col-md-offset-1">
+
+	        <label for="username" ><b>用户名:</b></label>
+	        <input id="username"  class="form-control" data-bind="textInput:username">
+
+	        <label for="qq" ><b>QQ:</b></label>
+	        <input id="qq"  class="form-control" data-bind="textInput:qq">
+
+	        <label for="wechat" ><b>微信:</b></label>
+	        <input id="wechat"  class="form-control" data-bind="textInput:wechat">
+
+	        <label for="phone" ><b>手机:</b></label>
+	        <input id="phone" maxlength="11" class="form-control" data-bind="textInput:phone">
+
+  		</div>
+  		<div class="col-md-4 col-md-offset-1">
+	        <label for="school" ><b>学校:</b></label>
+	        <select id="school"  class="form-control" data-bind="textInput:school,options:$parent.avaliableSchool"></select>
+
+	        <label for="degree" ><b>学历:</b></label>
+	        <select id="degree"  class="form-control" data-bind="textInput:degree,options:$parent.avaliableDegree"></select>
+
+	        <label for="enrollment" ><b>入学时间:</b></label>
+	        <input id="enrollment"  class="form-control" data-bind="textInput:enrollment">
+
+	        <label for="department" ><b>学院:</b></label>
+	        <input id="department"  class="form-control" data-bind="textInput:department">
+
+  		</div>
+  	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" data-bind="click:submitChange">保存</button>
+      </div>
+    </div>
+  </div>
+</div>

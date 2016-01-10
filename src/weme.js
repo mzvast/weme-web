@@ -109,6 +109,7 @@ router.post('/login', function(request, response) {
 				//session Admin SET!
 				request.session.isAdmin=(request.body.username=='administrator'?true:false);
 				response.cookie('token',json_data['token']);//cookies store token
+				request.session.username = request.body.username;//SET session username
 				console.log('request.cookies.token: '+json_data['token']);
 				console.log('session login state: '+request.session.isLogin);
 				console.log('session Admin state: '+request.session.isAdmin);
@@ -338,16 +339,16 @@ app.use(function(req, res, next) {
 });
 app.use('/admin', router);
 router.get('/', function(req, res) {
-	res.render('admin/dashboard',{layout:'main_pure'});
+	res.render('admin/dashboard',{layout:'main_pure',session:req.session});
 });
 router.get('/eventRegister', function(req, res) {
 	console.log('cookies token: '+req.cookies.token);
-	res.render('admin/eventRegister',{layout:'main_pure'});
+	res.render('admin/eventRegister',{layout:'main_pure',session:req.session});
 });
 
 router.get('/publish', function(req, res) {
 	console.log('cookies token: '+req.cookies.token);
-	res.render('admin/publish',{layout:'main_pure'});
+	res.render('admin/publish',{layout:'main_pure',session:req.session});
 });
 /*set up Error handler*/
 // 404 catch-all handler (middleware)
