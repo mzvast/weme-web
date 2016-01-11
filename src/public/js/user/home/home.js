@@ -44,7 +44,7 @@ $(document).ready(function() {
 						"phone":self.currentProfile().phone(),
 						"preference":self.currentProfile().preference(),
 						"qq":self.currentProfile().qq(),
-						"school":self.currentProfile().school(),
+						"school":self.selectedSchool(),
 						"username":self.currentProfile().username(),
 						"wechat":self.currentProfile().wechat()
 					  };
@@ -113,6 +113,22 @@ $(document).ready(function() {
 		};
 
 		self.getProfileByToken();
+  
+        self.arrayProvince = ko.observableArray(UniversityObj.province);
+        self.selectedProvince = ko.observable();
+        self.arrayBindUniviersity = ko.observableArray();
+        self.myChangeProvince = function() {
+        	self.arrayBindUniviersity.removeAll();
+        	var ProvinceUni = UniversityObj.all[self.selectedProvince()['id']]['university'];
+        	// console.log(ProvinceUni);
+        	ProvinceUni.forEach(function(university) {
+        		self.arrayBindUniviersity.push(university);
+        	});
+        };
+        // self.myChangeSchool = function() {
+        // 	console.log(self.selectedSchool());
+        // };
+        self.selectedSchool = ko.observable();
 
 	};
 

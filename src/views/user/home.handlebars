@@ -113,15 +113,25 @@
 			
 		</div>
 		<div class="col-md-3">
-			<div class="panel panel-default" >
+			<div class="panel panel-default" data-bind="with:ViewModel1">
 			  <div class="panel-heading">
 			    <h3 class="panel-title">推荐关注</h3>
 			  </div>
 			  <div class="panel-body" >
+{{!-- 				<div class="row">
+		  		    Province:
+				    <select data-bind="options: arrayPro,
+				                       optionsText: 'name',
+				                       value: selectedPro,
+				                       event: { change: myChange },
+				                       optionsCaption: '---请选择---'"></select>&nbsp;&nbsp;&nbsp;&nbsp;
+				    City:
+				    <select data-bind="options: arrayBindCity,
+				                       optionsText: 'name',
+				                       optionsCaption: '---请选择---'"></select>		
+				</div>	 --}}			
 				<div class="row">
-				  		<div class="col-md-12" >
-					        <b>#快播</b><span ></span><br>
-				  		</div>  		
+		  		    		
 				</div>	
 			  </div>
 			</div>				
@@ -159,6 +169,7 @@
 	<script type="text/javascript" src="/bower_components/knockout-postbox/build/knockout-postbox.min.js"></script>
 	<script type="text/javascript" src="/js/util/dom.js"></script>
 	<script type="text/javascript" src="/js/models/koModel.js"></script>
+	<script type="text/javascript" src="/js/models/university.js"></script>
 	<script type="text/javascript" src="/js/user/home/home.js"></script>
 {{/ section}}
 
@@ -177,7 +188,7 @@
 	        <input id="name" class="form-control" data-bind="textInput:name">
   			
 	        <label for="gender"><b>性别:</b></label>
-	        <select id="gender"  class="form-control" data-bind="textInput:gender,options:$parent.avaliableSex"></select>
+	        <select id="gender"  class="form-control" data-bind="value:gender,options:$parent.avaliableSex"></select>
 
 	        <label for="birthday"><b>生日:</b></label>
 	        <input id="birthday" type="date" class="form-control" data-bind="textInput:birthday">
@@ -226,10 +237,24 @@
   		</div>
   		<div class="col-md-4 col-md-offset-1">
 	        <label for="school" ><b>学校:</b></label>
-	        <select id="school"  class="form-control" data-bind="textInput:school,options:$parent.avaliableSchool"></select>
+	        <span id="school" data-bind="text:school"></span><br>
+
+	        {{!-- <select id="school"  class="form-control" data-bind="textInput:school,options:$parent.avaliableSchool"></select> --}}
+
+		    <select class="form-control" data-bind="options: $parent.arrayProvince,
+		                       optionsText: 'name',
+		                       value: $parent.selectedProvince,
+		                       event: { change: $parent.myChangeProvince },
+		                       optionsCaption: '---省份---'"></select>&nbsp;&nbsp;&nbsp;&nbsp;
+		    <select class="form-control" data-bind="options: $parent.arrayBindUniviersity,
+		                       optionsText: 'name',
+		                       optionsValue:'name',
+		                       value: $parent.selectedSchool,
+		                       {{!-- event: { change: $parent.myChangeSchool }, --}}
+		                       optionsCaption: '---学校---'"></select>
 
 	        <label for="degree" ><b>学历:</b></label>
-	        <select id="degree"  class="form-control" data-bind="textInput:degree,options:$parent.avaliableDegree"></select>
+	        <select id="degree"  class="form-control" data-bind="value:degree,options:$parent.avaliableDegree"></select>
 
 	        <label for="enrollment" ><b>入学时间:</b></label>
 	        <input id="enrollment"  class="form-control" data-bind="textInput:enrollment">
