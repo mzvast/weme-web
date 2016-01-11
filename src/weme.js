@@ -213,6 +213,8 @@ app.post('/api/:method/:path',function(request,response) {
 	// 	});
 	var data='';
 	var postData = JSON.stringify(request.body);
+	var buf = new Buffer(postData.length*3);//处理中文字符js和binary之间的差异！Important
+	var len = buf.write(postData);//处理中文字符js和binary之间的差异！Important
 	var options = {
 		hostname: '218.244.147.240',
 		port: 8080,
@@ -220,7 +222,7 @@ app.post('/api/:method/:path',function(request,response) {
 		method: request.params.method.toUpperCase(),
 		headers: {
 			'Content-Type': 'application/json',
-			'Content-Length': postData.length
+			'Content-Length': len
 		}};
 		// console.log(options);
 	var req = http.request(options, function(res) {

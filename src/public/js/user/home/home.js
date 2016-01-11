@@ -34,20 +34,18 @@ $(document).ready(function() {
 			var data = {
 					  	"token": self.token,
 						"birthday":self.currentProfile().birthday(),
-						"degree":encodeURI(self.currentProfile().degree()),
-						// "degree":"Shuoshi",
+						"degree":self.currentProfile().degree(),
 						"department":self.currentProfile().department(),
-						// "enrollment":self.currentProfile().enrollment(),
-						// "gender":"av",
-						// "gender":self.currentProfile().gender(),
+						"enrollment":self.currentProfile().enrollment(),
+						"gender":self.currentProfile().gender(),
 						"hobby":self.currentProfile().hobby(),
 						"hometown":self.currentProfile().hometown(),
 						"name":self.currentProfile().name(),
 						"phone":self.currentProfile().phone(),
 						"preference":self.currentProfile().preference(),
 						"qq":self.currentProfile().qq(),
-						// "school":self.currentProfile().school(),
-						// "username":self.currentProfile().username(),
+						"school":self.currentProfile().school(),
+						"username":self.currentProfile().username(),
 						"wechat":self.currentProfile().wechat()
 					  };
 			console.log(data);
@@ -62,7 +60,7 @@ $(document).ready(function() {
 				       		// self.writeList(data);
 				       		//console.dir(json);
 				       		console.log(json);
-				       		console.log("信息修改失败");
+				       		alert("信息修改失败");
 				       		self.getProfileByToken();
 				       		return;
 				       } 
@@ -70,7 +68,7 @@ $(document).ready(function() {
 				       		//console.dir("got data!");
 				       		// self.writeList(data);
 				       		console.log(self.currentProfile());
-				       		console.log("信息修改成功");
+				       		alert("信息修改成功");
 				       		self.getProfileByToken();
 							return;
 				       }
