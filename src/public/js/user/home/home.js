@@ -7,7 +7,8 @@ $(document).ready(function() {
 
 	$(window).scroll(function(e){
 	    parallax();
-	});			
+	});
+	
 	var ViewModel1 = function() {
 		var self = this;
 		self.isEdu = ko.observable(false);
@@ -30,6 +31,68 @@ $(document).ready(function() {
 													'博士'
 												]);
 		self.chosenDegree = ko.observableArray();
+		self.selectedPicture = ko.observable();
+
+		self.previewFile = function(){
+		  var preview = document.querySelector('img#preview');
+		  var file    = document.querySelector('input[type=file]').files[0];
+		  var reader  = new FileReader();
+
+		  reader.onloadend = function () {
+		    preview.src = reader.result;
+		    self.selectedPicture(reader.result);
+		  };
+
+		  if (file) {
+		    reader.readAsDataURL(file);
+		  } else {
+		    preview.src = "";
+		  }
+		};	
+
+		self.submitPicture = function() {
+			var formData = new FormData();
+			formData.append('json', {
+						  		"token": self.token,
+								"type":"0",
+								"number":"0"
+							});
+			formData.append('image', document.querySelector('input[type=file]').files[0]); 
+			//console.log("into it");
+			 //console.log(self.selectedPicture());
+			$.ajax({
+					  type: "POST",
+					  url: "/apipro/post/uploadavatar",
+					  cache: false,
+					  // dataType: "json",
+					  contentType: false,
+					  processData: false,
+					  data:formData
+					})
+			.done(function(json) {
+				       if (json["state"]!=="successful") {
+				       		// self.writeList(data);
+				       		//console.dir(json);
+				       		//console.log(json);
+				       		alert("上传头像失败");
+				       		// self.getProfileByToken();
+				       		return;
+				       } 
+				       else{
+				       		//console.dir("got data!");
+				       		// self.writeList(data);
+				       		alert("上传头像成功");
+				       		self.getProfileByToken();
+							return;
+				       }
+					})
+			.fail(function(e) {
+					       //console.log(e);
+	                		return;
+
+					});
+		};
+
 		self.submitChange = function() {
 			var data = {
 					  	"token": self.token,
@@ -48,7 +111,7 @@ $(document).ready(function() {
 						"username":self.currentProfile().username(),
 						"wechat":self.currentProfile().wechat()
 					  };
-			console.log(data);
+			//console.log(data);
 			$.ajax({
 					  type: "POST",
 					  url: "/api/post/editprofileinfo",
@@ -59,7 +122,7 @@ $(document).ready(function() {
 				       if (json["state"]!=="successful") {
 				       		// self.writeList(data);
 				       		//console.dir(json);
-				       		console.log(json);
+				       		//console.log(json);
 				       		alert("信息修改失败");
 				       		self.getProfileByToken();
 				       		return;
@@ -67,21 +130,21 @@ $(document).ready(function() {
 				       else{
 				       		//console.dir("got data!");
 				       		// self.writeList(data);
-				       		console.log(self.currentProfile());
+				       		//console.log(self.currentProfile());
 				       		alert("信息修改成功");
 				       		self.getProfileByToken();
 							return;
 				       }
 					})
 			.fail(function(e) {
-					       console.log(e);
+					       //console.log(e);
 	                		return;
 
 					});
 		};
 
 		self.getProfileByToken = function()  {
-			//console.log("正在获取个人信息!");
+			////console.log("正在获取个人信息!");
 			self.currentProfile("");
 			$.ajax({
 					  type: "POST",
@@ -100,13 +163,13 @@ $(document).ready(function() {
 				       else{
 				       		//console.dir("got data!");
 				       		// self.writeList(data);
-				       		console.dir(json);
+				       		// console.dir(json);
 				       		self.currentProfile(new Profile(json));
 							return;
 				       }
 					})
 			.fail(function(e) {
-					       console.log(e);
+					       //console.log(e);
 	                		return;
 
 					});
@@ -120,13 +183,13 @@ $(document).ready(function() {
         self.myChangeProvince = function() {
         	self.arrayBindUniviersity.removeAll();
         	var ProvinceUni = UniversityObj.all[self.selectedProvince()['id']]['university'];
-        	// console.log(ProvinceUni);
+        	 //console.log(ProvinceUni);
         	ProvinceUni.forEach(function(university) {
         		self.arrayBindUniviersity.push(university);
         	});
         };
         // self.myChangeSchool = function() {
-        // 	console.log(self.selectedSchool());
+        // 	//console.log(self.selectedSchool());
         // };
         self.selectedSchool = ko.observable();
 

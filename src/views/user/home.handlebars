@@ -109,7 +109,7 @@
 			</div>
 		</div>
 		<div class="col-md-6 ">
-				<h1>正在添加内容……</h1>
+				<h3>完善个人信息，让更多小伙伴看到你……</h3>
 			
 		</div>
 		<div class="col-md-3">
@@ -118,6 +118,11 @@
 			    <h3 class="panel-title">推荐关注</h3>
 			  </div>
 			  <div class="panel-body" >
+			  <div class="row">
+				  		<div class="col-md-12" >
+					        <b>#快播</b><span ></span><br>
+				  		</div>  		
+				</div>
 {{!-- 				<div class="row">
 		  		    Province:
 				    <select data-bind="options: arrayPro,
@@ -175,7 +180,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog modal-lg" role="document">
+  <div class="modal-dialog" role="document">
     <div class="modal-content" data-bind="with:ViewModel1">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -183,7 +188,7 @@
       </div>
       <div class="modal-body" data-bind="with:currentProfile()">
       <div class="row">
-  		<div class="col-md-3 col-md-offset-1">
+  		<div class="col-md-4 col-md-offset-1">
 	        <label for="name"><b>姓名:</b></label>
 	        <input id="name" class="form-control" data-bind="textInput:name">
   			
@@ -199,23 +204,27 @@
 
 
   		</div>
-  		<div class="col-md-5 col-md-offset-1">
+  		<div class="col-md-6 col-md-offset-1">
   			<img style="width:230px;border-radius: 50px 50px 50px 50px;" data-bind="attr:{src:imgUrl()}">
-  			
-	        <label for="imgUrl" ><b>上传头像</b></label>
-  			<input type="file" id="imgUrl" >
+
+  			{{!-- <form id="data" action="" method="POST" enctype="multipart/form-data">
+		        <label><b>上传头像</b></label>
+  			<input name="avatar" type="file" data-bind="event:{change:$parent.previewFile()}"><br>
+  			<button data-bind="click:$parent.submitPicture">上传</button>
+			<img id="preview" src="" height="200" alt="Image preview...">
+  			</form> --}}
   		</div>
   	</div>
     <hr>
     <div class="row">
-    	<div class="col-md-9 col-md-offset-1">
+    	<div class="col-md-10 col-md-offset-1">
 	        <label for="hobby" ><b>爱好:</b></label>
 	        <textarea id="hobby" type="text"  class="form-control" data-bind="textInput:hobby"></textarea> 
     		
     	</div>
 	</div>
     	<div class="row">
-    	<div class="col-md-9 col-md-offset-1">
+    	<div class="col-md-10 col-md-offset-1">
 	        <label for="preference" ><b>喜好:</b></label>
 	        <textarea id="preference"  class="form-control" data-bind="textInput:preference"></textarea>
     		

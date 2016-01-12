@@ -5,7 +5,6 @@ var UniversityObj = {
 			provinceArray.push({id:i,name:this.all[i]['province']});
 			// provinceArray.push(this.all[i]['province']);
 		}
-		console.dir(provinceArray);
 		return provinceArray;
 	},
 	all : [
