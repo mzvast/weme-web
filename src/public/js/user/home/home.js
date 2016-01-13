@@ -44,27 +44,26 @@ $(document).ready(function() {
 		  };
 
 		  if (file) {
+		  	preview.hidden = false;
 		    reader.readAsDataURL(file);
 		  } else {
-		    preview.src = "";
+		    // preview.src = "";
+		    preview.hidden = true;
 		  }
 		};	
 
 		self.submitPicture = function() {
 			var formData = new FormData();
-			formData.append('json', {
-						  		"token": self.token,
-								"type":"0",
-								"number":"0"
-							});
-			formData.append('image', document.querySelector('input[type=file]').files[0]); 
-			//console.log("into it");
+			formData.append('avatar', document.querySelector('input[type=file]').files[0]);
+			var jsonStr =  '{"token":'+'"'+self.token+'"'+',"type":"0","number":"0"}';
+			console.log(jsonStr);
+			// formData.append('json', jsonStr);
+			console.log("into it");
 			 //console.log(self.selectedPicture());
 			$.ajax({
 					  type: "POST",
-					  url: "/apipro/post/uploadavatar",
-					  cache: false,
-					  // dataType: "json",
+					  url: "/api-multipart/uploadavatar",
+					  dataType: "json",
 					  contentType: false,
 					  processData: false,
 					  data:formData
@@ -72,8 +71,8 @@ $(document).ready(function() {
 			.done(function(json) {
 				       if (json["state"]!=="successful") {
 				       		// self.writeList(data);
-				       		//console.dir(json);
-				       		//console.log(json);
+				       		// console.dir(json);
+				       		console.log(json);
 				       		alert("上传头像失败");
 				       		// self.getProfileByToken();
 				       		return;

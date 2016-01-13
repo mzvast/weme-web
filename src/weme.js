@@ -9,6 +9,8 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
+var request = require("request");
+var multiparty = require("multiparty");
 var flash = require('express-flash');
 // set up handlebars view engine
 var exphbs = require('express-handlebars');
@@ -248,6 +250,47 @@ app.post('/api/:method/:path',function(request,response) {
 	req.write(postData);
 	req.end();
 
+});
+
+app.post('/api-multipart/:path/',function(httpRequest, httpResponse, next) {
+    var form = new multiparty.Form();
+
+    form.on("part", function(part){
+    	if (!part.filename) {
+		    console.log('got field named ' + part.name);
+		    part.resume();
+		  }
+        if(part.filename)
+        {
+		    console.log('got file named ' + part.name);
+            var filename = part.filename;
+            var size = part.byteCount;
+
+            var r = request.post('http://218.244.147.240:80/'+httpRequest.params.path,function(err, res, body) {
+              if (err) {
+                return console.error('upload failed:', err);
+              }
+              console.log('Upload successful!  Server responded with:', body);
+              httpResponse.send(body);
+            });
+
+            var form = r.form();
+
+            form.append('json', '{"token":"884d20eb7ceb8e83f8ab7cb89fa238c0","type":"0","number":"0"}');
+            form.append('avatar',part,{
+                                          filename: part.filename,
+                                          contentType: part.headers['content-type'],
+                                          knownLength: part.byteCount
+                                        });
+        	part.resume();
+        }
+    });
+
+    form.on("error", function(error){
+        console.log(error);
+    });
+
+    form.parse(httpRequest);
 });
 
 app.get('/api-img/:path',function(request,response) {

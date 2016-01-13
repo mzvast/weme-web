@@ -53,4 +53,7 @@ var Profile = function(data) {
 	self.imgUrl = ko.computed(function() {
 		return "//218.244.147.240:80/avatar/"+self.id();
 	});
+	self.imgUrlSmall = ko.computed(function() {
+		return "//218.244.147.240:80/avatar/"+self.id()+"_thumbnail.jpg";
+	});
 };

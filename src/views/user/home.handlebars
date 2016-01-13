@@ -115,6 +115,19 @@
 		<div class="col-md-3">
 			<div class="panel panel-default" data-bind="with:ViewModel1">
 			  <div class="panel-heading">
+			    <h3 class="panel-title">访客</h3>
+			  </div>
+			  <div class="panel-body" data-bind="with:currentProfile()">
+				<div class="row">
+				  		<div class="col-md-12" >
+					        <b>访客数量:</b><span data-bind="text:lookcount"></span><br>
+				  		</div> 
+
+				</div>	
+			  </div>
+			</div>			
+			<div class="panel panel-default" data-bind="with:ViewModel1">
+			  <div class="panel-heading">
 			    <h3 class="panel-title">推荐关注</h3>
 			  </div>
 			  <div class="panel-body" >
@@ -152,18 +165,6 @@
 				</div>	
 			  </div>
 			</div>
-			<div class="panel panel-default" data-bind="with:ViewModel1">
-			  <div class="panel-heading">
-			    <h3 class="panel-title">访客</h3>
-			  </div>
-			  <div class="panel-body" data-bind="with:currentProfile()">
-				<div class="row">
-				  		<div class="col-md-12" >
-					        <b>访客数量:</b><span data-bind="text:lookcount"></span><br>
-				  		</div>  		
-				</div>	
-			  </div>
-			</div>			
 		</div>
 	</div>
 	
@@ -206,7 +207,13 @@
   		</div>
   		<div class="col-md-6 col-md-offset-1">
   			<img style="width:230px;border-radius: 50px 50px 50px 50px;" data-bind="attr:{src:imgUrl()}">
-
+			<form id="data" action="/api-multipart/uploadavatar" method="POST" enctype="multipart/form-data">
+		        <label><b>上传头像</b></label>
+  			<input name="avatar" type="file" data-bind="event:{change:$parent.previewFile()}"><br>
+  			{{!-- <button >上传</button> --}}
+			<img id="preview" src=""  style="width:230px;border-radius: 50px 50px 50px 50px;" alt="预览头像...">
+  			<button class="btn btn-default" type='submit' data-bind="click:$parent.submitPicture">上传</button>
+			</form> 
   			{{!-- <form id="data" action="" method="POST" enctype="multipart/form-data">
 		        <label><b>上传头像</b></label>
   			<input name="avatar" type="file" data-bind="event:{change:$parent.previewFile()}"><br>
