@@ -35,7 +35,7 @@
 	<div class="row">
 		<div class="col-md-12" data-bind="with:ViewModel1">
 		  	<div class="col-md-5 col-md-offset-1" data-bind="with:currentProfile()">
-  				<img style="width:200px;border-radius: 20px 20px 20px 20px;" data-bind="attr:{src:imgUrl()}">
+  				<img style="width:200px;border-radius: 200px 200px 200px 200px;" data-bind="attr:{src:imgUrl()}">
   			</div>
 		</div>
 	</div>
@@ -206,12 +206,12 @@
 
   		</div>
   		<div class="col-md-6 col-md-offset-1">
-  			<img style="width:230px;border-radius: 50px 50px 50px 50px;" data-bind="attr:{src:imgUrl()}">
+  			<img style="width:200px;border-radius: 100px 100px 100px 100px;" data-bind="attr:{src:imgUrl()}">
 			<form id="data" action="/api-multipart/uploadavatar" method="POST" enctype="multipart/form-data">
 		        <label><b>上传头像</b></label>
   			<input name="avatar" type="file" data-bind="event:{change:$parent.previewFile()}"><br>
   			{{!-- <button >上传</button> --}}
-			<img id="preview" src=""  style="width:230px;border-radius: 50px 50px 50px 50px;" alt="预览头像...">
+			<img id="preview" src=""  style="width:200px;border-radius: 100px 100px 100px 100px;" alt="预览头像...">
   			<button class="btn btn-default" type='submit' data-bind="click:$parent.submitPicture">上传</button>
 			</form> 
   			{{!-- <form id="data" action="" method="POST" enctype="multipart/form-data">

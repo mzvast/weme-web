@@ -256,33 +256,37 @@ app.post('/api-multipart/:path/',function(httpRequest, httpResponse, next) {
     var form = new multiparty.Form();
 
     form.on("part", function(part){
+    	var FormData = require("form-data");
+    	var form = new FormData();
+        form.append('json', httpRequest.headers['json']);//form-data JSON内容!important!
+            // console.log('json======',httpRequest.headers['json']);
+    	
     	if (!part.filename) {
-		    console.log('got field named ' + part.name);
+		    // console.log('got field named ' + part.name);
 		    part.resume();
 		  }
+
         if(part.filename)
         {
 		    console.log('got file named ' + part.name);
             var filename = part.filename;
             var size = part.byteCount;
-
-            var r = request.post('http://218.244.147.240:80/'+httpRequest.params.path,function(err, res, body) {
-              if (err) {
-                return console.error('upload failed:', err);
-              }
-              console.log('Upload successful!  Server responded with:', body);
-              httpResponse.send(body);
-            });
-
-            var form = r.form();
-
-            form.append('json', '{"token":"884d20eb7ceb8e83f8ab7cb89fa238c0","type":"0","number":"0"}');
+		    console.log('got file size ' + size);
             form.append('avatar',part,{
                                           filename: part.filename,
                                           contentType: part.headers['content-type'],
                                           knownLength: part.byteCount
                                         });
-        	part.resume();
+        
+    	var r = request.post('http://218.244.147.240:80/'+httpRequest.params.path,function(err, res, body) {
+              if (err) {
+                return console.error('upload failed:', err);
+              }
+              // console.log('Upload successful!  Server responded with:', body);
+		    // console.log('res headers ' + res.headers);
+              httpResponse.send(body);
+            });
+            r._form = form;
         }
     });
 

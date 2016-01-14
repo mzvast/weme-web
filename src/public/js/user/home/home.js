@@ -66,6 +66,7 @@ $(document).ready(function() {
 					  dataType: "json",
 					  contentType: false,
 					  processData: false,
+					  headers:{'json':jsonStr},//send json through headers!Important
 					  data:formData
 					})
 			.done(function(json) {
@@ -81,7 +82,7 @@ $(document).ready(function() {
 				       		//console.dir("got data!");
 				       		// self.writeList(data);
 				       		alert("上传头像成功");
-				       		self.getProfileByToken();
+				       		location.reload();//刷新页面
 							return;
 				       }
 					})
