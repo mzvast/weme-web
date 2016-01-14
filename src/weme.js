@@ -9,7 +9,6 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
-var request = require("request");
 var multiparty = require("multiparty");
 var flash = require('express-flash');
 // set up handlebars view engine
@@ -71,75 +70,45 @@ router.get('/login', function(req, res) {
 router.get('/register', function(req, res) {
 	res.render('auth/register');  
 });
-router.post('/login', function(request, response) {
-	// request.session.isLogin=false;
-	console.log('=======login=======');
-	console.log('session login state: '+request.session.isLogin);
-	// response.send(request.body); 
-	var data='';
-	var postData = JSON.stringify(request.body);
-	var options = {
-		hostname: '218.244.147.240',
-		port: 8080,
-		path: '/login',
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-			'Content-Length': postData.length
-		}};
-		// console.log(options);
-	var req = http.request(options, function(res) {
-		// console.log('STATUS: ' + res.statusCode);
-		// console.log('HEADERS: ' + JSON.stringify(res.headers));
-		res.setEncoding('utf8');
-		res.on('data', function (chunk) {
-		// console.log('BODY: ' + chunk);
-			data=chunk;
-		});
-		res.on('end', function() {
-		// console.log('No more data in response.');
-			try {
-				var json_data = JSON.parse(data);
-			}
-				catch(err) {
-					console.log(err);
-					response.send('sorry error,please retry later');
-				}
-			if (json_data['state']==='successful') {
-				request.session.isLogin=true;//session SET!
-				console.log('>>>>>>>>>>>>'+request.body.username+'<<<<<<<<<<<<');
-				//session Admin SET!
-				request.session.isAdmin=(request.body.username=='administrator'?true:false);
-				response.cookie('token',json_data['token']);//cookies store token
-				request.session.username = request.body.username;//SET session username
-				console.log('request.cookies.token: '+json_data['token']);
-				console.log('session login state: '+request.session.isLogin);
-				console.log('session Admin state: '+request.session.isAdmin);
-				if (request.session.isAdmin) {
-					response.redirect(301,'/admin/publish');//login to Admin
-				} else{
-					response.redirect(301,'/user/home');
-				}
-				/*登陆成功数据处理*/
-					// response.render('auth/login',{session:request.session});
-				console.log('======login success!======');
-			}else {
-				console.log('======login fail!======');
-				console.log(json_data['reason']);
-				request.flash('msg', json_data['reason']);
-					// request.flash('msg', 'smsmsmsmsm');
-				response.redirect(301,'/auth/login');
-			}
-		});
-	});
-	req.on('error', function(e) {
-		console.log('problem with request: ' + e.message);
-		console.log('========login error=======');
-	});
+router.post('/login', function(httpRequest, httpResponse) {
+	var request = require('request-json');
+	var client = request.createClient('http://218.244.147.240:8080/');
+	console.log('====login====='+new Date());
+	client.post('/login', httpRequest.body, function(err, res, body) {
+		   try{
+			   	if (res&&body) {
+			   		if (body['state']==='successful') {
+						httpRequest.session.isLogin=true;//session SET!
+						//session Admin SET!
+						httpRequest.session.isAdmin=(httpRequest.body.username=='administrator'?true:false);
+						httpResponse.cookie('token',body['token']);//cookies store token
+						httpRequest.session.username = httpRequest.body.username;//SET session username
+						console.log(httpRequest.body.username+' || (login,Admin):( '+httpRequest.session.isLogin,','+httpRequest.session.isAdmin+')');
+						console.log('cookies token:' +body['token']);
+						if (httpRequest.session.isAdmin) {
+							httpResponse.redirect(301,'/admin/publish');//login to Admin
+						} else{
+							httpResponse.redirect(301,'/user/home');
+						}
+						/*登陆成功数据处理*/
+							// httpResponse.render('auth/login',{session:httpRequest.session});
+						console.log('======login success!======');
+					}else {
+						console.log('======login fail!======');
+						console.log(body['reason']);
+						httpRequest.flash('msg', body['reason']);
+							// httpRequest.flash('msg', 'smsmsmsmsm');
+						httpResponse.redirect(301,'/auth/login');
+					}
+			   	}
+		   }
+		   catch(err){
+		   		httpResponse.send('sorry error,please retry later');
+		   		return console.log(err);
+		   }
+	   }
+	);
 
-			// write data to request body
-	req.write(postData);
-	req.end();
 });
 router.post('/register', function(request, response) {
 	// request.session.isLogin=false;
@@ -205,51 +174,21 @@ router.post('/register', function(request, response) {
 	req.end();
 });
 
-app.post('/api/:method/:path',function(request,response) {
+app.post('/api/post/:path',function(httpRequest,httpResponse) {
+	var request = require('request-json');
+	var client = request.createClient('http://218.244.147.240:8080/');
 	console.log('========api======='+new Date());
-	// console.log('method: '+request.params.method);
-	// console.log('body: '+ request.body.token);
-	// console.log('path: /'+request.params.path);
-	// var postData = querystring.stringify({
-	// 	  'token': '884d20eb7ceb8e83f8ab7cb89fa238c0'
-	// 	});
-	var data='';
-	var postData = JSON.stringify(request.body);
-	var buf = new Buffer(postData.length*3);//处理中文字符js和binary之间的差异！Important
-	var len = buf.write(postData);//处理中文字符js和binary之间的差异！Important
-	var options = {
-		hostname: '218.244.147.240',
-		port: 8080,
-		path: '/'+request.params.path,
-		method: request.params.method.toUpperCase(),
-		headers: {
-			'Content-Type': 'application/json',
-			'Content-Length': len
-		}};
-		// console.log(options);
-	var req = http.request(options, function(res) {
-		// console.log('STATUS: ' + res.statusCode);
-		// console.log('HEADERS: ' + JSON.stringify(res.headers));
-		res.setEncoding('utf8');
-		res.on('data', function (chunk) {
-		// console.log('BODY: ' + chunk);
-			data+=chunk.replace('BODY:','');//多段数据合成，去除穿插的BODY:字符
-		});
-		res.on('end', function() {
-		// console.log('No more data in response.');
-			response.send(data);//send data back to front end	
-			console.log('========api success=======');
-		});
-	});
-	req.on('error', function(e) {
-		console.log('problem with request: ' + e.message);
-		console.log('========api error=======');
-	});
-
-			// write data to request body
-	req.write(postData);
-	req.end();
-
+	client.post(httpRequest.params.path, httpRequest.body, function(err, res, body) {
+		   try{
+			   	if (res&&body) {
+				 	return httpResponse.send(body);
+			   	}
+		   }
+		   catch(err){
+		   		return console.log(err);
+		   }
+	   }
+	);
 });
 
 app.post('/api-multipart/:path/',function(httpRequest, httpResponse, next) {
@@ -268,6 +207,7 @@ app.post('/api-multipart/:path/',function(httpRequest, httpResponse, next) {
 
         if(part.filename)
         {
+			var request = require("request");
 		    console.log('got file named ' + part.name);
             var filename = part.filename;
             var size = part.byteCount;
