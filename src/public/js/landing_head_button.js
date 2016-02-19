@@ -29,3 +29,7 @@
               event.preventDefault(); 
               swiper.slideTo(0, 700, false); 
               }); 
+            $('#login').click(function(event) {
+              event.preventDefault();
+              window.location.href='/auth/login'; 
+            });
