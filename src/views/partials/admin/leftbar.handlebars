@@ -7,6 +7,12 @@
             <li class="pure-menu-item pure-menu-selected "><a href="#" class="pure-menu-link">活动审核</a></li>
             {{else}}
                 <li class="pure-menu-item"><a href="/admin/publish" class="pure-menu-link">活动审核</a></li>            
+            {{/if}} 
+
+            {{#if certificate}}
+            <li class="pure-menu-item pure-menu-selected "><a href="#" class="pure-menu-link">认证审核</a></li>
+            {{else}}
+                <li class="pure-menu-item"><a href="/admin/certificate" class="pure-menu-link">认证审核</a></li>            
             {{/if}}            
 
            {{!--  {{#if eventRegister}}
@@ -14,11 +20,11 @@
             {{else}}
                <li class="pure-menu-item"><a href="/admin/eventRegister" class="pure-menu-link">报名审核</a></li>            
             {{/if}} --}}
-                <li class="pure-menu-item" class="menu-item-divided pure-menu-selected">
+                {{!-- <li class="pure-menu-item" class="menu-item-divided pure-menu-selected">
                     <a href="#" class="pure-menu-link">用户管理</a>
                 </li>
 
-                <li class="pure-menu-item"><a href="#" class="pure-menu-link">其他功能</a></li>
+                <li class="pure-menu-item"><a href="#" class="pure-menu-link">其他功能</a></li> --}}
             </ul>
         </div>
     </div>

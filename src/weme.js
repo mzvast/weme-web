@@ -339,6 +339,10 @@ router.get('/publish', function(req, res) {
 	console.log('cookies token: '+req.cookies.token);
 	res.render('admin/publish',{layout:'main_pure',session:req.session});
 });
+router.get('/certificate', function(req, res) {
+	console.log('cookies token: '+req.cookies.token);
+	res.render('admin/certificate',{layout:'main_pure',session:req.session});
+});
 /*set up Error handler*/
 // 404 catch-all handler (middleware)
 app.use(function(req, res, next) {
