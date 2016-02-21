@@ -1,5 +1,5 @@
 {{# section 'head' }}	
-	<title>WeMe|Certificate</title>
+	<title>WeMe|认证审核</title>
 <link rel="stylesheet" type="text/css" href="/css/admin/side-menu.css">
 <link rel="stylesheet" type="text/css" href="/css/admin/top-menu.css">
 {{> css_bt}}
@@ -62,22 +62,22 @@ th, td {
 		    <div class="row" style="margin-top: 30px">
 			    <div class="col-md-4" >
 				<div class="panel panel-default" style="margin-bottom: 0px">
-				<div class="panel-heading text-center"><b>活动列表</b></div>
+				<div class="panel-heading text-center"><b>认证申请</b></div>
 					<table class="table" data-bind="with:ViewModel1">
 						    <thead>
 						        <tr>
-						            <td style="width:1em">标题</td>
-						            <td style="width:1em">时间</td>
-						            <td style="width:1em">作者</td>
+						            <td style="width:1em">序号</td>
+						            <td style="width:1em">姓名</td>
+						            <td style="width:1em">学校</td>
 						            <td style="width:1em">状态</td>
 						        </tr>
 						    </thead>
 						    <tbody data-bind="foreach:activityList">
 						        <tr  data-bind="click:$parent.setCurrentActivity,css: {'selected':$parent.currentActivity()==$data}">
-						            <td data-bind="text:title"></td>
-						            <td data-bind="text:time"></td>
-						            <td data-bind="text:author"></td>
-						            <td  data-bind="text:state,css:{'pass':$data.state()=="通过"}"></td>
+						            <td data-bind="text:id"></td>
+						            <td data-bind="text:name"></td>
+						            <td data-bind="text:school"></td>
+						            <td data-bind="text:checkresult"></td>
 						        </tr>
 						    </tbody>
 					</table>
@@ -108,22 +108,18 @@ th, td {
 					  <div class="panel panel-default" style="margin-bottom: 0px">
 						<div class="panel-heading text-center"><b>详情</b></div>
 					    	<ul class="list-group" data-bind="with:currentActivity()">
-								  <li class="list-group-item" >
-									  	<h2 data-bind="text:title"></h2>
-									  	<h3 data-bind="text:advertise"></h3>
-								  </li>
-							  <li class="list-group-item" ><b>详情:</b><span data-bind="text:detail"></span></li>
+								  
 							  <li class="list-group-item" >
-							  		<b>活动id:</b><span data-bind="text:id"></span><br>
-									<b>地点:</b><span data-bind="text:location"></span><br>
-									<b>人数:</b><span data-bind="text:number"></span><br>
-									<b>学校:</b><span data-bind="text:school"></span><br>
-									<b>报名人数:</b><span data-bind="text:signnumber"></span><br>
-									<b>时间:</b><span data-bind="text:time"></span><br>
-									<b>有图片:</b><span data-bind="text:whetherimage"></span>
+									<b>学校:</b><span data-bind="text:school"></span><br>									
+									<b>位置:</b><span data-bind="text:location"></span><br>
+								</li>
+							  <li class="list-group-item" >
+
+							  		<b>序号:</b><span data-bind="text:id"></span><br>
+									<b>申请时间:</b><span data-bind="text:timestamp"></span><br>
 							  </li>
-					          <li class="list-group-item" data-bind="visible:$data.whetherimage">
-							   		<img style="width:300px" class="media-object" src="" data-bind="attr: { src: imageurl }" alt="">
+					          <li class="list-group-item">
+							   		<img style="width:300px" class="media-object" src="" data-bind="attr: { src: pictureurl }" alt="">
 							  </li>	
 							 
 							</ul>
@@ -134,24 +130,22 @@ th, td {
 						<div class="panel-heading text-center"><b>操作</b></div>
 					    	<ul class="list-group" data-bind="with:currentActivity()">
 						    	 <li class="list-group-item" >
-										<b>审核状态:</b><span data-bind="text:state"><br>
+										<b>认证状态:</b><span data-bind="text:checkresult"><br>
 								 </li>
 						    	 <li class="list-group-item text-center" >
 									  	 <div>
-							            	<button class="pure-button button-success" data-bind="click:$parent.setPassActivity">批准</button>
+							            	<button class="pure-button button-success" data-bind="click:$parent.setPassActivity">通过</button>
 							            	<button class="pure-button button-error" data-bind="click:$parent.setNoPassActivity">否决</button>
 							            </div>
 					            </li>
 							  <li class="list-group-item" >
-							  <b>发布者:</b><span data-bind="text:author"></span><br>
-								  <b>发布者id:</b><span data-bind="text:authorid"></span><br>
-								  <b>性别:</b><span data-bind="text:gender"></span><br>
+							  <b>用户:</b><span data-bind="text:name"></span><br>
+								  <b>用户id:</b><span data-bind="text:userid"></span><br>
 								  <!-- Button trigger modal -->
 										<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" data-bind="click:$parent.showModal">
 										  详情
 										</button>
-							  </li>
-							  <li class="list-group-item" ><b>联系方式:</b><br><span data-bind="text:remark"></span></li>
+							  </li>							  
 							</ul>
 						</div>
 				    </div>
@@ -206,8 +200,9 @@ th, td {
 {{>js_bt}}
 {{# section 'jquery' }}
 	<script type="text/javascript" src="/bower_components/knockout/dist/knockout.js"></script>
+	<script type="text/javascript" src="/bower_components/knockout-postbox/build/knockout-postbox.min.js"></script>
 	<script type="text/javascript" src="/js/admin/ui.js"></script>
 	<script type="text/javascript" src="/js/util/dom.js"></script>
-	<script type="text/javascript" src="/js/admin/publish.js"></script>
+	<script type="text/javascript" src="/js/admin/certificate.js"></script>
 	
 {{/ section}}

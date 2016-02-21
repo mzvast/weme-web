@@ -1,5 +1,5 @@
 {{# section 'head' }}	
-	<title>WeMe|Dashboard</title>
+	<title>WeMe|活动审核</title>
 <link rel="stylesheet" type="text/css" href="/css/admin/side-menu.css">
 <link rel="stylesheet" type="text/css" href="/css/admin/top-menu.css">
 {{> css_bt}}
@@ -120,9 +120,9 @@ th, td {
 									<b>学校:</b><span data-bind="text:school"></span><br>
 									<b>报名人数:</b><span data-bind="text:signnumber"></span><br>
 									<b>时间:</b><span data-bind="text:time"></span><br>
-									<b>有图片:</b><span data-bind="text:whetherimage"></span>
+									<b>报名需要照片:</b><span data-bind="text:whetherimage"></span>
 							  </li>
-					          <li class="list-group-item" data-bind="visible:$data.whetherimage">
+					          <li class="list-group-item">
 							   		<img style="width:300px" class="media-object" src="" data-bind="attr: { src: imageurl }" alt="">
 							  </li>	
 							 
