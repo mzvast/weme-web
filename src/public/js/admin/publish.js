@@ -1,35 +1,32 @@
+/*global getCookie*/
 $(document).ready(function() {
-var shouter = new ko.subscribable();
 	
 var ViewModel1 = function() {
 	var self = this;
-	self.itemSize = ko.observable(0);
 	// Publish ActivityList itemSize to ViewModel2
-	self.itemSize.subscribe(function(value) {
-		shouter.notifySubscribers(value,"Publish_itemSizeOfActivityList");
-	});	
+	self.itemSize = ko.observable(0).publishOn("Publish_itemSizeOfActivityList");
+	
+
 	self.activityList = ko.observableArray([]);//.extend({ deferred: true });
 	self.showRefresh = ko.observable(false);
 	self.token =  getCookie("token");
 	self.currentPage = ko.observable(1);
 	//Subscribe currentPageIndex from ViewModel2
-	shouter.subscribe(function(value) {
+	ko.postbox.subscribe("Publish_ActivityListPageNum",function(value) {
 		self.currentPage(value);
 		self.fetchCurrentActivityList();
-	},self,"Publish_ActivityListPageNum");
+	},self);
 
-	self.clickedItem = ko.observable();
 	// Publish clickedItem id to ViewModel3 
-	self.clickedItem.subscribe(function(data) {
-		shouter.notifySubscribers(data.authorid(),"Publish_clickedItem");
-		console.log("cliked data.id()= "+data.authorid());
-	});
+	self.clickedItem = ko.observable().publishOn("Publish_clickedItem");
+	
 	self.currentActivity = ko.observable();
 	self.currentActivityNum = ko.observable(0);
 
 	self.showModal = function(data) {
 		self.clickedItem(data);
 		console.log("cliked详情!");
+		console.log("data==",data);
 	};
 
 	self.setCurrentActivity=function(data) {
@@ -56,20 +53,20 @@ var ViewModel1 = function() {
 				  data:{
 				  	"token": self.token,
 				  	"page": self.currentPage()
-				  },
+				  }
 				})
 		.done(function(json) {
-					var data = json.result
+					var data = json.result;
 			       console.dir(data);			       
 			       if (data.length==0) {
 			       		return;
 			       } 
 			       else{
 				        self.writeActivityList(data);
-						self.currentActivity(self.activityList()[self.currentActivityNum()])
+						self.currentActivity(self.activityList()[self.currentActivityNum()]);
 						self.itemSize(self.itemSize()||json.pages*10);
 						return;
-			       };
+			       }
 				})
 		.fail(function(e) {
 				       console.log(e);
@@ -127,21 +124,18 @@ var ViewModel1 = function() {
 		var self = this;
 		self.itemSize = ko.observable();
 		self.pageNumbers = ko.observableArray([1]);
-		self.currentPageIndex = ko.observable(1);
 		self.lastPageIndex = ko.computed(function() {
 			return Math.ceil(self.itemSize()/10);
 		});
 		// Publish ActivityList currentPageIndex to ViewModel1
-		self.currentPageIndex.subscribe(function(value) {
-			shouter.notifySubscribers(value,"Publish_ActivityListPageNum");
-		});
+		self.currentPageIndex = ko.observable(1).publishOn("Publish_ActivityListPageNum");
 		// Subscribe ActivityList itemSize from ViewModel1
-		shouter.subscribe(function(value) {
+		ko.postbox.subscribe("Publish_itemSizeOfActivityList",function(value) {
 			self.itemSize(value);
 			self.makePageNumbers(self.lastPageIndex());
 			console.log("VM2 self.lastPageIndex()="+self.lastPageIndex());
 			console.log("VM2 self.pageNumbers()="+self.pageNumbers());
-		},self,"Publish_itemSizeOfActivityList");
+		},self);		
 
 		self.goToPage = function(data) {
 			self.currentPageIndex(data);
@@ -161,7 +155,7 @@ var ViewModel1 = function() {
 			self.pageNumbers.removeAll();
 			for (var i = 1; i <= lastPageIndex; i++) {
 				self.pageNumbers.push(i);
-			};
+			}
 		};
 
 		self.nextPage = function() {
@@ -182,11 +176,11 @@ var ViewModel1 = function() {
 		self.currentId = ko.observable();
 		self.currentProfile = ko.observable();
 		// Subscribe Publish_clickedItem from ViewModel1
-		shouter.subscribe(function(id) {
-			self.currentId(id);
+		ko.postbox.subscribe("Publish_clickedItem",function(data) {
+			self.currentId(data.authorid());
 			self.getProfileById();
 			console.log("self.currentId()==="+self.currentId());
-		},self,"Publish_clickedItem");
+		},self);
 
 		self.getProfileById = function()  {
 			console.log("正在获取个人信息!");
@@ -196,8 +190,8 @@ var ViewModel1 = function() {
 					  dataType: "json",
 					  data:{
 					  	"token": self.token,
-					  	"id":self.currentId(),
-					  },
+					  	"id":self.currentId()
+					  }
 					})
 			.done(function(json) {
 				       if (json["state"]!=="successful") {
@@ -213,14 +207,14 @@ var ViewModel1 = function() {
 				       		self.currentProfile(new Profile(json));
 				       		console.dir(self.currentProfile());
 							return;
-				       };
+				       }
 					})
 			.fail(function(e) {
 					  	self.showRefresh(true);
 					       console.log(e);
 	                		return;
 
-					})
+					});
 		};
 	};
 
@@ -263,7 +257,7 @@ var Activity = function (data) {
 	this.time=ko.observable(data.time) ;
 	this.title=ko.observable(data.title);
 	this.whetherimage=ko.observable(data.whetherimage);
-}
+};
 	var masterVM = (function() {
 		var self = this;
 		self.ViewModel1 = new ViewModel1();//ActivitList
@@ -271,5 +265,5 @@ var Activity = function (data) {
 		self.ViewModel3 = new ViewModel3();//Profile detail
 	})();
 
-ko.applyBindings(masterVM)
-})
+ko.applyBindings(masterVM);
+});
