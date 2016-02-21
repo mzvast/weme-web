@@ -61,11 +61,16 @@ router.get('/login', function(req, res) {
 	console.log('session login state: '+req.session.isLogin);
 	console.log('session Admin state: '+req.session.isAdmin);
 	console.log('cookies token: '+req.cookies.token);
-	if (req.session.isLogin) {
+	if (req.session.isAdmin&&req.session.isLogin) {
 		res.redirect(301,'/admin/publish');
 	}
-	res.clearCookie('token');
-	res.render('auth/login');  
+	else if(req.session.isLogin){
+		res.redirect(301,'/user/home');
+	}
+	else{
+		// res.clearCookie('token');
+		res.render('auth/login');  
+	}	
 });
 router.get('/register', function(req, res) {
 	res.render('auth/register');  
