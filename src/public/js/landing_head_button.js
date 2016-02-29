@@ -23,7 +23,7 @@
             
             $('#download').click(function(event) { 
               event.preventDefault(); 
-              swiper.slideTo(3, 700, false); 
+              swiper.slideTo(4, 700, false); 
               }); 
             $('#goTop').click(function(event) { 
               event.preventDefault(); 
