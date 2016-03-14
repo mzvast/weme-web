@@ -1,7 +1,6 @@
  var vex_msg = '<h2>联系我们</h2> \
-                	<p><b>客服邮箱：</b><br><a href="mailto:service@weme.com"><u>service@weme.com</u></a></p>\
-                	<p><b>账号申诉：</b><br><a href="mailto:shensu@weme.com?subject=账号申诉&body=1、喂米号<br>2、昵称<br>3、绑定手机号<br>4、账号补充描述：（包括描述头像图片、填写年龄、星座、常驻地选择）<br>5、申诉理由（陈述并尽量举证自己并无违规行为，以方便工作人员核实）"><u>shensu@weme.com</u></a>,提交信息包括喂米号、昵称、绑定手机号以及申诉理由。</p>\
-                	<p><b>官方微博：</b><br>@喂米APP</p>';
+                	<p><b>客服邮箱：</b><br><a href="mailto:wemespace@gmail.com"><u>wemespace@gmail.com</u></a></p>\
+                	<p><b>唯觅团队，竭诚为按服务';
             vex.defaultOptions.className = 'vex-theme-flat-attack';
             var vex_confirm = function(msg) {
                 vex.open({
