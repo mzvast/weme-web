@@ -1,0 +1,242 @@
+{{# section 'head' }}	
+	<title>WeMe|卡片审核</title>
+<link rel="stylesheet" type="text/css" href="/css/admin/side-menu.css">
+<link rel="stylesheet" type="text/css" href="/css/admin/top-menu.css">
+{{> css_bt}}
+<style>
+    .pure-g > div {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .l-box {
+        padding: 1em;
+    }
+
+    .custom-restricted-width {
+    /* To limit the menu width to the content of the menu: */
+    display: inline-block;
+    }
+    .custom-restricted-width{
+        text-align:center;
+    }
+table{
+    /*border: 1px solid black;*/
+    table-layout: fixed;
+    width: auto;
+}
+
+th, td {
+    /*border: 1px solid black;*/
+    overflow: hidden;
+    width: auto;
+}
+h2 { 
+   position: absolute; 
+   top: 50px; 
+   left: 50px; 
+   width: 100%; 
+}
+h2 span { 
+   color: white; 
+   font: bold 24px/45px Helvetica, Sans-Serif; 
+   letter-spacing: -1px;  
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(0, 0, 0, 0.7);
+   padding: 10px; 
+}
+h2 span.spacer {
+   padding:0 5px;
+}
+.image { 
+   position: relative; 
+   width: 100%; /* for IE 6 */
+}
+.button-success {
+            background: rgb(28, 184, 65); /* this is a green */
+        }
+.button-error {
+    background: rgb(202, 60, 60); /* this is a maroon */
+}
+.selected
+{
+    background-color:#97DDEB;
+}
+.pass
+{
+    color:green;
+}
+.nopass
+{
+    color:red;
+}
+</style>
+{{/ section}}
+
+{{> admin/topbar}}
+<div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
+{{> admin/leftbar card=true}}
+
+    <div id="main">
+		<div class="container" style="margin: 30px auto">
+		    <div class="row" style="margin-top: 30px">
+			    <div class="col-md-4" >
+				<div class="panel panel-default" style="margin-bottom: 0px">
+				<div class="panel-heading text-center"><b>认证申请</b></div>
+					<table class="table" data-bind="with:ViewModel1">
+						    <thead>
+						        <tr>
+						            <td style="width:1em">卡片ID</td>
+						            <td style="width:1em">缩略图</td>
+						            <td style="width:1em">姓名</td>
+						            <td style="width:1em">性别</td>
+						            <td style="width:1em">状态</td>
+						            <td style="width:1em">修改</td>
+						        </tr>
+						    </thead>
+						    <tbody data-bind="foreach:activityList">
+						        <tr data-bind="click:$parent.setCurrentActivity,css: {'selected':$parent.currentActivity()==$data}">
+						            <td data-bind="text:id"></td>
+						            <td><img style="width:50px" data-bind="attr: { src: avatarurl }" alt=""></td>
+						            <td data-bind="text:name"></td>
+						            <td data-bind="text:gender"></td>
+						            <td><span data-bind="attr:{class:disable()==true?'glyphicon glyphicon-remove':'glyphicon glyphicon-ok'},css:{nopass:disable()==true,pass:disable()==false} "></span></td>
+						            <td>
+						            	<a href="#">
+						            	<button class="pure-button button-error" data-bind="visible:disable()==false,click:$parent.setNoPassActivity">
+						            		<span class="glyphicon glyphicon-wrench" ></span>						            
+						            	</button>
+						            	<button class="pure-button button-success" data-bind="visible:disable()==true,click:$parent.setPassActivity">
+						            		<span class="glyphicon glyphicon-wrench" ></span>						            
+						            	</button>
+						            	</a>
+						            </td>						            
+						        </tr>
+						    </tbody>
+					</table>
+				</div>
+				<nav class="text-center" data-bind="with:ViewModel2">
+				  <ul class="pagination pagination-sm">
+					<li data-bind="visible:hasPrecious()">
+				      <a href="#" aria-label="Previous" >
+				        <span class="glyphicon glyphicon-fast-backward" aria-hidden="true" data-bind="click:gotoFirstPage"></span>
+				      </a>
+				    </li>
+				  </ul>				  
+				  <ul class="pagination pagination-sm">
+				    <li data-bind="visible:hasPrecious()">
+				      <a href="#" aria-label="Previous" >
+				        <span class="glyphicon glyphicon-triangle-left"  aria-hidden="true" data-bind="click:previousPage"></span>
+				      </a>
+				    </li>
+				  </ul>
+				  <ul class="pagination pagination-sm" data-bind="foreach:pageNumbers">
+				    <li data-bind="attr:{class:$data==$parent.currentPageIndex()?'active':''}"> 
+				    	<a href="#" data-bind="text:$data,click:$parent.goToPage"></a>
+			   		</li>
+			  	  </ul>
+				  <ul class="pagination pagination-sm">
+					<li data-bind="visible:hasNext()">
+				      <a href="#" aria-label="Next" >
+				        <span class="glyphicon glyphicon-triangle-right" aria-hidden="true" data-bind="click:nextPage"></span>
+				      </a>
+				    </li>
+				  </ul>
+				  <ul class="pagination pagination-sm">
+					<li data-bind="visible:hasNext()">
+				      <a href="#" aria-label="Next" >
+				        <span class="glyphicon glyphicon-fast-forward" aria-hidden="true" data-bind="click:gotoLastPage"></span>
+				      </a>
+				    </li>
+				  </ul>
+				</nav>
+
+			    </div>
+				    <div class="col-md-7 " >
+					  <div  class="panel panel-default" style="margin-bottom: 0px">
+						<div class="panel-heading text-center"><b>详情</b></div>
+					    	<ul class="list-group">
+					    	<!-- ko with:ViewModel1.currentActivity() -->
+					          <li class="list-group-item image">
+							   		<img class="img-responsive" src="" data-bind="attr: { src: avatarurl }" alt="">
+					      	</li>
+							  <li class="list-group-item" >
+									<b>语音:</b><span data-bind="text:voiceurl"></span><br>
+							  </li>
+							<!-- /ko -->
+							 	<h2 >
+							 		<!-- ko with:ViewModel1.currentActivity() -->
+					      			 <span data-bind="text:name"></span></span><br>					      	
+							 		<!-- /ko-->
+							 		<!-- ko with:ViewModel3.currentProfile() -->
+							 		<span data-bind="text:degree"></span><br>
+							 		<span data-bind="text:school"></span><br>
+							 		<span data-bind="text:birthday"></span><br>
+							 		<!-- /ko -->
+					      		</h2> 
+						<!-- ko with:ViewModel3.currentProfile() -->
+					      <li class="list-group-item">
+					      	<b>姓名:</b><span data-bind="text:name"></span><br>
+					        <b>性别:</b><span data-bind="text:gender"></span><br>
+					        <b>生日:</b><span data-bind="text:birthday"></span><br>
+					        <b>家乡:</b><span data-bind="text:hometown"></span><br>
+					      </li>
+					      <li class="list-group-item">
+					      	 <b>学校:</b><span data-bind="text:school"></span><br>
+					        <b>学历:</b><span data-bind="text:degree"></span><br>
+					        <b>入学时间:</b><span data-bind="text:enrollment"></span><br>
+					        <b>学院:</b><span data-bind="text:department"></span><br>
+					      </li>
+					      <li class="list-group-item">
+					      	<b>爱好:</b><span data-bind="text:hobby"></span><br>
+					        <b>访客数量:</b><span data-bind="text:lookcount"></span><br>
+					        <b>喜好:</b><span data-bind="text:preference"></span><br>
+					      </li>
+					      <li class="list-group-item">
+					      	<b>用户名:</b><span data-bind="text:username"></span><br>
+					        <b>喂米id:</b><span data-bind="text:id"></span><br>
+					        <b>QQ:</b><span data-bind="text:qq"></span><br>
+					        <b>微信:</b><span data-bind="text:wechat"></span><br>
+					        <b>手机:</b><span data-bind="text:phone"></span><br>
+					      </li>	 
+					     <!-- /ko -->
+							</ul>
+				    </div>
+		
+
+
+			</div>
+	
+
+		</div>
+        
+    </div>
+</div>
+
+
+{{>js_bt}}
+{{# section 'jquery' }}
+	<script type="text/javascript" src="/bower_components/knockout/dist/knockout.js"></script>
+	<script type="text/javascript" src="/bower_components/knockout-postbox/build/knockout-postbox.min.js"></script>
+	<script type="text/javascript" src="/js/admin/ui.js"></script>
+	<script type="text/javascript" src="/js/util/dom.js"></script>
+	<script type="text/javascript" src="/js/admin/card.js"></script>
+	<script type="text/javascript">
+		$(function() {
+	    
+	    $("h2")
+	        .wrapInner("<span>")
+
+	    $("h2 br")
+	        .before("<span class='spacer'>")
+	        .after("<span class='spacer'>");
+
+	});
+	</script>
+	
+{{/ section}}

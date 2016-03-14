@@ -339,7 +339,10 @@ router.get('/eventRegister', function(req, res) {
 	console.log('cookies token: '+req.cookies.token);
 	res.render('admin/eventRegister',{layout:'main_pure',session:req.session});
 });
-
+router.get('/card', function(req, res) {
+	console.log('cookies token: '+req.cookies.token);
+	res.render('admin/card',{layout:'main_pure',session:req.session});
+});
 router.get('/publish', function(req, res) {
 	console.log('cookies token: '+req.cookies.token);
 	res.render('admin/publish',{layout:'main_pure',session:req.session});

@@ -13,6 +13,11 @@
             <li class="pure-menu-item pure-menu-selected "><a href="#" class="pure-menu-link">认证审核</a></li>
             {{else}}
                 <li class="pure-menu-item"><a href="/admin/certificate" class="pure-menu-link">认证审核</a></li>            
+            {{/if}} 
+            {{#if card}}
+            <li class="pure-menu-item pure-menu-selected "><a href="#" class="pure-menu-link">卡片审核</a></li>
+            {{else}}
+                <li class="pure-menu-item"><a href="/admin/card" class="pure-menu-link">卡片审核</a></li>            
             {{/if}}            
 
            {{!--  {{#if eventRegister}}
