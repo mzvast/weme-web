@@ -127,33 +127,27 @@ h2 span.spacer {
 				        <span class="glyphicon glyphicon-fast-backward" aria-hidden="true" data-bind="click:gotoFirstPage"></span>
 				      </a>
 				    </li>
-				  </ul>				  
-				  <ul class="pagination pagination-sm">
 				    <li data-bind="visible:hasPrecious()">
 				      <a href="#" aria-label="Previous" >
 				        <span class="glyphicon glyphicon-triangle-left"  aria-hidden="true" data-bind="click:previousPage"></span>
 				      </a>
 				    </li>
-				  </ul>
-				  <ul class="pagination pagination-sm" data-bind="foreach:pageNumbers">
+				    <!-- ko foreach:pageNumbers -->
 				    <li data-bind="attr:{class:$data==$parent.currentPageIndex()?'active':''}"> 
 				    	<a href="#" data-bind="text:$data,click:$parent.goToPage"></a>
 			   		</li>
-			  	  </ul>
-				  <ul class="pagination pagination-sm">
+			   		<!-- /ko -->
 					<li data-bind="visible:hasNext()">
 				      <a href="#" aria-label="Next" >
 				        <span class="glyphicon glyphicon-triangle-right" aria-hidden="true" data-bind="click:nextPage"></span>
 				      </a>
 				    </li>
-				  </ul>
-				  <ul class="pagination pagination-sm">
 					<li data-bind="visible:hasNext()">
 				      <a href="#" aria-label="Next" >
 				        <span class="glyphicon glyphicon-fast-forward" aria-hidden="true" data-bind="click:gotoLastPage"></span>
 				      </a>
 				    </li>
-				  </ul>
+				  </ul>				  
 				</nav>
 
 			    </div>

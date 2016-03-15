@@ -66,7 +66,7 @@ var ViewModel1 = function() {
 				        self.writeActivityList(data);
 						self.currentActivity(self.activityList()[self.currentActivityNum()]);
 						self.itemSize(self.itemSize()||json.pages*10);
-						self.clickedItem(self.activityList()[0]);
+						self.setCurrentActivity(self.activityList()[0]);
 						console.log("pages",json.pages);
 						return;
 			       }
