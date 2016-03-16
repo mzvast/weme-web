@@ -343,6 +343,10 @@ router.get('/card', function(req, res) {
 	console.log('cookies token: '+req.cookies.token);
 	res.render('admin/card',{layout:'main_pure',session:req.session});
 });
+router.get('/cardwall', function(req, res) {
+	console.log('cookies token: '+req.cookies.token);
+	res.render('admin/cardwall',{layout:'main_pure',session:req.session});
+});
 router.get('/publish', function(req, res) {
 	console.log('cookies token: '+req.cookies.token);
 	res.render('admin/publish',{layout:'main_pure',session:req.session});
