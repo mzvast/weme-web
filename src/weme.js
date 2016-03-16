@@ -325,10 +325,10 @@ router.get('/community',function(req,res) {
 /*保护下面的路由必须isAdmin才可以访问,临时关闭，方便调试*/
 app.use(function(req, res, next) {
 	console.log('user admin state: '+req.session.isAdmin);
-	if (req.session.isAdmin===true) {
+	if (req.session.isLogin&&req.session.isAdmin===true) {
 		next();  
 	}else{
-		res.render('404');
+		res.redirect(301,'/auth/login');//res.render('404');
 	}
 });
 app.use('/admin', router);
