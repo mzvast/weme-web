@@ -19,11 +19,11 @@
           <ul class="nav navbar-nav">
             {{#if session.isLogin}}
 
-              {{#if home}}
+             {{!--  {{#if home}}
               <li class="active"><a href="#">主页</a></li>
               {{else}}
               <li><a href="/user/home">主页</a></li>
-              {{/if}}
+              {{/if}} --}}
 
               {{#if activity}}
               <li class="dropdown active">
@@ -50,7 +50,12 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             {{#if session.isLogin}}
-              <li><a href="/user/home">{{ session.username }}</a></li>
+              {{#if home}}
+              <li class="active">
+              {{else}}
+              <li>
+              {{/if}}
+              <a href="/user/home">{{ session.username }}</a></li>
               <li ><a href="/auth/logout">注销</a></li>
             {{/if}} 
             {{#if session.isAdmin}}

@@ -9,7 +9,7 @@ $(document).ready(function() {
 	//我发布的活动列表
 	var ViewModel1 = function() {
 		var self = this;
-		self.showRefresh = ko.observable(true);
+		self.showRefresh = ko.observable(false);
 		self.list = ko.observableArray();
 		self.currentPageIndex = ko.observable(1);
 		self.token = getCookie("token");

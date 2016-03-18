@@ -9,7 +9,11 @@
 <div class="container">
 	<div class="row" style="margin-top: 30px;">
 		<div class="col-md-2">
-				<div class="list-group">
+		{{!-- <div class="list-group">
+			<button class="btn btn-info">&nbsp探索活动&nbsp&nbsp<i class="glyphicon glyphicon-search"></i></button>
+			<button class="btn btn-success" style="margin-top: 10px;">&nbsp发布活动&nbsp&nbsp<i class="glyphicon glyphicon-plus"></i></button>
+		</div> --}}
+				<div class="list-group" style="width:120px;">
 				  <button type="button" class="list-group-item active">发布的活动</button>
 				  <button type="button" class="list-group-item disabled">喜欢的活动</button>
 				  <button type="button" class="list-group-item disabled">参加的活动</button>
@@ -19,6 +23,10 @@
 			<div class="panel panel-default" data-bind="with:ViewModel1">
 				  <div class="panel-heading text-center">我发布的活动</div>
 				  <button  class="btn btn-primary btn-block" data-bind="click:fetchPublishedActivity,visible:showRefresh">点我刷新！</button>
+				  <div class="list-group" data-bind="visible:list().length==0">
+						<a class="list-group-item text-center">(⊙﹏⊙)b你好像没有发布活动<br>先去发布活动吧</a>
+
+					</div>
 				<div class="list-group" data-bind="foreach:list">
 				  <a href="#" class="list-group-item" data-bind="click:$parent.getSignupList,attr:{class:($parent.selectedItem()==$data)?'list-group-item active':'list-group-item'}">
 				    <h4 class="list-group-item-heading" data-bind="text:title"></h4>
