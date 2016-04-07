@@ -95,9 +95,21 @@ $(document).ready(function() {
 			//console.log("VM2 self.pageNumbers()="+self.pageNumbers());
 		},self);
 
+		self.goToPage = function(data) {
+			self.currentPageIndex(data);
+			self.makePageNumbers(self.lastPageIndex());
+		};
+		self.gotoLastPage = function() {
+			self.currentPageIndex(self.lastPageIndex());
+			self.makePageNumbers(self.lastPageIndex());
+		};		
+		self.gotoFirstPage = function() {
+			self.currentPageIndex(1);
+			self.makePageNumbers(self.lastPageIndex());
+		};
 		self.hasNext=ko.computed(function() {
-			//console.log("VM2 self.currentPageIndex()="+self.currentPageIndex());
-			//console.log("VM2 self.lastPageIndex()="+self.lastPageIndex());
+			console.log("VM2 self.currentPageIndex()="+self.currentPageIndex());
+			console.log("VM2 self.lastPageIndex()="+self.lastPageIndex());
 			return self.currentPageIndex()!==self.lastPageIndex();
 		});
 
@@ -105,25 +117,29 @@ $(document).ready(function() {
 			return self.currentPageIndex()>1;
 		});
 
-		self.goToPage = function(data) {
-			self.currentPageIndex(data);
-		};
-
 		self.makePageNumbers =function(lastPageIndex) {
 			self.pageNumbers.removeAll();
-			for (var i = 1; i <= lastPageIndex; i++) {
-				self.pageNumbers.push(i);
+			if (lastPageIndex>5&&self.currentPageIndex()>2) {
+				for (var i = self.currentPageIndex()-2,j=0; i <= lastPageIndex&&j<5; i++,j++) {
+					self.pageNumbers.push(i);
+				}
+			}else{
+				for (var i = 1,j=0; i <= lastPageIndex&&j<5; i++,j++) {
+					self.pageNumbers.push(i);
+				}
 			}
 		};
 
 		self.nextPage = function() {
 			self.currentPageIndex(self.currentPageIndex()+1);
-			//console.log("self.currentPageIndex()="+self.currentPageIndex());
+			self.makePageNumbers(self.lastPageIndex());
+			console.log("self.currentPageIndex()="+self.currentPageIndex());
 		};
 
 		self.previousPage = function() {
 			self.currentPageIndex(self.currentPageIndex()-1);
-			//console.log("self.currentPageIndex()="+self.currentPageIndex());
+			self.makePageNumbers(self.lastPageIndex());
+			console.log("self.currentPageIndex()="+self.currentPageIndex());
 		};
 
 	};
@@ -265,14 +281,14 @@ $(document).ready(function() {
 
 		self.downloadDetailList = function() {
 			self.itemSize(downloadList().length);
-			//console.log("正在下载详细信息辣");
+			console.log("正在下载详细信息辣");
 			downloadDetailList.removeAll();
 			//console.log("BEFORE downloadDetailList()==="+downloadDetailList());
 			self.downloadDetailData(0);
 
 		};
 		self.download = function() {
-			//console.log("开始下载辣");
+			console.log("开始下载辣");
 			downloadList.removeAll();
 			//console.log("BEFORE downloadList()==="+downloadList());
 			self.downloadPageData(1);
@@ -286,7 +302,7 @@ $(document).ready(function() {
 			self.currentDownloadNum(num+1);
 			$.ajax({
 					  type: "POST",
-					  url: "/api/post/getprofilebyid",
+					  url: "/api/post/getprofilebyidphone",
 					  dataType: "json",
 					  data:{
 					  	"token": self.token,
@@ -300,7 +316,7 @@ $(document).ready(function() {
 				       } 
 				       else{
 				       		//console.log("got data!");
-				       		//console.dir(json);
+				       		console.dir(json);
 				       		downloadDetailList.push(json);
 				       		if (num < downloadList().length) {
 				       			self.downloadDetailData(num+1);
@@ -337,16 +353,18 @@ $(document).ready(function() {
 				       } 
 				       else{
 				       		//console.log("got download data!");				       		
-				       		//console.dir(data);
+				       		console.log("num=",num);
+				       		console.dir(data);
 				       		data.forEach(function(obj) {
 				       			downloadList.push(obj);				       			
 				       		});
-				       		if (num < self.pages) {
+				       		if (num < self.pages()) {
 				       			self.downloadPageData(num+1);
+				       		}else{
+								self.downloadDetailList();				       			
 				       		}
 							//console.log("AFTER downloadList()===");
 							//console.log(downloadList());
-							self.downloadDetailList();
 							return;
 				       }
 					})
@@ -440,9 +458,21 @@ $(document).ready(function() {
 			//console.log("VM4 self.pageNumbers()="+self.pageNumbers());
 		},self);
 
+		self.goToPage = function(data) {
+			self.currentPageIndex(data);
+			self.makePageNumbers(self.lastPageIndex());
+		};
+		self.gotoLastPage = function() {
+			self.currentPageIndex(self.lastPageIndex());
+			self.makePageNumbers(self.lastPageIndex());
+		};		
+		self.gotoFirstPage = function() {
+			self.currentPageIndex(1);
+			self.makePageNumbers(self.lastPageIndex());
+		};
 		self.hasNext=ko.computed(function() {
-			//console.log("VM4 self.currentPageIndex()="+self.currentPageIndex());
-			//console.log("VM4 self.lastPageIndex()="+self.lastPageIndex());
+			console.log("VM2 self.currentPageIndex()="+self.currentPageIndex());
+			console.log("VM2 self.lastPageIndex()="+self.lastPageIndex());
 			return self.currentPageIndex()!==self.lastPageIndex();
 		});
 
@@ -450,25 +480,29 @@ $(document).ready(function() {
 			return self.currentPageIndex()>1;
 		});
 
-		self.goToPage = function(data) {
-			self.currentPageIndex(data);
-		};
-
 		self.makePageNumbers =function(lastPageIndex) {
 			self.pageNumbers.removeAll();
-			for (var i = 1; i <= lastPageIndex; i++) {
-				self.pageNumbers.push(i);
+			if (lastPageIndex>5&&self.currentPageIndex()>2) {
+				for (var i = self.currentPageIndex()-2,j=0; i <= lastPageIndex&&j<5; i++,j++) {
+					self.pageNumbers.push(i);
+				}
+			}else{
+				for (var i = 1,j=0; i <= lastPageIndex&&j<5; i++,j++) {
+					self.pageNumbers.push(i);
+				}
 			}
 		};
 
 		self.nextPage = function() {
 			self.currentPageIndex(self.currentPageIndex()+1);
-			//console.log("self.currentPageIndex()="+self.currentPageIndex());
+			self.makePageNumbers(self.lastPageIndex());
+			console.log("self.currentPageIndex()="+self.currentPageIndex());
 		};
 
 		self.previousPage = function() {
 			self.currentPageIndex(self.currentPageIndex()-1);
-			//console.log("self.currentPageIndex()="+self.currentPageIndex());
+			self.makePageNumbers(self.lastPageIndex());
+			console.log("self.currentPageIndex()="+self.currentPageIndex());
 		};
 
 	};
@@ -502,7 +536,7 @@ $(document).ready(function() {
 			//console.log("正在获取个人信息!");
 			$.ajax({
 					  type: "POST",
-					  url: "/api/post/getprofilebyid",
+					  url: "/api/post/getprofilebyidphone",
 					  dataType: "json",
 					  data:{
 					  	"token": self.token,

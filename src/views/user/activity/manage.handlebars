@@ -1,7 +1,16 @@
 {{# section 'head' }}	
 
 	<title>{{session.username}}|WeMe|我的活动</title>
-
+<style>
+	.pass
+	{
+	    color:green;
+	}
+	.nopass
+	{
+	    color:red;
+	}
+</style>
 {{/ section}}
 
 
@@ -39,27 +48,35 @@
 			</div>
 			<nav class="text-center" data-bind="with:ViewModel2">
 				  <ul class="pagination pagination-sm">
+					<li data-bind="visible:hasPrecious()">
+				      <a href="#" aria-label="Previous" >
+				        <span class="glyphicon glyphicon-fast-backward" aria-hidden="true" data-bind="click:gotoFirstPage"></span>
+				      </a>
+				    </li>
 				    <li data-bind="visible:hasPrecious()">
 				      <a href="#" aria-label="Previous" >
-				        <span aria-hidden="true" data-bind="click:previousPage">上一页</span>
+				        <span class="glyphicon glyphicon-triangle-left"  aria-hidden="true" data-bind="click:previousPage"></span>
 				      </a>
 				    </li>
-				  </ul>
-				  <ul class="pagination pagination-sm" data-bind="foreach:pageNumbers">
+				    <!-- ko foreach:pageNumbers -->
 				    <li data-bind="attr:{class:$data==$parent.currentPageIndex()?'active':''}"> 
-				    	<a data-bind="text:$data,click:$parent.goToPage"></a>
+				    	<a href="#" data-bind="text:$data,click:$parent.goToPage"></a>
 			   		</li>
-			  	  </ul>
-				  <ul class="pagination pagination-sm">
+			   		<!-- /ko -->
 					<li data-bind="visible:hasNext()">
 				      <a href="#" aria-label="Next" >
-				        <span aria-hidden="true" data-bind="click:nextPage">下一页</span>
+				        <span class="glyphicon glyphicon-triangle-right" aria-hidden="true" data-bind="click:nextPage"></span>
 				      </a>
 				    </li>
-				  </ul>
-			</nav>
+					<li data-bind="visible:hasNext()">
+				      <a href="#" aria-label="Next" >
+				        <span class="glyphicon glyphicon-fast-forward" aria-hidden="true" data-bind="click:gotoLastPage"></span>
+				      </a>
+				    </li>
+				  </ul>				  
+				</nav>
 		</div>		
-		<div class="col-md-5">
+		<div class="col-md-6">
 				<div class="panel panel-default" style="margin-bottom: 0px" data-bind="with:ViewModel3">
 				  <!-- Default panel contents -->
 				  <div class="panel-heading text-center">报名用户
@@ -76,7 +93,7 @@
 								<th>Id</th>
 								<th>姓名</th>
 								<th>头像</th>
-								<th>学校</th>
+								<th style="width: 8em">学校</th>
 								<th>性别</th>
 								<th>状态</th>
 								<th>操作</th>
@@ -92,7 +109,7 @@
 								<td><img style="width:40px;border-radius: 50px 50px 50px 50px;" data-bind="attr:{src:imgUrlSmall()}"></td>
 								<td data-bind="text:school"></td>
 								<td data-bind="text:gender"></td>
-								<td data-bind="text:flagStatus"></td>
+								<td><span data-bind="attr:{class:flagStatus()==true?'glyphicon glyphicon-remove':'glyphicon glyphicon-ok'},css:{nopass:flagStatus()==true,pass:flagStatus()==false} "></span></td>
 								<td>
 									<!-- Button trigger modal -->
 									<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" data-bind="click:$parent.showModal">
@@ -128,24 +145,32 @@
 				</div>
 				<nav class="text-center" data-bind="with:ViewModel4">
 				  <ul class="pagination pagination-sm">
+					<li data-bind="visible:hasPrecious()">
+				      <a href="#" aria-label="Previous" >
+				        <span class="glyphicon glyphicon-fast-backward" aria-hidden="true" data-bind="click:gotoFirstPage"></span>
+				      </a>
+				    </li>
 				    <li data-bind="visible:hasPrecious()">
 				      <a href="#" aria-label="Previous" >
-				        <span aria-hidden="true" data-bind="click:previousPage">上一页</span>
+				        <span class="glyphicon glyphicon-triangle-left"  aria-hidden="true" data-bind="click:previousPage"></span>
 				      </a>
 				    </li>
-				  </ul>
-				  <ul class="pagination pagination-sm" data-bind="foreach:pageNumbers">
+				    <!-- ko foreach:pageNumbers -->
 				    <li data-bind="attr:{class:$data==$parent.currentPageIndex()?'active':''}"> 
-				    	<a data-bind="text:$data,click:$parent.goToPage"></a>
+				    	<a href="#" data-bind="text:$data,click:$parent.goToPage"></a>
 			   		</li>
-			  	  </ul>
-				  <ul class="pagination pagination-sm">
+			   		<!-- /ko -->
 					<li data-bind="visible:hasNext()">
 				      <a href="#" aria-label="Next" >
-				        <span aria-hidden="true" data-bind="click:nextPage">下一页</span>
+				        <span class="glyphicon glyphicon-triangle-right" aria-hidden="true" data-bind="click:nextPage"></span>
 				      </a>
 				    </li>
-				  </ul>
+					<li data-bind="visible:hasNext()">
+				      <a href="#" aria-label="Next" >
+				        <span class="glyphicon glyphicon-fast-forward" aria-hidden="true" data-bind="click:gotoLastPage"></span>
+				      </a>
+				    </li>
+				  </ul>				  
 				</nav>
 
 		</div>		

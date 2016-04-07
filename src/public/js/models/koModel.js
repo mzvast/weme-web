@@ -19,12 +19,13 @@ var Signup = function(data) {
 		return "//218.244.147.240:80/avatar/"+self.id()+"_thumbnail.jpg";
 	});		
 	self.flagStatus = ko.computed(function() {
-		return self.flag()==1?"通过":"未通过";
+		return self.flag()==1?true:false;
 	});
 };
 var Profile = function(data) {
 	var self = this;
 	self.birthday = ko.observable(data.birthday?data.birthday:"");
+	self.constellation = ko.observable(data.constellation?data.constellation:"");
 	self.degree = ko.observable(data.degree?data.degree:"");
 	self.department = ko.observable(data.department?data.department:"");
 	self.enrollment = ko.observable(data.enrollment?data.enrollment:"");
