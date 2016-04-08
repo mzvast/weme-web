@@ -259,21 +259,22 @@ $(document).ready(function() {
 			}		  
 			//console.log(downloadDetailList());
 			ep.selectSheet("详细信息")
-			  .write({"content":[["id","姓名","性别","电话","QQ","生日","家乡","学校","入学时间","学院","学历"]]});
+			  .write({"content":[["id","用户名","姓名","性别","电话","QQ","生日","家乡","学校","入学时间","学院","学历"]]});
 			for (var i = 0; i < downloadDetailList().length; i++) {
 				//console.log("i=="+i);
 				var data = downloadDetailList()[i];
 				ep.write({  "cell":"A"+(i+2),"content":data['id']?data['id']:" " })
-				  .write({  "cell":"B"+(i+2),"content":data['name']?data['name']:" " })
-				  .write({  "cell":"C"+(i+2),"content":data['gender']?data['gender']:" " })
-				  .write({  "cell":"D"+(i+2),"content":data['phone']?data['phone']:" " })
-				  .write({  "cell":"E"+(i+2),"content":data['qq']?data['qq']:" " })
-				  .write({  "cell":"F"+(i+2),"content":data['birthday']?data['birthday']:" " })
-				  .write({  "cell":"G"+(i+2),"content":data['hometown']?data['hometown']:" " })
-				  .write({  "cell":"H"+(i+2),"content":data['school']?data['school']:" " })
-				  .write({  "cell":"I"+(i+2),"content":data['enrollment']?data['enrollment']:" " })
-				  .write({  "cell":"J"+(i+2),"content":data['department']?data['department']:" " })
-				  .write({  "cell":"K"+(i+2),"content":data['degree']?data['degree']:" " });
+				  .write({  "cell":"B"+(i+2),"content":data['username']?data['username']:" " })
+				  .write({  "cell":"C"+(i+2),"content":data['name']?data['name']:" " })
+				  .write({  "cell":"D"+(i+2),"content":data['gender']?data['gender']:" " })
+				  .write({  "cell":"E"+(i+2),"content":data['phone']?data['phone']:" " })
+				  .write({  "cell":"F"+(i+2),"content":data['qq']?data['qq']:" " })
+				  .write({  "cell":"G"+(i+2),"content":data['birthday']?data['birthday']:" " })
+				  .write({  "cell":"H"+(i+2),"content":data['hometown']?data['hometown']:" " })
+				  .write({  "cell":"I"+(i+2),"content":data['school']?data['school']:" " })
+				  .write({  "cell":"J"+(i+2),"content":data['enrollment']?data['enrollment']:" " })
+				  .write({  "cell":"K"+(i+2),"content":data['department']?data['department']:" " })
+				  .write({  "cell":"L"+(i+2),"content":data['degree']?data['degree']:" " });
 			}			  
 			  ep.saveAs("活动_"+self.id()+"_报名表"+".xlsx");
 			  self.showDownload(false);
