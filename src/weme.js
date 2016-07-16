@@ -2,9 +2,11 @@
 /*eslint-disable no-alert, no-console */
 /*eslint-disable no-unused-vars*/
 var express = require('express');
+var compression = require('compression');
 var http = require('http'); 
 // var querystring = require('querystring');
 var app = express();
+app.use(compression());
 var router = express.Router();
 var bodyParser = require('body-parser');
 var session = require('express-session');
