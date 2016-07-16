@@ -4,7 +4,10 @@
   "description": "",
   "main": "weme.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"gulp dev",
+    "build":"gulp dist",
+    "dist":"pm2 start weme.js --name 'weme' "
   },
   "repository": {
     "type": "git",
