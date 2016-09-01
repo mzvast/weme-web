@@ -10,15 +10,19 @@
 - REST API based backend [https://github.com/iThinkSeu/LoveinSEU](https://github.com/iThinkSeu/LoveinSEU)
 - jQuery to handle AJAX 
 - reverse proxy to API backend
+
 ## What's worked?
 - Login into account.(Register page removed)
 - Download activity registration excel sheets
 - Admin user's Avatar and pubished activity
+
 ## What's next?
 -  Add  **picture wall** to better admin on users' photoes 
 -  Fulfill **Web App** of this app which may have a lot to do
+
 ## How to develop?
 -  run:`npm dev`
+
 ## How to deploy?
 - make sure you have gulp installed globally!directory.
 - change directory into **src** and run :`npm build&&npm dist`
